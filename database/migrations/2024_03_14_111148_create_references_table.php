@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('organization', 255);
             $table->string('email', 255);
             $table->string('phone', 255);
-            $table->longText('address');
+            $table->longText('address')->nullable();
             $table->integer('relation_id');
             $table->integer('reference_type');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->after('id');

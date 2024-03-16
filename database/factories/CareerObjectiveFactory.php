@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\UseHelpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,14 @@ class CareerObjectiveFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            [
+                'user_id'           => 1,
+                'career_objective'  => 'To build a career in Information and Communication technology with the experience that I have gained from my education and professional background willing to take any challenge in the relevant field.',
+                'created_by'        => 1,
+                'updated_by'        => null,
+                'created_at'        => UseHelpers::currentDateTime(),
+                'updated_at'        => null
+            ]
         ];
     }
 }

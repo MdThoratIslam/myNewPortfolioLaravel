@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('responsibilities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('employement_id')->constrained('employment_histories')->cascadeOnDelete()->after('user_id');
+            $table->foreignId('employment_history_id')->constrained('employment_histories')->cascadeOnDelete()->after('user_id');
             $table->string('label', 255);
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->after('id');
             $table->integer('status_active')->default(1);
             $table->integer('is_delete')->default(0);

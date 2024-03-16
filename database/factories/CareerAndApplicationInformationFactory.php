@@ -17,22 +17,40 @@ class CareerAndApplicationInformationFactory extends Factory
     public function definition(): array
     {
         return [
-            // following career_and_application_information migration fiel in multiple array
-            /*
-             * $table->id();
-            $table->string('label', 255);
-            $table->longText('description');
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->after('id');
-            $table->integer('status_active')->default(1);
-            $table->integer('is_delete')->default(0);
-            $table->foreignId('created_by')->nullable()->constrained('users');
-            $table->foreignId('updated_by')->nullable()->constrained('users');
-            $table->timestamps();
-            */
             [
-
-            ]
-
+                'label' => "Looking For",
+                'description' => "Mid Level Job",
+                'user_id' => 1,
+            ],
+            [
+                'label' => "Available For",
+                'description' => "Full Time",
+                'user_id' => 1,
+            ],[
+                'label' => "Present Salary",
+                'description' => "Tk. 35000",
+                'user_id' => 1,
+            ],[
+                'label' => "Expected Salary",
+                'description' => "Tk. 70000",
+                'user_id' => 1,
+            ],[
+                'label' => "Preferred Job Category",
+                'description' => "IT/Telecommunication",
+                'user_id' => 1,
+            ],[
+                'label' => "Preferred District",
+                'description' => "Chattogram, Dhaka, Gazipur, Narayanganj",
+                'user_id' => 1,
+            ],[
+                'label' => "Preferred Country",
+                'description' => "Australia, Canada, Italy, Malaysia",
+                'user_id' => 1,
+            ],[
+                'label' => "Preferred Organization Types",
+                'description' => "NGO",
+                'user_id' => 1,
+            ],
         ];
     }
 }

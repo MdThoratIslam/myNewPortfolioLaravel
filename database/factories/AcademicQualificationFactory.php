@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-
+use App\UseHelpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,14 +25,13 @@ class AcademicQualificationFactory extends Factory
                 'result' => 3.31,
                 'outOf' => 5,
                 'passingYear' => 2010,
-                'duration' => '',
-                'achievement' => '',
+                'achievement' => 2010,
                 'user_id' => 1,
                 'status_active' => 1,
                 'is_delete' => 0,
                 'created_by' => 1,
-                'created_at' => current_timestamp(),
-                'updated_by' => null
+                'created_at' => UseHelpers::currentDateTime(),
+                'updated_by' => null,
                 'updated_at' => null
             ],
             [
@@ -42,14 +41,14 @@ class AcademicQualificationFactory extends Factory
                 'result' => 2.40,
                 'outOf' => 4,
                 'passingYear' => 2015,
-                'duration' => '',
-                'achievement' => '',
+                'duration' => 4,
+                'achievement' => 2015,
                 'user_id' => 1,
                 'status_active' => 1,
                 'is_delete' => 0,
                 'created_by' => 1,
-                'created_at' => current_timestamp(),
-                'updated_by' => null
+                'created_at' => UseHelpers::currentDateTime(),
+                'updated_by' => null,
                 'updated_at' => null
             ],
             [
@@ -59,14 +58,14 @@ class AcademicQualificationFactory extends Factory
                 'result' => 3.35,
                 'outOf' => 4,
                 'passingYear' => 2021,
-                'duration' => '',
-                'achievement' => '',
+                'duration' => 4,
+                'achievement' => 2021,
                 'user_id' => 1,
                 'status_active' => 1,
                 'is_delete' => 0,
                 'created_by' => 1,
-                'created_at' => current_timestamp(),
-                'updated_by' => null
+                'created_at' => UseHelpers::currentDateTime(),
+                'updated_by' => null,
                 'updated_at' => null
             ],
         ];

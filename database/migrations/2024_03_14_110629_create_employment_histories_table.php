@@ -24,11 +24,16 @@ return new class extends Migration
             $table->date('joinin_date');
             $table->date('leaving_date')->nullable();
 
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->after('id');
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete()
+                ->after('id');
             $table->integer('status_active')->default(1);
             $table->integer('is_delete')->default(0);
-            $table->foreignId('created_by')->nullable()->constrained('users');
-            $table->foreignId('updated_by')->nullable()->constrained('users');
+            $table->foreignId('created_by')->nullable()
+                ->constrained('users');
+            $table->foreignId('updated_by')->nullable()
+                ->constrained('users');
 
             $table->timestamps();
         });
