@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->longText('description');
+            $table->string('title',255);
             $table->string('projectAuthority',255);
             $table->string('duration',255);
             $table->date('earned_on');
