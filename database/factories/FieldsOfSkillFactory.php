@@ -21,6 +21,7 @@ class FieldsOfSkillFactory extends Factory
             [
                 'skill_name'        => 'HTML5 and CSS3',
                 'code'              => '101',
+                'percentage'        => 100,
                 'user_id'           => 1,
                 'created_by'        => 1,
                 'updated_by'        => null,
@@ -30,6 +31,7 @@ class FieldsOfSkillFactory extends Factory
             [
                 'skill_name'        => 'Bootstrap and other Scripting Languages',
                 'code'              => '102',
+                'percentage'        => 100,
                 'user_id'           => 1,
                 'created_by'        => 1,
                 'updated_by'        => null,
@@ -39,6 +41,7 @@ class FieldsOfSkillFactory extends Factory
             [
                 'skill_name'        => 'PHP (OOP)',
                 'code'              => '103',
+                'percentage'        => 90,
                 'user_id'           => 1,
                 'created_by'        => 1,
                 'updated_by'        => null,
@@ -48,6 +51,7 @@ class FieldsOfSkillFactory extends Factory
             [
                 'skill_name'        => 'Laravel and Vue.js',
                 'code'              => '104',
+                'percentage'        => 80,
                 'user_id'           => 1,
                 'created_by'        => 1,
                 'updated_by'        => null,
@@ -57,6 +61,7 @@ class FieldsOfSkillFactory extends Factory
             [
                 'skill_name'        => 'API Development',
                 'code'              => '105',
+                'percentage'        => 75,
                 'user_id'           => 1,
                 'created_by'        => 1,
                 'updated_by'        => null,
@@ -66,6 +71,7 @@ class FieldsOfSkillFactory extends Factory
             [
                 'skill_name'        => 'RESTful API',
                 'code'              => '106',
+                'percentage'        => 75,
                 'user_id'           => 1,
                 'created_by'        => 1,
                 'updated_by'        => null,
@@ -75,6 +81,7 @@ class FieldsOfSkillFactory extends Factory
             [
                 'skill_name'        => 'Git Version Control System',
                 'code'              => '107',
+                'percentage'        => 70,
                 'user_id'           => 1,
                 'created_by'        => 1,
                 'updated_by'        => null,
@@ -84,6 +91,7 @@ class FieldsOfSkillFactory extends Factory
             [
                 'skill_name'        => 'PHP MySql',
                 'code'              => '108',
+                'percentage'        => 80,
                 'user_id'           => 1,
                 'created_by'        => 1,
                 'updated_by'        => null,
@@ -93,6 +101,7 @@ class FieldsOfSkillFactory extends Factory
             [
                 'skill_name'        => 'JS JQuery AJAX',
                 'code'              => '109',
+                'percentage'        => 90,
                 'user_id'           => 1,
                 'created_by'        => 1,
                 'updated_by'        => null,
@@ -102,6 +111,7 @@ class FieldsOfSkillFactory extends Factory
             [
                 'skill_name'        => 'Oracle Database',
                 'code'              => '110',
+                'percentage'        => 70,
                 'user_id'           => 1,
                 'created_by'        => 1,
                 'updated_by'        => null,

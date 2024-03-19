@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('divisions', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
+            $table->string('name');
+            $table->string('bn_name');
+            $table->string('url');
+            $table->integer('code');
+            $table->float('lat', 10, 6)->nullable();
+            $table->float('long', 10, 6)->nullable();
             $table->integer('status_active')->default(1);
             $table->integer('is_delete')->default(0);
-            $table->foreignId('created_by')->nullable()->constrained('users');
-            $table->foreignId('updated_by')->nullable()->constrained('users');
             $table->timestamps();
         });
     }

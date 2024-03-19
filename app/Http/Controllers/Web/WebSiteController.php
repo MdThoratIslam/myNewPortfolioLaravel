@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\FieldsOfSkill;
 use App\Models\SkillSummary;
 use App\Models\SpecialQualification;
 use Carbon\Carbon;
@@ -17,7 +18,8 @@ class WebSiteController extends Controller
     {
         $special_qualification_data = $this->special_qualification();
         $skill_summary_data         = $this->skill_summary();
-       return view('web_site.index',compact('special_qualification_data','skill_summary_data'));
+        $field_of_skill_data        = $this->field_of_skill();
+       return view('web_site.index',compact('special_qualification_data','skill_summary_data','field_of_skill_data'));
     }
     public function special_qualification()
     {
@@ -44,5 +46,23 @@ class WebSiteController extends Controller
             $skillSummary .= "{$record->summary}";
         }
         return $skillSummary;
+    }
+    public function field_of_skill()
+    {
+       $data = FieldsOfSkill::where('status_active', 1)
+            ->where('is_delete', 0)
+           ->where('user_id', 1)
+            ->get();
+       // this data as a arra return to the view
+        $data_arr = [];
+        foreach ($data as $record)
+        {
+            $data_arr[] = [
+                'skill_name' => $record->skill_name,
+                'percentage' => $record->percentage,
+            ];
+        }
+        return $data_arr;
+
     }
 }

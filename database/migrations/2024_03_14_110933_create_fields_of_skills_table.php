@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('fields_of_skills', function (Blueprint $table) {
             $table->id();
-            $table->string('skill_name', 255);
+            $table->string('skill_name',255);
+            $table->integer('percentage');
             $table->integer('code')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->after('id');
             $table->integer('status_active')->default(1);

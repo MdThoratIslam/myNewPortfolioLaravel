@@ -16,7 +16,10 @@ class DatabaseSeeder extends Seeder
             AcademicQualificationSeeder::class,
             SpecialQualificationSeeder::class,
             SkillSummarySeeder::class,
-
+            DivisionsSeeder::class,
+            DistrictsSeeder::class,
+            UpazilasSeeder::class,
+            FieldsOfSkillSeeder::class,
         ]);
     }
 }
