@@ -38,7 +38,8 @@
                             </div>
                         </div>
                     </div>
-                </div><!-- End .content-->
+                </div>
+                <!-- End .content-->
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\WebSiteController;
+use App\Http\Controllers\CV\PDFController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,3 +18,4 @@ Route::get('/', [WebSiteController::class,'index'])->name('web_site.index');
 Route::get('/admin', function () {
     return view('backend.pages.dashboard.index');
 })->name('admin.index');
+Route::get('generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');

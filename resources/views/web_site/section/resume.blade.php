@@ -1,68 +1,74 @@
 <section id="resume" class="resume section-bg">
     <div class="container">
-
         <div class="section-title">
-            <h2>Resume</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <div class="row">
+                <div class="col-lg-10">
+                    <h2>Resume</h2>
+                </div>
+                <div class="col-lg-2">
+                    <a href="{{route('generate-pdf')}}"
+                       class="btn btn-block btn-sm text-white" target="_blank" style="background-color: #DB528C">
+                        Download CV<i class="bx bxs-file-pdf"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-
         <div class="row">
             <div class="col-lg-6">
-                <h3 class="resume-title">Sumary</h3>
-                <div class="resume-item pb-0">
-                    <h4>Alice Barkley</h4>
-                    <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
-                    <p>
-                    <ul>
-                        <li>Portland par 127,Orlando, FL</li>
-                        <li>(123) 456-7891</li>
-                        <li>alice.barkley@example.com</li>
-                    </ul>
-                    </p>
-                </div>
-
                 <h3 class="resume-title">Education</h3>
-                <div class="resume-item">
-                    <h4>Master of Fine Arts &amp; Graphic Design</h4>
-                    <h5>2015 - 2016</h5>
-                    <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                    <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-                </div>
-                <div class="resume-item">
-                    <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-                    <h5>2010 - 2014</h5>
-                    <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                    <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
-                </div>
+                @foreach($academic_qualification_data as $education)
+                    <div class="resume-item">
+                        <h4><span>Exam Title:&nbsp;</span>{{$education['examTitle']}}</h4>
+                        <h5><span>Passing Year:&nbsp;</span>{{$education['startingYear'] ?? $education['passingYear']}} - {{$education['endingYear']}}</h5>
+                        <p><span>Institute Name:&nbsp;</span><em>{{$education['instituteName']}}</em></p>
+                        <p><span>Major:&nbsp;</span>{{$education['concentrationMajor']}}</p>
+                    </div>
+                @endforeach
             </div>
             <div class="col-lg-6">
                 <h3 class="resume-title">Professional Experience</h3>
-                <div class="resume-item">
-                    <h4>Senior graphic design specialist</h4>
-                    <h5>2019 - Present</h5>
-                    <p><em>Experion, New York, NY </em></p>
-                    <p>
-                    <ul>
-                        <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-                        <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
-                        <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-                        <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
-                    </ul>
-                    </p>
-                </div>
-                <div class="resume-item">
-                    <h4>Graphic design specialist</h4>
-                    <h5>2017 - 2018</h5>
-                    <p><em>Stepping Stone Advertising, New York, NY</em></p>
-                    <p>
-                    <ul>
-                        <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                        <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                        <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                        <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
-                    </ul>
-                    </p>
-                </div>
+                @foreach($employment_history_data as $experience)
+                    <div class="resume-item">
+                        <h2>{{$experience['company_name']}}
+                            @php
+                                $joiningDate = \Carbon\Carbon::parse($experience['joinin_date']);
+                                $leavingDate = \Carbon\Carbon::parse($experience['leaving_date']);
+                                $totalMonths = $leavingDate->diffInMonths($joiningDate);
+                                $totalYears = floor($totalMonths / 12); // Calculate total years
+                                $remainingMonths = $totalMonths % 12; // Calculate remaining months after removing complete years
+                            @endphp
+                            ({{ $totalYears }}.{{ $remainingMonths }} )
+                        </h2>
+                        <h4>{{ \App\UseHelpers::$designationArr[$experience['designation_id']]}}</h4>
+                        <h5>
+                            {{\Carbon\Carbon::parse($experience['joinin_date'])->format('F Y')}} -
+                            @if($experience['leaving_date'] == null)
+                                <span class="text-success">Present</span>
+                            @else
+                                {{\Carbon\Carbon::parse($experience['leaving_date'])->format('F Y')}}
+                            @endif
+                        </h5>
+                        <p><em>{{$experience['company_address']}}</em></p>
+                        <h4>Responsibilities:</h4>
+                        @php
+                            $responsibilityCount = count($experience['responsibilities']);
+                            $useList = true;
+                        @endphp
+                        <div class="row">
+                        @foreach($experience['responsibilities'] as $index => $responsibility)
+                            @if($index % 4 == 0)
+                                <div class="col-lg-6" data-aos="fade-up">
+                                    @endif
+                                    <ul>
+                                        <li><strong>{{$responsibility['label']}}</strong>:&nbsp;<br>{{$responsibility['description']}}</li>
+                                    </ul>
+                                    @if(($index + 1) % 4 == 0 || $index == count($experience['responsibilities']) - 1)
+                                </div>
+                            @endif
+                        @endforeach
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
 

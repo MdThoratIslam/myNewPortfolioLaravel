@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('instituteName', 255);
             $table->float('result', 8, 2);
             $table->integer('outOf');
+            $table->year('startingYear')->nullable();
+            $table->year('endingYear')->nullable();
             $table->year('passingYear');
             $table->integer('duration')->nullable();
             $table->year('achievement')->nullable();

@@ -23,7 +23,6 @@ return new class extends Migration
             $table->integer('department_id');
             $table->date('joinin_date');
             $table->date('leaving_date')->nullable();
-
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->cascadeOnDelete()
@@ -34,7 +33,6 @@ return new class extends Migration
                 ->constrained('users');
             $table->foreignId('updated_by')->nullable()
                 ->constrained('users');
-
             $table->timestamps();
         });
     }
