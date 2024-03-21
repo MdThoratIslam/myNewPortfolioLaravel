@@ -14,24 +14,16 @@
                     <li class="active">
                         <a class="sidenav-item-link" href="index.html">
                             <i class="mdi mdi-briefcase-account-outline"></i>
-                            <span class="nav-text">Business Dashboard</span>
+                            <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="sidenav-item-link" href="analytics.html">
-                            <i class="mdi mdi-chart-line"></i>
-                            <span class="nav-text">Analytics Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="section-title">
-                        Apps
-                    </li>
-                    <li>
-                        <a class="sidenav-item-link" href="chat.html">
-                            <i class="mdi mdi-wechat"></i>
-                            <span class="nav-text">Chat</span>
-                        </a>
-                    </li>
+                    <li class="section-title">Apps</li>
+{{--                    <li>--}}
+{{--                        <a class="sidenav-item-link" href="chat.html">--}}
+{{--                            <i class="mdi mdi-wechat"></i>--}}
+{{--                            <span class="nav-text">Chat</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
             <div class="sidebar-footer">

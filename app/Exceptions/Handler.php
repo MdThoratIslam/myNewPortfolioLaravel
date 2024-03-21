@@ -24,7 +24,11 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
+            // 404 not found error handling return my blade file
+            if ($this->isHttpException($e) && $e->getStatusCode() === 404)
+            {
+                return response()->view('errors.404', [], 404);
+            }
         });
     }
 }

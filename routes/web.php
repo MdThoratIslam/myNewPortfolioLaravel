@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WebController::class, 'index']);
+Route::get('/', [WebController::class, 'index'])->name('web_site');
 Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
 
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()

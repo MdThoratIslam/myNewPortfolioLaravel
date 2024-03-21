@@ -6,54 +6,19 @@
             <button id="sidebar-toggler" class="sidebar-toggle">
                 <span class="sr-only">Toggle navigation</span>
             </button>
-
-            <span class="page-title">dashboard</span>
-
+{{--            <span class="page-title">dashboard</span>--}}
+{{--            &nbsp;|&nbsp;--}}
+            <a href="{{route('web_site')}}" class="page-title btn btn-sm btn-outline-smoke p-0" target="_blank">
+                Web Site <i class="mdi mdi-web text-info"></i>
+            </a>
             <div class="navbar-right ">
-
-                <!-- search form -->
-                <div class="search-form">
-                    <form action="index.html" method="get">
-                        <div class="input-group input-group-sm" id="input-group-search">
-                            <input type="text" autocomplete="off" name="query" id="search-input" class="form-control" placeholder="Search..." />
-                            <div class="input-group-append">
-                                <button class="btn" type="button">/</button>
-                            </div>
-                        </div>
-                    </form>
-                    <ul class="dropdown-menu dropdown-menu-search">
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Morbi leo risus</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Dapibus ac facilisis in</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Porta ac consectetur ac</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Vestibulum at eros</a>
-                        </li>
-
-                    </ul>
-
-                </div>
-
                 <ul class="nav navbar-nav">
-                    <!-- Offcanvas -->
-                    <li class="custom-dropdown">
-                        <a class="offcanvas-toggler active custom-dropdown-toggler" data-offcanvas="contact-off" href="javascript:" >
-                            <i class="mdi mdi-contacts icon"></i>
-                        </a>
-                    </li>
                     <li class="custom-dropdown">
                         <button class="notify-toggler custom-dropdown-toggler">
                             <i class="mdi mdi-bell-outline icon"></i>
                             <span class="badge badge-xs rounded-circle">21</span>
                         </button>
                         <div class="dropdown-notify">
-
                             <header>
                                 <div class="nav nav-underline" id="nav-tab" role="tablist">
                                     <a class="nav-item nav-link active" id="all-tabs" data-toggle="tab" href="#all" role="tab" aria-controls="nav-home"
@@ -64,7 +29,6 @@
                                        aria-selected="false">Others (3)</a>
                                 </div>
                             </header>
-
                             <div class="" data-simplebar style="height: 325px;">
                                 <div class="tab-content" id="myTabContent">
 
@@ -293,7 +257,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <footer class="border-top dropdown-notify-footer">
                                 <div class="d-flex justify-content-between align-items-center py-2 px-4">
                                     <span>Last updated 3 min ago</span>
