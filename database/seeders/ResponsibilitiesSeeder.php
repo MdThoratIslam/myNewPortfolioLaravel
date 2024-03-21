@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Responsibilities;
+use App\Models\Responsibilities\Responsibilities;
 use Database\Factories\ResponsibilitiesFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ResponsibilitiesSeeder extends Seeder

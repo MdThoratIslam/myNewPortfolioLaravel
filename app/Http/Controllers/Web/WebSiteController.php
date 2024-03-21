@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Models\AcademicQualification;
-use App\Models\EmploymentHistory;
-use App\Models\FieldsOfSkill;
-use App\Models\SkillSummary;
-use App\Models\SpecialQualification;
+use App\Models\AcademicQualification\AcademicQualification;
+use App\Models\EmploymentHistory\EmploymentHistory;
+use App\Models\FieldsOfSkill\FieldsOfSkill;
+use App\Models\SkillSummary\SkillSummary;
+use App\Models\SpecialQualification\SpecialQualification;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class WebSiteController extends Controller
 {

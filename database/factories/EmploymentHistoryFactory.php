@@ -2,8 +2,9 @@
 namespace Database\Factories;
 use App\UseHelpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
+
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\EmploymentHistory>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\EmploymentHistory\EmploymentHistory>
  */
 class EmploymentHistoryFactory extends Factory
 {

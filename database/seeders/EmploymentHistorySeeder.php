@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\EmploymentHistory;
+use App\Models\EmploymentHistory\EmploymentHistory;
 use Database\Factories\EmploymentHistoryFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class EmploymentHistorySeeder extends Seeder

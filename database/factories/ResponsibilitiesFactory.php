@@ -6,7 +6,7 @@ use App\UseHelpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Responsibilities>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Responsibilities\Responsibilities>
  */
 class ResponsibilitiesFactory extends Factory
 {

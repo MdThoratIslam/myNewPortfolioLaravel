@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Districts;
+use App\Models\Districts\Districts;
 use Database\Factories\DistrictsFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DistrictsSeeder extends Seeder

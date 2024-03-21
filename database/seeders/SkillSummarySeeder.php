@@ -1,9 +1,9 @@
 <?php
 namespace Database\Seeders;
-use App\Models\SkillSummary;
+use App\Models\SkillSummary\SkillSummary;
 use Database\Factories\SkillSummaryFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+
 class SkillSummarySeeder extends Seeder
 {
     public function run(): void

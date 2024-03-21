@@ -6,7 +6,7 @@ use App\UseHelpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Reference>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Reference\Reference>
  */
 class ReferenceFactory extends Factory
 {

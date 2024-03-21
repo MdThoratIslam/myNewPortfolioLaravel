@@ -6,7 +6,7 @@ use App\UseHelpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\FieldsOfSkillDescription>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\FieldsOfSkillDescription\FieldsOfSkillDescription>
  */
 class FieldsOfSkillDescriptionFactory extends Factory
 {

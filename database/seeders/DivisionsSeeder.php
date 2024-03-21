@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Divisions;
+use App\Models\Divisions\Divisions;
 use Database\Factories\DivisionsFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DivisionsSeeder extends Seeder

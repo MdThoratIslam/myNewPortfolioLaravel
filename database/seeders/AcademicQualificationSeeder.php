@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\AcademicQualification;
+use App\Models\AcademicQualification\AcademicQualification;
 use Database\Factories\AcademicQualificationFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AcademicQualificationSeeder extends Seeder

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>@if (config('app.name')){{ config('app.name') }} |@endif{{ $title ?? 'Md Thorat Islam' }}</title>
+    <title>@if (config('app.name')){{ config('app.name') }}&nbsp;|&nbsp;@endif{{ $title ?? 'Md Thorat Islam' }}</title>
     <meta content="" name="Md Thorat Islam">
     <meta content="" name="Md Thorat Islam">
     <!-- Favicons -->

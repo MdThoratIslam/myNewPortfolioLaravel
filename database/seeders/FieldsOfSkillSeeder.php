@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\FieldsOfSkill;
+use App\Models\FieldsOfSkill\FieldsOfSkill;
 use Database\Factories\FieldsOfSkillFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class FieldsOfSkillSeeder extends Seeder

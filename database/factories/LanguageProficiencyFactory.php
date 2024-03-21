@@ -6,7 +6,7 @@ use App\UseHelpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\LanguageProficiency>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\LanguageProficiency\LanguageProficiency>
  */
 class LanguageProficiencyFactory extends Factory
 {

@@ -334,8 +334,19 @@
                                 </a>
                             </li>
 
+{{--                            <li class="dropdown-footer">--}}
+{{--                                <a class="dropdown-link-item" href="sign-in.html">--}}
+{{--                                    <i class="mdi mdi-logout"></i> Log Out--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
                             <li class="dropdown-footer">
-                                <a class="dropdown-link-item" href="sign-in.html"> <i class="mdi mdi-logout"></i> Log Out </a>
+                                <form action="{{ route('logout') }}" method="POST" style="display: none;" id="logout-form">
+                                    @csrf <!-- CSRF token for security -->
+                                </form>
+
+                                <a class="dropdown-link-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="mdi mdi-logout"></i> Log Out
+                                </a>
                             </li>
                         </ul>
                     </li>

@@ -6,7 +6,7 @@ use App\UseHelpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ExtraCurricularActivities>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ExtraCurricularActivities\ExtraCurricularActivities>
  */
 class ExtraCurricularActivitiesFactory extends Factory
 {

@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\CareerAndApplicationInformation;
+use App\Models\CareerAndApplicationInformation\CareerAndApplicationInformation;
 use Database\Factories\CareerAndApplicationInformationFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CareerAndApplicationInformationSeeder extends Seeder

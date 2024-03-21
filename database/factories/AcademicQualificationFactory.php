@@ -5,7 +5,7 @@ use App\UseHelpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AcademicQualification>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AcademicQualification\AcademicQualification>
  */
 class AcademicQualificationFactory extends Factory
 {

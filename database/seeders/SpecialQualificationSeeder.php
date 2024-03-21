@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\SpecialQualification;
+use App\Models\SpecialQualification\SpecialQualification;
 use Database\Factories\SpecialQualificationFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class SpecialQualificationSeeder extends Seeder

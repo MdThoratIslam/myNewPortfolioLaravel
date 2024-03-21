@@ -6,7 +6,7 @@ use App\UseHelpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SpecialQualification>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SpecialQualification\SpecialQualification>
  */
 class SpecialQualificationFactory extends Factory
 {

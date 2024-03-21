@@ -5,8 +5,6 @@
             @yield('content')
         </div>
     @include('backend.layouts.footer')
-
-
 <script src="{{asset('backend')}}/plugins/jquery/jquery.min.js"></script>
 <script src="{{asset('backend')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="{{asset('backend')}}/plugins/simplebar/simplebar.min.js"></script>

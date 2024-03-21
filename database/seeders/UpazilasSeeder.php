@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Upazilas;
+use App\Models\Upazilas\Upazilas;
 use Database\Factories\UpazilasFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UpazilasSeeder extends Seeder

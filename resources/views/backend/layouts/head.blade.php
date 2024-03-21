@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
         @if (config('app.name'))
-            {{ config('app.name') }} |
+            {{ config('app.name') }} | Dashboard
         @endif
         @yield('title')
     </title>
