@@ -13,7 +13,7 @@
 <script src="{{asset('public/backend')}}/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
 <script src="{{asset('public/backend')}}/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
 <script src="{{asset('public/backend')}}/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
-<script src="{{asset('backend')}}/plugins/jvectormap/jquery-jvectormap-us-aea.js"></script>
+<script src="{{asset('public/backend')}}/plugins/jvectormap/jquery-jvectormap-us-aea.js"></script>
 <script src="{{asset('public/backend')}}/plugins/daterangepicker/moment.min.js"></script>
 <script src="{{asset('public/backend')}}/plugins/daterangepicker/daterangepicker.js"></script>
 <script>
