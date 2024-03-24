@@ -1,7 +1,7 @@
 <section id="about" class="about">
     <div class="container">
         <div class="row no-gutters">
-            <div class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" style="background: url('{{asset('backend/images/user/about/about.jpg')}}') center no-repeat;background-size: contain"></div>
+            <div class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" style="background: url('{{asset('public/backend/images/user/about/about.jpg')}}') center no-repeat;background-size: contain"></div>
             <div class="col-xl-7 ps-0 ps-lg-5 pe-lg-1 d-flex align-items-stretch">
                 <div class="content d-flex flex-column justify-content-center">
                     <h3> Special Qualification</h3>

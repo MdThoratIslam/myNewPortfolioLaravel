@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\AcademicQualification\AcademicQualification;
 use App\Models\EmploymentHistory\EmploymentHistory;
 use App\Models\FieldsOfSkill\FieldsOfSkill;
+use App\Models\Portfolio\Portfolio;
+use App\Models\Portfolio\Portfolio_describe;
 use App\Models\SkillSummary\SkillSummary;
 use App\Models\SpecialQualification\SpecialQualification;
 use Carbon\Carbon;
@@ -17,11 +19,16 @@ class WebSiteController extends Controller
      */
     public function index()
     {
+        //dd($this->portfolio_describe());
         $special_qualification_data     = $this->special_qualification();
         $skill_summary_data             = $this->skill_summary();
         $field_of_skill_data            = $this->field_of_skill();
         $academic_qualification_data    = $this->academic_qualification();
         $employment_history_data        = $this->employment_history();
+        $portfolio_title                = $this->portfolio_title();
+
+//        $portfolio_describe_data        = $this->portfolio_describe();
+//        dd($portfolio_title);
        return view('web_site.index',compact(
            [
                'special_qualification_data',
@@ -29,6 +36,7 @@ class WebSiteController extends Controller
                'field_of_skill_data',
                'academic_qualification_data',
                'employment_history_data',
+               'portfolio_title'
            ]));
     }
     public function special_qualification()
@@ -99,8 +107,6 @@ class WebSiteController extends Controller
         }
         return $academicQualification;
     }
-
-    // now i want to EmploymentHistory data model join to Responsiblity model and return to the view
     public function employment_history()
     {
         // responsibilities() is a method of EmploymentHistory model
@@ -136,6 +142,54 @@ class WebSiteController extends Controller
         }
         // employmentHistory return a array not a json
         return $employmentHistory;
+    }
+    public function portfolio_title()
+    {
+        $data = Portfolio::with('portfolio_describe')
+            ->where('status_active', 1)
+            ->where('is_delete', 0)
+            ->get();
+        $portfolio_title = [];
+        foreach ($data as $record)
+        {
+            $portfolio_title[] = [
+                'id'                => $record->id,
+                'name'              => $record->name,
+            ];
+        }
+        return $data;
+    }
+    public function portfolio_describe($id)
+    {
+        //return $id;
+        $data = Portfolio_describe::join('portfolios', 'portfolio_describes.portfolio_id', '=', 'portfolios.id')
+            ->select('portfolio_describes.*', 'portfolios.name as portfolio_title_name')
+            ->where('portfolio_describes.status_active', 1)
+            ->where('portfolio_describes.is_delete', 0)
+            ->when(!empty($id), function ($query) use ($id) {
+                return $query->where('portfolio_describes.portfolio_id', $id);
+            })
+            ->with('portfolio')
+            ->orderBy('portfolio_describes.id', 'desc')
+            ->get();
+        $portfolio_describe = [];
+        foreach ($data as $record)
+        {
+            $images = json_decode($record->image); // Decode the JSON string
+            $portfolio_describe[] = [
+                'id'                        => $record->id,
+                'portfolio_id'              => $record->portfolio_id,
+                'portfolio_title_name'      => $record->portfolio_title_name,
+                'portfolio_name'            => $record->portfolio_name,
+                'image'                     => $images,
+            ];
+        }
+//        return $portfolio_describe;
+
+        return response()->json([
+            'status' => 200,
+            'data' => $portfolio_describe,
+        ]);
 
     }
 }

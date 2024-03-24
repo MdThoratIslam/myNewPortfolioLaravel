@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             FieldsOfSkillSeeder::class,
             EmploymentHistorySeeder::class,
             ResponsibilitiesSeeder::class,
+            PortfolioSeeder::class,
+            PortfolioDescribeSeeder::class,
         ]);
     }
 }

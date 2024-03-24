@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WebController::class, 'index'])->name('web_site');
+Route::get('/portfolio_filter/{id}', [WebController::class, 'portfolio_describe'])->name('portfolio_filter');
+Route::get('/portfolio_details/{id}', [WebController::class, 'portfolio_describe'])->name('portfolio_details');
+
 Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
+
 
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
 {

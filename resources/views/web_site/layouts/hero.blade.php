@@ -1,5 +1,5 @@
 <section id="hero" class="d-flex flex-column align-items-center justify-content-center" style="
-background: url('{{asset('web_site/assets/img/my_cover.jpg')}}') top center no-repeat;
+background: url('{{asset('public/web_site/assets/img/my_cover.jpg')}}') top center no-repeat;
 width: 100%;
 height: 90vh;
 background-size: cover;
