@@ -17,21 +17,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ============== Web Routes ===========================================================================================
 Route::get('/', [WebController::class, 'index'])->name('web_site');
 Route::get('/portfolio_filter/{id}', [WebController::class, 'portfolio_describe'])->name('portfolio_filter');
 Route::get('/portfolio_details/{id}', [WebController::class, 'portfolio_describe'])->name('portfolio_details');
-
 Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
-
+// ============== Web Routes End =======================================================================================
 
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
 {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])
-        ->middleware(['auth', 'verified'])
-        ->name('dashboard');
+        ->middleware(['auth', 'verified'])->name('dashboard');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function ()
+{
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
