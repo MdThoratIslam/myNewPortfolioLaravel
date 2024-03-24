@@ -24,7 +24,7 @@
     <link href="{{asset('public/backend/')}}/plugins/toaster/toastr.min.css" rel="stylesheet" />
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="{{asset('public/backend/')}}/css/style.css" />
-    <link href="{{asset('public/backend/')}}/images/favicon.png" rel="shortcut icon" />
+    <link href="{{asset('public/backend/')}}/images/paper-plane.png" rel="shortcut icon" />
     <script src="{{asset('public/backend/')}}/plugins/nprogress/nprogress.js"></script>
 </head>
 <body class="navbar-fixed sidebar-fixed" id="body">

@@ -11,6 +11,7 @@
         @yield('title')
     </title>
     <meta content="" name="Md Thorat Islam" />
+{{--    <link href="{{asset('public/backend/images/paper-plane.png')}}" rel="icon">--}}
     <link href="{{asset('public/backend/images/paper-plane.png')}}" rel="icon">
     <link href="{{asset('public/backend/images/paper-plane.png')}}" rel="apple-touch-icon">
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
@@ -18,7 +19,7 @@
     <link href="{{asset('public/backend/plugins/simplebar/simplebar.css')}}" rel="stylesheet" />
     <link href="{{asset('public/backend/plugins/nprogress/nprogress.css')}}" rel="stylesheet" />
     <link id="main-css-href" rel="stylesheet" href="{{asset('public/backend/css/style.css')}}" />
-    <link href="{{asset('public/backend/images/favicon.png')}}" rel="shortcut icon" />
+{{--    <link href="{{asset('public/backend/images/favicon.png')}}" rel="shortcut icon" />--}}
     <script src="{{asset('public/backend/plugins/nprogress/nprogress.js')}}"></script>
 </head>
 <body class="bg-light-gray" id="body" style="background-image: url('{{asset('public/backend/images/bg_body5.gif')}}');
