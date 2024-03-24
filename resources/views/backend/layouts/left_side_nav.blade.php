@@ -4,7 +4,7 @@
             <!-- Aplication Brand -->
             <div class="app-brand">
                 <a href="{{route('dashboard')}}">
-                    <img src="{{asset('backend')}}/images/paper-plane.png" alt="Logo" width="60">
+                    <img src="{{asset('public/backend/')}}images/paper-plane.png" alt="Logo" width="60">
                     <span class="brand-name">Oni</span>
                 </a>
             </div>
