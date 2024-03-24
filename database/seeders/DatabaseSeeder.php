@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             ResponsibilitiesSeeder::class,
             PortfolioSeeder::class,
             PortfolioDescribeSeeder::class,
+            ModuleSeeder::class,
+            SubModuleSeeder::class,
         ]);
     }
 }

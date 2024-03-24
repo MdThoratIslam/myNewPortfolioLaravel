@@ -2,22 +2,22 @@
 
 namespace Database\Seeders;
 
-use App\Models\Module\Module;
-use Database\Factories\Module\ModuleFactory;
+use App\Models\Module\SubModule;
+use Database\Factories\Module\SubModuleFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ModuleSeeder extends Seeder
+class SubModuleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $moduleFactory = new ModuleFactory();
-        $data = $moduleFactory->definition();
+        $subModuleFactory = new SubModuleFactory();
+        $data = $subModuleFactory->definition();
         foreach ($data as $val) {
-            Module::create($val);
+            SubModule::create($val);
         }
     }
 }

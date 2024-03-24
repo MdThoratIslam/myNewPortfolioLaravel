@@ -1,13 +1,9 @@
 <div class="page-wrapper">
-    <!-- Header -->
     <header class="main-header" id="header">
         <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
-            <!-- Sidebar toggle button -->
             <button id="sidebar-toggler" class="sidebar-toggle">
                 <span class="sr-only">Toggle navigation</span>
             </button>
-{{--            <span class="page-title">dashboard</span>--}}
-{{--            &nbsp;|&nbsp;--}}
             <a href="{{route('web_site')}}" class="page-title btn btn-sm btn-outline-smoke p-0" target="_blank">
                 Web Site <i class="mdi mdi-web text-info"></i>
             </a>
@@ -31,13 +27,11 @@
                             </header>
                             <div class="" data-simplebar style="height: 325px;">
                                 <div class="tab-content" id="myTabContent">
-
                                     <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tabs">
-
                                         <div class="media media-sm bg-warning-10 p-4 mb-0">
                                             <div class="media-sm-wrapper">
                                                 <a href="user-profile.html">
-                                                    <img src="{{asset('public/backend/images/user/logo.png')}}" alt="User Image">
+                                                    <img src="{{asset('public/backend/images/logo.png')}}" alt="User Image">
                                                 </a>
                                             </div>
                                             <div class="media-body">
@@ -71,7 +65,7 @@
                                         <div class="media media-sm p-4 mb-0">
                                             <div class="media-sm-wrapper">
                                                 <a href="user-profile.html">
-                                                    <img src="{{asset('public/backend/images/user/logo.png')}}" alt="User Image">
+                                                    <img src="{{asset('public/backend/images/logo.png')}}" alt="User Image">
                                                 </a>
                                             </div>
                                             <div class="media-body">
@@ -130,7 +124,7 @@
                                         <div class="media media-sm p-4 mb-0">
                                             <div class="media-sm-wrapper">
                                                 <a href="user-profile.html">
-                                                    <img src="{{asset('public/backend/images/user/logo.png')}}" alt="User Image">
+                                                    <img src="{{asset('public/backend/images/logo.png')}}" alt="User Image">
                                                 </a>
                                             </div>
                                             <div class="media-body">
@@ -147,7 +141,7 @@
                                         <div class="media media-sm p-4 mb-0">
                                             <div class="media-sm-wrapper">
                                                 <a href="user-profile.html">
-                                                    <img src="{{asset('public/backend/images/user/logo.png')}}" alt="User Image">
+                                                    <img src="{{asset('public/backend/images/logo.png')}}" alt="User Image">
                                                 </a>
                                             </div>
                                             <div class="media-body">
@@ -164,7 +158,7 @@
                                         <div class="media media-sm bg-warning-10 p-4 mb-0">
                                             <div class="media-sm-wrapper">
                                                 <a href="user-profile.html">
-                                                    <img src="{{asset('public/backend/images/user/logo.png')}}" alt="User Image">
+                                                    <img src="{{asset('public/backend/images/logo.png')}}" alt="User Image">
                                                 </a>
                                             </div>
                                             <div class="media-body">
@@ -182,7 +176,7 @@
                                         <div class="media media-sm p-4 mb-0">
                                             <div class="media-sm-wrapper">
                                                 <a href="user-profile.html">
-                                                    <img src="{{asset('public/backend/images/user/logo.png')}}" alt="User Image">
+                                                    <img src="{{asset('public/backend/images/logo.png')}}" alt="User Image">
                                                 </a>
                                             </div>
                                             <div class="media-body">
@@ -268,7 +262,7 @@
                     <!-- User Account -->
                     <li class="dropdown user-menu">
                         <button class="dropdown-toggle nav-link" data-toggle="dropdown">
-                            <img src="{{asset('public/backend/images/user/logo.png')}}" class="user-image rounded-circle" alt="User Image" />
+                            <img src="{{asset('public/backend/images/logo.png')}}" class="user-image rounded-circle" alt="User Image" />
                             <span class="d-none d-lg-inline-block">John Doe</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">

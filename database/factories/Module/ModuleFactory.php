@@ -2,6 +2,8 @@
 
 namespace Database\Factories\Module;
 
+use App\UseHelpers;
+use Dompdf\Helpers;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,32 @@ class ModuleFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            [
+                'name'                  => 'Dashboard',
+                'route'                 => 'dashboard',
+                'route_type'            => 1,
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'created_at'            => UseHelpers::currentDateTime(),
+                'updated_by'            => 1
+            ],
+            [
+                'name'                  => 'Personal Details',
+                'route'                 => null,
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'created_at'            => UseHelpers::currentDateTime(),
+                'updated_by'            => 1
+            ],
+            [
+                'name'                  => 'User Management',
+                'route'                 => null,
+                'route_type'            => 2,
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'created_at'            => UseHelpers::currentDateTime(),
+                'updated_by'            => 1
+            ]
         ];
     }
 }

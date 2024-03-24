@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('sub_modules', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description')->nullable();
             $table->string('icon')->nullable();
             $table->string('route')->nullable();
-            $table->integer('route_type')->default(0);
             $table->integer('status_active')->default(1);
             $table->integer('is_delete')->default(0);
+            $table->foreignId('module_id')->nullable()->constrained('modules');
             $table->foreignId('created_by')->nullable()->constrained('users');
             $table->foreignId('updated_by')->nullable()->constrained('users');
             $table->timestamps();
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('sub_modules');
     }
 };
