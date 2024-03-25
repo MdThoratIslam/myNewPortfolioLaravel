@@ -15,7 +15,6 @@ class PDFController extends Controller
     protected $config;
     protected $filesystem;
     protected $view;
-
     public function __construct(Repository $config, Filesystem $filesystem,ViewFactory $view)
     {
         $this->config = $config;
@@ -27,8 +26,6 @@ class PDFController extends Controller
     {
         $dompdf = new \Dompdf\Dompdf(); // Create a new Dompdf instance
         $pdf = new PDF($dompdf, $this->config, $this->filesystem, $this->view, 'UTF-8', true); // Instantiate the Barryvdh\DomPDF\PDF class
-
-
         $users = User::get();
         $data = [
             'title' => 'Welcome to ItSolutionStuff.com',

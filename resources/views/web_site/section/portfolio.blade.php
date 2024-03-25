@@ -27,13 +27,13 @@
 //                    echo "</pre>";
 
                     @endphp
-                    <img src="web_site/assets/img/portfolio/{{$images[0]}}" class="img-fluid" alt="">
+                    <img src="{{asset('public')}}/web_site/assets/img/portfolio/{{$images[0]}}" class="img-fluid" alt="">
                     <div class="portfolio-info">
                         <h4>{{ $val->name }}</h4>
                         <p>{{ $val->name }}</p>
                     </div>
                     <div class="portfolio-links">
-                        <a href="web_site/assets/img/portfolio/{{$images[0]}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1">
+                        <a href="{{asset('public')}}/web_site/assets/img/portfolio/{{$images[0]}}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1">
                             <i class="bx bx-plus"></i>
                         </a>
                         <a href="{{route('portfolio_details',$val->id)}}" title="More Details"><i class="bx bx-link"></i></a>

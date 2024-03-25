@@ -5,10 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
-        @if (config('app.name'))
-            {{ config('app.name') }} | Dashboard
-        @endif
-        @yield('title')
+        @if (config('app.name')){{ config('app.name') }} | @endif @yield('title')
     </title>
     <meta content="" name="Md Thorat Islam" />
     <!-- GOOGLE FONTS -->

@@ -8,6 +8,7 @@ use App\Models\EmploymentHistory\EmploymentHistory;
 use App\Models\FieldsOfSkill\FieldsOfSkill;
 use App\Models\Portfolio\Portfolio;
 use App\Models\Portfolio\Portfolio_describe;
+use App\Models\Service\Service;
 use App\Models\SkillSummary\SkillSummary;
 use App\Models\SpecialQualification\SpecialQualification;
 use Carbon\Carbon;
@@ -26,6 +27,7 @@ class WebSiteController extends Controller
         $academic_qualification_data    = $this->academic_qualification();
         $employment_history_data        = $this->employment_history();
         $portfolio_title                = $this->portfolio_title();
+        $services                       = $this->service();
 
 //        $portfolio_describe_data        = $this->portfolio_describe();
 //        dd($portfolio_title);
@@ -36,7 +38,8 @@ class WebSiteController extends Controller
                'field_of_skill_data',
                'academic_qualification_data',
                'employment_history_data',
-               'portfolio_title'
+               'portfolio_title',
+               'services'
            ]));
     }
     public function special_qualification()
@@ -191,5 +194,23 @@ class WebSiteController extends Controller
             'data' => $portfolio_describe,
         ]);
 
+    }
+    public function service()
+    {
+        $data = Service::where('status_active', 1)
+            ->where('is_delete', 0)
+            ->get();
+        $service_arr = [];
+        foreach ($data as $record)
+        {
+            $service_arr[] = [
+                'id'                => $record->id,
+                'name'              => $record->name,
+                'description'       => $record->description,
+                'icon'              => $record->icon,
+                'route'             => $record->route,
+            ];
+        }
+        return $service_arr;
     }
 }

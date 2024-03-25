@@ -19,6 +19,8 @@
     <link href="{{asset('public/web_site/assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="{{asset('public/web_site/assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('public/web_site/plugins/material/css/materialdesignicons.min.css')}}" rel="stylesheet" />
+
     <!-- =======================================================
     * Template Name: Lonely
     * Updated: Sep 18 2023 with Bootstrap v5.3.2

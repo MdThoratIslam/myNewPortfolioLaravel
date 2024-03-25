@@ -26,7 +26,7 @@ class ModuleFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
-                'updated_by'            => 1
+                'created_by'            => 1
             ],
             [
                 'name'                  => 'Personal Details',
@@ -34,7 +34,7 @@ class ModuleFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
-                'updated_by'            => 1
+                'created_by'            => 1
             ],
             [
                 'name'                  => 'User Management',
@@ -43,7 +43,16 @@ class ModuleFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
-                'updated_by'            => 1
+                'created_by'            => 1
+            ],
+            [
+                'name'                  => 'email',
+                'route'                 => null,
+                'route_type'            => 2,
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'created_at'            => UseHelpers::currentDateTime(),
+                'created_by'            => 1
             ]
         ];
     }

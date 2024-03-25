@@ -17,9 +17,14 @@ class DashboardController extends Controller
             ->select('id', 'name', 'route', 'route_type')
             ->orderBy('id', 'asc')
             ->get();
-        $modules = $sql;
-        //return $modules;
-        return view('backend.pages.dashboard.index', compact('modules'));
+        $modules = [];
+        foreach ($sql as $module)
+        {
+            $modules[] = new ModuleResource($module);
+        }
+
+//        dd( $modules);
+        return view('backend.pages.dashboard.index');
 
     }
 }
