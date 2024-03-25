@@ -43,7 +43,7 @@ class SubModuleFactory extends Factory
             [
                 'name'                  => 'User List',
                 'icon'                  => 'fas fa-users',
-                'route'                 => 'user-list',
+                'route'                 => 'users-list',
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'module_id'             => 3,

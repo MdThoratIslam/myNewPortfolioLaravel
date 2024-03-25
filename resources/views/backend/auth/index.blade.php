@@ -22,7 +22,7 @@
 {{--    <link href="{{asset('public/backend/images/favicon.png')}}" rel="shortcut icon" />--}}
     <script src="{{asset('public/backend/plugins/nprogress/nprogress.js')}}"></script>
 </head>
-<body class="bg-light-gray" id="body" style="background-image: url('{{asset('public/backend/images/bg_body5.gif')}}');
+<body class="bg-light-gray" id="body" style="background-image: url('{{asset('public/backend/images/bg_gif.gif')}}');
 background-size: cover; background-repeat: no-repeat; background-position:right;">
     <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh">
         <div class="d-flex flex-column justify-content-between">
