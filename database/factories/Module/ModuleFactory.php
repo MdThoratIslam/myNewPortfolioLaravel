@@ -26,7 +26,8 @@ class ModuleFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
-                'created_by'            => 1
+                'created_by'            => 1,
+                'updated_at'            => null,
             ],
             [
                 'name'                  => 'Personal Details',
@@ -34,7 +35,8 @@ class ModuleFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
-                'created_by'            => 1
+                'created_by'            => 1,
+                'updated_at'            => null,
             ],
             [
                 'name'                  => 'User Management',
@@ -43,7 +45,8 @@ class ModuleFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
-                'created_by'            => 1
+                'created_by'            => 1,
+                'updated_at'            => null,
             ],
             [
                 'name'                  => 'email',
@@ -52,7 +55,19 @@ class ModuleFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
-                'created_by'            => 1
+                'created_by'            => 1,
+                'updated_at'            => null,
+            ],
+            [
+                'name'                  => 'calender',
+                'route'                 => 'calender',
+                'icon'                 => 'mdi mdi-calender-check',
+                'route_type'            => 1,
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'created_at'            => UseHelpers::currentDateTime(),
+                'created_by'            => 1,
+                'updated_at'            => null,
             ]
         ];
     }

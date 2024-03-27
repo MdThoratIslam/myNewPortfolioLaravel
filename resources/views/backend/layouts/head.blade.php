@@ -8,6 +8,7 @@
         @if (config('app.name')){{ config('app.name') }} | @endif @yield('title')
     </title>
     <meta content="" name="Md Thorat Islam" />
+
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
     <link href="{{asset('public/backend/plugins/material/css/materialdesignicons.min.css')}}" rel="stylesheet" />
@@ -23,10 +24,16 @@
     <link id="main-css-href" rel="stylesheet" href="{{asset('public/backend/css/style.css')}}" />
     <link href="{{asset('public/backend/images/paper-plane.png')}}" rel="shortcut icon" />
     <script src="{{asset('public/backend/plugins/nprogress/nprogress.js')}}"></script>
+    <link href="{{asset('public/backend/plugins/fullcalendar/core-4.3.1/main.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/backend/plugins/fullcalendar/daygrid-4.3.0/main.min.css')}}" rel="stylesheet">
+
+
+
+
 </head>
 <body class="navbar-fixed sidebar-fixed" id="body">
 <script>
     NProgress.configure({ showSpinner: false });
     NProgress.start();
 </script>
-<div id="toaster"></div>
+{{--<div id="toaster"></div>--}}

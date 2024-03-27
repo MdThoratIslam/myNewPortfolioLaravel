@@ -5,6 +5,8 @@
             @yield('content')
         </div>
     @include('backend.layouts.footer')
+
+
 <script src="{{asset('public/backend/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/simplebar/simplebar.min.js')}}"></script>
@@ -39,6 +41,50 @@
 <script src="{{asset('public/backend/js/chart.js')}}"></script>
 <script src="{{asset('public/backend/js/map.js')}}"></script>
 <script src="{{asset('public/backend/js/custom.js')}}"></script>
+<script src="{{asset('public/backend/plugins/fullcalendar/core-4.3.1/main.min.js')}}"></script>
+<script src="{{asset('public/backend/plugins/fullcalendar/daygrid-4.3.0/main.min.js')}}"></script>
+{{--<script src="{{asset('public/backend/js/calendar.js')}}"></script>--}}
 <!--  -->
+<script>
+    NProgress.done();
+    @if(Session::has('message'))
+        toastr.options =
+        {
+            "closeButton"       : true,
+            "newestOnTop"       : true,
+            "progressBar"       : true,
+            "positionClass"     : "toast-top-right",
+            "preventDuplicates" : false,
+            "showDuration"      : "900",
+            "hideDuration"      : "1000",
+            "timeOut"           : "5000",
+            "extendedTimeOut"   : "1000",
+            "showEasing"        : "swing",
+            "hideEasing"        : "linear",
+            "className"         : "custom-toastr", // Set your custom CSS class here
+            "showMethod"        : "fadeIn",
+            "hideMethod"        : "fadeOut"
+        }
+    var type = "{{ Session::get('alert-type', 'info') }}";
+    switch(type)
+    {
+        case 'info':
+            toastr.info("{!! Session::get('message') !!} ");
+            break;
+
+        case 'warning':
+            toastr.warning("{!! Session::get('message') !!}");
+            break;
+
+        case 'success':
+            toastr.success("{!! Session::get('message') !!}");
+            break;
+
+        case 'error':
+            toastr.error("{!! Session::get('message') !!}");
+            break;
+    }
+    @endif
+</script>
 </body>
 </html>

@@ -9,33 +9,32 @@
                 </a>
             </div>
             <div class="sidebar-left" data-simplebar style="height: 100%;">
-
                 @php
                     ///$modules = \App\Models\Module::with('subModules')->where('status', 1)->get();
                     $sql = \App\Models\Module\Module::where('status_active', 1)
                         ->with('subModules')
                         ->where('is_delete',0)
-                        ->select('id', 'name', 'route', 'route_type')
+                        ->select('id', 'name', 'route', 'route_type','icon')
                         ->orderBy('id', 'asc')
                         ->get();
+//                    echo '<pre>';
+//                    print_r($sql);die();
                     $modules = [];
                     foreach ($sql as $module)
                     {
                         $modules[] = new \App\Http\Resources\Module\ModuleResource($module);
                     }
                 @endphp
-
-
-
                 <ul class="nav sidebar-inner" id="sidebar-menu">
                     @foreach($modules as $index => $menu)
                         @if($menu->route_type == 0)
                             <li class="section-title">{{ $menu->name }}</li>
+
                         @elseif($menu->route_type == 2)
                             <li class="has-sub">
                                 <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#{{ strtolower(str_replace(' ', '_', $menu->name)) }}"
                                    aria-expanded="false" aria-controls="{{ strtolower(str_replace(' ', '_', $menu->name)) }}">
-                                    <i class="{{ $menu->icon }}"></i>
+                                    <i class="{{ $menu['icon'] }}"></i>
                                     <span class="nav-text">{{ ucfirst($menu->name) }}</span>
                                     <b class="caret"></b>
                                 </a>
@@ -53,15 +52,15 @@
                                     </ul>
                                 @endif
                             </li>
-                        @elseif($menu->route_type == 1)
-                            @if(Route::has($menu->route))
+
+                        @elseif($menu['route_type'] == 1)
                                 <li class="active">
-                                    <a class="sidenav-item-link" href="{{ route($menu->route) }}">
-                                        <i class="mdi mdi-briefcase-account-outline"></i>
+                                    <a class="sidenav-item-link" href="{{$menu['route']}}">
+                                        <i class="{{$menu['icon']}}"></i>
                                         <span class="nav-text">{{ ucfirst($menu->name) }}</span>
                                     </a>
                                 </li>
-                            @endif
+
                         @endif
                     @endforeach
                 </ul>

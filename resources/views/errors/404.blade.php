@@ -79,13 +79,12 @@
 <body class="bg-light-gray" id="body">
 <div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh">
     <div class="d-flex flex-column justify-content-between">
-
         <div class="row justify-content-center mt-5">
             <div class="text-center page-404">
-
-                    <p id="error">E <span>r</span>ror</p>
+                    <p>E <span>r</span>ror</p>
                     <p id="code">4<span>0</span><span>4</span></p>
-                <a href="{{route('web_site')}}" class="btn btn-primary btn-pill">Back to Home</a>
+                <a id="error" href="{{route('web_site')}}" class="btn btn-primary btn-pill">
+                    <span>Back&nbsp;&nbsp;to&nbsp;&nbsp;</span><span>Home</span></a>
             </div>
         </div>
     </div>
