@@ -3,7 +3,7 @@
 @section('auth_content')
     <div class="row justify-content-center" >
                   <div class="col-lg-8 col-md-10">
-                    <div class="card card-default mb-0" style="background-color: rgba(255, 255, 255, 0.2);">
+                    <div class="card card-default mb-0" style="background-color: #bfe2e9; opacity: 1">
                       <div class="card-header pb-0">
 {{--                        <div class="app-brand w-100 d-flex justify-content-center border-bottom-0">--}}
 {{--                          <a class="w-auto pl-0" href="/index.html">--}}

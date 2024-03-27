@@ -60,7 +60,7 @@ class ModuleFactory extends Factory
             ],
             [
                 'name'                  => 'calender',
-                'route'                 => 'calender',
+                'route'                 => 'fullcalender',
                 'icon'                 => 'mdi mdi-calender-check',
                 'route_type'            => 1,
                 'status_active'         => 1,

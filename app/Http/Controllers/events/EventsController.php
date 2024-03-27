@@ -31,7 +31,7 @@ class EventsController extends Controller
      */
     public function store(StoreEventsRequest $request)
     {
-        dd($request->all());
+        return redirect()->back()->withErrors($request)->withInput();
     }
 
     /**

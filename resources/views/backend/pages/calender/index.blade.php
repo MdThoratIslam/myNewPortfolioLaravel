@@ -27,6 +27,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <form method="POST" action="{{route('event.store')}}">
+                        @csrf
                         <div class="modal-header px-4">
                             <h5 class="modal-title" id="exampleModalCenterTitle">Add New Event</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
