@@ -68,7 +68,8 @@
             </div>
             <div class="sidebar-footer">
                 <div class="sidebar-footer-content">
-                    <ul class="d-flex">
+{{--                    <ul class="d-flex" style="background-color: #491217">--}}
+                    <ul class="d-flex" >
                         <li>
                             <a href="user-account-settings.html" data-toggle="tooltip" title="Profile settings">
                                 <i class="mdi mdi-settings"></i>

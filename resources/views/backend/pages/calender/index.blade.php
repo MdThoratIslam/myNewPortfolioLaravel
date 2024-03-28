@@ -164,6 +164,10 @@
                         // startTime: '08:00',
                         // endTime: '18:00',
                     },
+                    timeZone: 'UTC',
+                    themeSystem: 'bootstrap5',
+                    height: 560,
+                    dayMaxEvents: true,
                 events:
                     [
                         @foreach($events as $appointment)
@@ -175,16 +179,13 @@
                         @if($appointment->end)
                         end         : '{{ $appointment->end }}',
                         @endif
-                        display: 'background',
-                        color: 'lightblue'
+                        display     : 'background',
+                        color       : '#491217',
+                        textColor   : 'lightyellow',
                     },
                     @endforeach
                 ],
-                    eventColor: '#3788d8',
-                    timeZone: 'UTC',
-                    themeSystem: 'bootstrap5',
-                    height: 560,
-                    dayMaxEvents: true,
+
                 eventClick: function(info)
                 {
                     $('#eventId').val(info.event.id);
