@@ -11,7 +11,7 @@
                             <i class="mdi mdi-account-plus-outline"></i>
                         </div>
                         <div class="text-right">
-                            <span class="h2 d-block">890</span>
+                            <span class="h2 d-block">{{$sql_event}}</span>
                             <p>New Users</p>
                         </div>
                     </div>
