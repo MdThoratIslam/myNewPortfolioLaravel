@@ -54,7 +54,8 @@
                             </li>
 
                         @elseif($menu['route_type'] == 1)
-                                <li class="active">
+{{--                                <li class="active">--}}
+                                <li >
                                     <a class="sidenav-item-link" href="{{$menu['route']}}">
                                         <i class="{{$menu['icon']}}"></i>
                                         <span class="nav-text">{{ ucfirst($menu->name) }}</span>

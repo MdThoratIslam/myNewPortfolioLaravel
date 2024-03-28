@@ -7,7 +7,7 @@ use App\Http\Controllers\Web\WebSiteController as WebController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\User\UserController;
 use App\Http\Controllers\Calender\CalenderController;
-use App\Http\Controllers\events\EventsController;
+use App\Http\Controllers\Events\EventsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,8 +52,10 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
     Route::post('/email-compose',       [UserController::class, 'inboxStore'])->name('email-compose');
 //    =============================== Email End ====================================================================
 //   =============================== Calender=======================================================================
-    Route::get('/fullcalender',             [EventsController::class, 'index']);
-    Route::post('/event-store',             [EventsController::class, 'store'])->name('event.store');
+    Route::get('/fullcalender',             [EventsController::class, 'index'])->name('fullcalender');
+    Route::post('/store-event',             [EventsController::class, 'store']);
+    Route::post('/event-update',            [EventsController::class, 'update']);
+    Route::post('/delete-event',            [EventsController::class, 'destroy']);
 });
 
 Route::middleware('auth')->group(function ()

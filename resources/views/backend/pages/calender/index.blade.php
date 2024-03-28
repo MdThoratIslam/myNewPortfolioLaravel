@@ -26,8 +26,7 @@
              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
-                    <form method="POST" action="{{route('event.store')}}">
-                        @csrf
+                    <form>
                         <div class="modal-header px-4">
                             <h5 class="modal-title" id="exampleModalCenterTitle">Add New Event</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -73,28 +72,28 @@
                         </div>
 
                         <div class="modal-footer border-top-0 px-4 pt-0">
-                            <button type="submit" class="btn btn-primary btn-pill m-0">Creat Event</button>
+                            <button type="button" class="btn btn-primary btn-pill m-0" id="add-event">Creat Event</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
 {{--        Edit Events--}}
             <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
-                        <form method="POST" action="{{route('event.store')}}">
-                            <div class="modal-header px-4">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Add New Event</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
+                        <div class="modal-header px-4">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Add New Event</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form >
                             <div class="modal-body px-4">
                                 <div class="form-group">
                                     <label for="title">Title</label>
                                     <input type="text" class="form-control" id="update_title" name="title">
+                                    <input type="hidden" id="eventId" name="id">
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -106,7 +105,7 @@
                                                     <i class="mdi mdi-calendar-range"></i>
                                                 </span>
                                                 </div>
-                                                <input type="date" class="form-control date-range-lg" name="update_start_date" value="" placeholder="Date" id="update_start_date"/>
+                                                <input type="date" class="form-control date-range-lg" name="start" value="" placeholder="Date" id="update_start_date"/>
                                             </div>
                                         </div>
                                     </div>
@@ -119,22 +118,23 @@
                                                     <i class="mdi mdi-calendar-range"></i>
                                                 </span>
                                                 </div>
-                                                <input type="date" class="form-control date-range-lg" name="update_end_date" value="" placeholder="Date" id="end_date"/>
+                                                <input type="date" class="form-control date-range-lg" name="end" value="" placeholder="Date" id="update_end_date"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group mb-0">
                                     <label for="description">Description</label>
                                     <textarea class="form-control" id="update_description" name="description" rows="5"></textarea>
                                 </div>
                             </div>
-
                             <div class="modal-footer border-top-0 px-4 pt-0">
-                                <button type="submit" class="btn btn-primary btn-pill m-0">Creat Event</button>
+                                <button type="button" class="btn btn-primary btn-pill m-0" id="events_update">Update Event</button>
                             </div>
                         </form>
+                        <div class="modal-footer border-top-0 px-4 pt-0">
+                            <button type="button" class="btn btn-danger btn-pill m-0" id="events_delete">Delete Event</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -144,14 +144,28 @@
     <script src="{{asset('public/backend/plugins/fullcalendar/core-4.3.1/main.js')}}"></script>
     <script src="{{asset('public/backend/plugins/fullcalendar/daygrid-4.3.0/main.js')}}"></script>
     <script>
-        $(document).ready(function() {
-            // Initialize FullCalendar and handle event click
+        $(document).ready(function()
+        {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl,
                 {
                 plugins: ['dayGrid'],
                 defaultView: 'dayGridMonth',
-                events: [
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay',
+                },
+                    // i want to start friday and end thursday and friday color is blue
+                    firstDay: 5,
+                    // firstDay backgroud color is blue
+                    businessHours: {
+                        daysOfWeek: [ 0,1,2,3,4,6],
+                        // startTime: '08:00',
+                        // endTime: '18:00',
+                    },
+                events:
+                    [
                         @foreach($events as $appointment)
                     {
                         id          : '{{ $appointment->id }}',
@@ -161,9 +175,16 @@
                         @if($appointment->end)
                         end         : '{{ $appointment->end }}',
                         @endif
+                        display: 'background',
+                        color: 'lightblue'
                     },
                     @endforeach
                 ],
+                    eventColor: '#3788d8',
+                    timeZone: 'UTC',
+                    themeSystem: 'bootstrap5',
+                    height: 560,
+                    dayMaxEvents: true,
                 eventClick: function(info)
                 {
                     $('#eventId').val(info.event.id);
@@ -178,33 +199,113 @@
                 }
             });
             calendar.render();
-            $('#events_update').on('click', function()
+            // how to add event
+            $('#add-event').on('click', function()
             {
-                var eventId = $('#eventId').val();
-                var start = $('#start').val();
+                var title = $('#title').val();
+                var start = $('#start_date').val();
                 var end = $('#end_date').val();
-
-                // Make an AJAX request to update the event
+                var baseUrl = "{{ url('admin/store-event') }}";
+                // Make an AJAX request to store the event
                 $.ajax({
-                    url: '/update-event/' + eventId,
+                    url: baseUrl,
                     type: 'POST',
                     data: {
+                        title: title,
                         start: start,
                         end: end,
-                        // You can include other updated fields here if needed
+                        description: $('#description').val(),
                         _token: '{{ csrf_token() }}' // Include CSRF token for Laravel
                     },
                     success: function(response) {
-                        // Handle success response
-                        console.log(response);
-                        $('#editModal').modal('hide');
-                        // You may need to update the event on the calendar with the new details
+                        // Check if both message and alert-type are defined in the response
+                        if (response.message && response['alert-type']) {
+                            toastr.success(response.message, response['alert-type']);
+                        } else {
+                            toastr.error('Invalid response format', 'Error');
+                        }
+                        $('#modal-add-event').modal('hide');
+                        // Add the event to the calendar view
+                        calendar.addEvent({
+                            id: response.id,
+                            title: title,
+                            start: start,
+                            end: end,
+                            description: $('#description').val()
+                        });
+                        location.reload();
                     },
                     error: function(xhr, status, error) {
-                        // Handle error
-                        console.error(xhr.responseText);
+                        toastr.error(xhr.responseText, 'Error');
                     }
                 });
+            });
+            $('#events_update').on('click', function()
+            {
+                var id = $('#eventId').val();
+                var start = $('#update_start_date').val();
+                var end = $('#update_end_date').val();
+                var baseUrl = "{{ url('admin/update-event') }}";
+                // Make an AJAX request to update the event
+                $.ajax({
+                    // url: '/update-event/',
+                    url: '{{ url("/admin/event-update") }}',
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        title: $('#update_title').val(),
+                        start: start,
+                        end: end,
+                        description: $('#update_description').val(),
+                        _token: '{{ csrf_token() }}' // Include CSRF token for Laravel response.message, response.alert-type
+                    },
+                    success: function(response) {
+                        // Check if both message and alert-type are defined in the response
+                        if (response.message && response['alert-type']) {
+                            toastr.success(response.message, response['alert-type']);
+                        } else {
+                            toastr.error('Invalid response format', 'Error');
+                        }
+                        $('#editModal').modal('hide');
+                        // Update the event in the calendar view
+                        calendar.getEventById(id).setProp('title', $('#update_title').val());
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        toastr.error(xhr.responseText, 'Error');
+                    }
+                });
+            });
+            // when the delete button is clicked confirm alert box show and when yes then delete the event
+            $('#events_delete').on('click', function()
+            {
+                var eventId = $('#eventId').val();
+                if(confirm('Are you sure you want to delete this event?'))
+                {
+                    $.ajax({
+                        url: '{{ url("admin/delete-event") }}' ,
+                        type: 'POST',
+                        data: {
+                            id: eventId,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response)
+                        {
+                            // Check if both message and alert-type are defined in the response
+                            if (response.message && response['alert-type']) {
+                                toastr.success(response.message, response['alert-type']);
+                            } else {
+                                toastr.error('Invalid response format', 'Error');
+                            }
+                            $('#editModal').modal('hide');
+                            // remove the event from the calendar view
+                            calendar.getEventById(eventId).remove();
+                        },
+                        error: function(xhr, status, error) {
+                            toastr.error(xhr.responseText, 'Error');
+                        }
+                    });
+                }
             });
         });
     </script>

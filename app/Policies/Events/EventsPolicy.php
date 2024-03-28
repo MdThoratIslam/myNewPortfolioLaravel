@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Events;
 
 use App\Models\Events\Events;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class EventsPolicy
 {
