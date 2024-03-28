@@ -270,7 +270,7 @@
                         $('#editModal').modal('hide');
                         // Update the event in the calendar view
                         calendar.getEventById(id).setProp('title', $('#update_title').val());
-                        location.reload();
+                        //location.reload();
                     },
                     error: function(xhr, status, error) {
                         toastr.error(xhr.responseText, 'Error');
