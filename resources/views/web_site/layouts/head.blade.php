@@ -20,143 +20,134 @@
     <!-- Template Main CSS File -->
     <link href="{{asset('public/web_site/assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('public/web_site/plugins/material/css/materialdesignicons.min.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-        .pricing-table {
-            background: #fff;
-            box-shadow: 0px 1px 10px -6px rgba(0, 0, 0, .15);
-            padding: 2rem;
+
+        .pricing-plans {
+            gap: 32px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+            width: 100%;
+            padding: 64px;
+
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+            font-family: "Open Sans", sans-serif;
+
+            place-items: center;
+            min-height: 100vh;
+            background-color: #171717;
+        }
+
+        .pricing-card {
+            --col: #e4e4e7;
+            position: relative;
+            min-width: 360px;
+            padding: 32px;
+            padding-bottom: 96px;
             border-radius: 4px;
-            transition: .3s;
-        }
-
-        .pricing-table:hover {
-            box-shadow: 0px 1px 10px -4px rgba(0, 0, 0, .15);
-        }
-
-        .pricing-table .pricing-label {
-            border-radius: 2px;
-            padding: .25rem .5rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .pricing-table h2 {
-            color: #3b3b3b;
-            font-size: 24px;
-            font-weight: 500;
-        }
-
-        .pricing-table h5 {
-            color: #B3B3B3;
-            font-size: 14px;
-            font-weight: 400;
-        }
-
-        .pricing-table .pricing-features {
-            margin-top: 2rem;
-        }
-
-        .pricing-table .pricing-features .feature {
-            font-size: 14px;
-            margin: .5rem 0;
-            color: #B3B3B3;
-        }
-
-        .pricing-table .pricing-features .feature span {
-            display: inline-block;
-            float: right;
-            color: #3b3b3b;
-            font-weight: 500;
-        }
-
-        .pricing-table 	.price-tag {
-            margin-top: 2rem;
+            border: 1px solid #262626;
+            background-color: #26262620;
+            box-shadow: 0 0 32px transparent;
             text-align: center;
-            font-weight: 500;
         }
 
-        .pricing-table .price-tag .symbol {
+        .pricing-card.basic {
+            --col: #0891b2;
+        }
+
+        .pricing-card.standard {
+            --col: #059669;
+        }
+
+        .pricing-card.premium {
+            --col: #c026d3;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--col);
+            background-color: #26262680;
+            box-shadow: 0 0 32px #171717;
+            transform: translateY(-16px) scale(1.02);
+            transition: all 0.5s ease;
+        }
+
+        .pricing-card > *:not(:last-child) {
+            margin-bottom: 32px;
+        }
+
+        .pricing-card .heading h4 {
+            padding-bottom: 12px;
+            color: var(--col);
             font-size: 24px;
+            font-weight: normal;
         }
 
-        .pricing-table .price-tag .amount {
-            letter-spacing: -2px;
-            font-size: 64px;
+        .pricing-card .heading p {
+            color: #a3a3a3;
+            font-size: 14px;
+            font-weight: lighter;
         }
 
-        .pricing-table .price-tag .after {
-            color: #3b3b3b;
-            font-weight: 500;
+        .pricing-card .price {
+            position: relative;
+            color: var(--col);
+            font-size: 60px;
+            font-weight: bold;
         }
 
-        .pricing-table .price-button {
-            display: block;
-            color: #fff;
-            margin-top: 2rem;
-            padding: .75rem;
-            border-radius: 2px;
-            text-align: center;
-            font-weight: 500;
-            transition: .3s;
+        .pricing-card .price sub {
+            position: absolute;
+            bottom: 14px;
+            color: #a3a3a3;
+            font-size: 14px;
+            font-weight: lighter;
         }
 
-        .pricing-table .price-button:hover {
-            text-decoration: none;
+        .pricing-card .features li {
+            padding-bottom: 16px;
+            color: #a3a3a3;
+            font-size: 16px;
+            font-weight: lighter;
+            text-align: left;
         }
 
-        .purple .pricing-label {
-            background: #cad2ff;
-            color: #627afe;
+        .pricing-card .features li i,
+        .pricing-card .features li strong {
+            color: #e4e4e7;
+            font-size: 16px;
+            text-align: left;
         }
 
-        .purple .price-tag {
-            color: #627afe;
+        .pricing-card .features li strong {
+            padding-left: 24px;
         }
 
-        .purple .price-button {
-            background: #627afe;
+        .pricing-card .cta-btn {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid var(--col);
+            background-color: var(--col);
+            color: #e4e4e7;
+            font-size: 20px;
+            font-weight: bold;
         }
 
-        .purple .price-button:hover {
-            background: #546dfe;
+        .pricing-card .cta-btn:active {
+            background-color: transparent;
+            color: var(--col);
+            transition: all 0.3s ease;
         }
 
-        .turquoise .pricing-label {
-            background: #b9edee;
-            color: #44cdd2;
-        }
-
-        .turquoise .price-tag {
-            color: #44cdd2;
-        }
-
-        .turquoise .price-button {
-            background: #44cdd2;
-        }
-
-        .turquoise .price-button:hover {
-            background: #2dbcc4;
-        }
-
-        .red .pricing-label {
-            background: #ffc4c4;
-            color: #ff5e5e;
-        }
-
-        .red .price-tag {
-            color: #ff5e5e;
-        }
-
-        .red .price-button {
-            background: #ff5e5e;
-        }
-
-        .red .price-button:hover {
-            background: #f23c3c;
-        }
     </style>
     <!-- =======================================================
     * Template Name: Lonely
