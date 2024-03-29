@@ -11,8 +11,8 @@
                             <i class="mdi mdi-account-plus-outline"></i>
                         </div>
                         <div class="text-right">
-                            <span class="h2 d-block">{{$sql_event}}</span>
-                            <p>New Users</p>
+                            <span class="h2 d-block">{{$totalDays}}</span>
+                            <p>Total Holidays</p>
                         </div>
                     </div>
                 </div>
