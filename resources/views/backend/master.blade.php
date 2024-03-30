@@ -85,6 +85,72 @@
             break;
     }
     @endif
+    function toggleEdit() {
+        $('#personalDetailsTable input, #personalDetailsTable select').prop('disabled', function (_, attr) {
+            return !attr;
+        });
+
+        // Show or hide save and close buttons in the last row
+        var lastRow = $('#personalDetailsTable tbody tr:last');
+        if ($('#saveBtn').length) {
+            $('#saveBtn, #closeBtn').toggle();
+        } else {
+            lastRow.after(
+                '<tr>' +
+                    '<td class="text-right">' +
+                        '<button id="saveBtn" onclick="saveChanges()" class="btn btn-outline-success">Save</button>' +
+                    '</td>' +
+                    '<td colspan="4" class="text-left">' +
+                        '<button id="closeBtn" onclick="closeEdit()" class="btn btn-outline-info">Close</button>' +
+                    '</td>'+
+                '</tr>'
+            );
+        }
+    }
+
+    function saveChanges() {
+        // Get the updated data
+        var newData =
+            {
+                name    : $('#txtName').val(),
+                phone   : $('#nbrPhone').val(),
+                email   : $('#txtEmail').val(),
+            };
+
+        // Implement saving changes logic here
+        console.log('Changes saved!');
+        console.log('New data:', newData);
+
+        // Get the updated image
+        var newImage = $('#imageInput').prop('files')[0]; // Assuming 'imageInput' is the ID of the input for the image
+
+        // Implement logic to upload the image, for example using FormData and AJAX
+        var formData = new FormData();
+        formData.append('image', newImage);
+        alert(formData);
+        // Example AJAX call:
+        /*
+        $.ajax({
+            url: 'upload_image.php',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                console.log('Image uploaded successfully.');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error uploading image:', error);
+            }
+        });
+        */
+    }
+
+    function closeEdit() {
+        $('#personalDetailsTable input, #personalDetailsTable select').prop('disabled', true);
+        // $('#saveBtn, #closeBtn').remove();
+        $('#personalDetailsTable tbody tr:last').remove();
+    }
 </script>
 </body>
 </html>

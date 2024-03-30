@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -42,9 +43,11 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        $user = User::with('userPersonalDetail')->where('id', auth()->user()->id)->where('status_active', 1)->where('is_delete', 0)->first();
+        return $user;
+        return view('backend.pages.user.edit_personal_details', compact('user'));
     }
 
     /**

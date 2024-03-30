@@ -177,10 +177,11 @@
                         description : '{{ $appointment->description }}',
                         start       : '{{ $appointment->start}}',
                         @if($appointment->end)
-                        end         : '{{ $appointment->end }}',
+                        {{--end         : '{{ $appointment->end }}',--}}
+                        end:        moment('{{ $appointment->end }}').add(1, 'day').format('YYYY-MM-DD'), // Add 1 day to end date
                         @endif
                         display     : 'background',
-                        color       : '#491217',
+                        color       : '#8B0000',
                         textColor   : 'lightyellow',
                     },
                     @endforeach

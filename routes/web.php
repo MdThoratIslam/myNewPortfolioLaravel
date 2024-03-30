@@ -34,12 +34,12 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
     Route::get('/dashboard',            [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 //    ============================== User All Routes ===================================================================
-    Route::get('/users-list',           [UserController::class, 'index'])->name('users-list');
-    Route::get('/users-list/{id}',      [UserController::class, 'show'])->name('users-list-show');
-    Route::get('/users-list/{id}/edit', [UserController::class, 'edit'])->name('users-list-edit');
-    Route::patch('/users-list/{id}',    [UserController::class, 'update'])->name('users-list-update');
-    Route::delete('/users-list/{id}',   [UserController::class, 'destroy'])->name('users-list-destroy');
-    Route::get('/create-user',          [UserController::class, 'create'])->name('create-user');
+    Route::get('/users-list',                       [UserController::class, 'index'])->name('users-list');
+    Route::get('/users-list/{id}',                  [UserController::class, 'show'])->name('users-list-show');
+    Route::get('/edit-personal-details/',           [UserController::class, 'edit'])->name('edit-personal-details');
+    Route::patch('/users-list/{id}',                [UserController::class, 'update'])->name('users-list-update');
+    Route::delete('/users-list/{id}',               [UserController::class, 'destroy'])->name('users-list-destroy');
+    Route::get('/create-user',                      [UserController::class, 'create'])->name('create-user');
 
 // ============================== User All Routes End ==================================================================
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\EmploymentHistory\EmploymentHistory;
+use App\Models\UserPersonalDetail\UserPersonalDetail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -47,5 +48,13 @@ class User extends Authenticatable
     public function employmentHistory()
     {
         return $this->hasMany(EmploymentHistory::class,'user_id','id');
+    }
+    public function academicQualification()
+    {
+        return $this->hasMany(AcademicQualification::class,'user_id','id');
+    }
+    public function userPersonalDetail()
+    {
+        return $this->hasOne(UserPersonalDetail::class,'user_id','id');
     }
 }

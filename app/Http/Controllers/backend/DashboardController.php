@@ -24,7 +24,7 @@ class DashboardController extends Controller
             $startDate = new \DateTime($event->start);
             $endDate = new \DateTime($event->end);
             $interval = $startDate->diff($endDate);
-            $totalDays += $interval->days;
+            $totalDays += ($interval->days)+1;
         }
         return view('backend.pages.dashboard.index', compact('totalDays'));
 
