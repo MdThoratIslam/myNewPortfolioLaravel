@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             SubModuleSeeder::class,
             ServiceSeeder::class,
             EventsSeeder::class,
+            UserPersonalDetailSeeder::class,
         ]);
     }
 }

@@ -27,11 +27,12 @@ return new class extends Migration
             $table->foreignId('parmament_division_id')->constrained('divisions');
 
             $table->bigInteger('nid')->unique()->nullable();
-            $table->bigInteger('passport')->unique()->nullable();
+            $table->string('passport')->unique()->nullable();
 
             $table->bigInteger('birth_certificate')->unique()->nullable();
             $table->date('date_of_birth')->nullable();
-            $table->string('place_of_birth', 100)->nullable();
+            $table->foreignId('place_of_birth')->constrained('districts');
+//            $table->string('place_of_birth', 100)->nullable();
 
             $table->integer('nationality_id')->default(0);
             $table->integer('religion_id')->default(0);
