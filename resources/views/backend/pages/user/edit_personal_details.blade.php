@@ -87,11 +87,7 @@
                                                                 <label for="exampleFormControlSelect14" class="form-label">Example select</label>
                                                             </th>
                                                         </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <input type="password" id="txtPassword" name="password" class="form-control" disabled>
-                                                            </td>
-                                                        </tr>
+
                                                         <tr>
                                                             <td>
                                                                 <input type="password" id="txtPassword" name="password" class="form-control" disabled>

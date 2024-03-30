@@ -46,7 +46,7 @@ class UserController extends Controller
     public function edit()
     {
         $user = User::with('userPersonalDetail')->where('id', auth()->user()->id)->where('status_active', 1)->where('is_delete', 0)->first();
-        return $user;
+        //return $user;
         return view('backend.pages.user.edit_personal_details', compact('user'));
     }
 

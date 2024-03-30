@@ -32,8 +32,8 @@ class UserFactory extends Factory
                     'email'             => 'mdthoratislam1993.oni@gmail.com',
                     'phone'             => '01517123534',
                     'email_verified_at' => UseHelpers::currentDateTime(),
-                    'user_photo_path'   => 'public/assest/user_photo/images.png',
-                    'user_sign_path'    => 'public/assest/user_sign/sign_2.png',
+                    'user_photo_path'   => 'public/backend/images/user/user_photo/300x300.jpg',
+                    'user_sign_path'    => 'public/backend/images/user/user_sign/sign_2.png',
                     'created_by'        => 1,
                     // created_at value set carbon use date time format and now() function use for current date time
                     'created_at'        => UseHelpers::currentDateTime(),

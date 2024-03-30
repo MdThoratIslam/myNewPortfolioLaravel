@@ -18,23 +18,10 @@ class SubModuleFactory extends Factory
     public function definition(): array
     {
         return [
-            /*
-             * Schema::create('sub_modules', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('icon')->nullable();
-            $table->string('route')->nullable();
-            $table->integer('status_active')->default(1);
-            $table->integer('is_delete')->default(0);
-            $table->foreignId('module_id')->nullable()->constrained('modules');
-            $table->foreignId('created_by')->nullable()->constrained('users');
-            $table->foreignId('updated_by')->nullable()->constrained('users');
-            $table->timestamps();
-        });*/
             [
-                'name'                  => 'Create User',
+                'name'                  => 'Edit Personal Details',
                 'icon'                  => 'mdi mdi-account-plus',
-                'route'                 => 'create-user',
+                'route'                 => 'edit-personal-details',
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'module_id'             => 3,
