@@ -127,6 +127,11 @@ function saveChanges()
 
                 case 'success':
                     toastr.success(message);
+                    setTimeout(function()
+                    {
+                        closeEdit();
+                        window.location.href = "edit-personal-details";
+                    }, 5000); // 5 seconds delay
                     break;
 
                 case 'error':
@@ -134,6 +139,7 @@ function saveChanges()
                     break;
             }
             closeEdit();
+            window.location.href = "edit-personal-details";
         },
         error: function(xhr, status, error)
         {
