@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('bn_name');
-            $table->string('url');
-            $table->integer('code');
+            $table->string('url')->nullable();
+            $table->integer('code')->nullable();
             $table->float('lat', 10, 6)->nullable();
             $table->float('long', 10, 6)->nullable();
             $table->integer('status_active')->default(1);

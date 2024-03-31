@@ -17,21 +17,21 @@ return new class extends Migration
             $table->string('father_name', 100);
             $table->string('mother_name', 100);
             $table->string('present_area', 255);
-            $table->foreignId('present_upazila_id')->constrained('upazilas');
-            $table->foreignId('present_district_id')->constrained('districts');
-            $table->foreignId('present_division_id')->constrained('divisions');
+            $table->foreignId('present_upazila_id')->nullable()->constrained('upazilas');
+            $table->foreignId('present_district_id')->nullable()->constrained('districts');
+            $table->foreignId('present_division_id')->nullable()->constrained('divisions');
 
             $table->string('parmament_area', 255);
-            $table->foreignId('parmament_upazila_id')->constrained('upazilas');
-            $table->foreignId('parmament_district_id')->constrained('districts');
-            $table->foreignId('parmament_division_id')->constrained('divisions');
+            $table->foreignId('parmament_upazila_id')->nullable()->constrained('upazilas');
+            $table->foreignId('parmament_district_id')->nullable()->constrained('districts');
+            $table->foreignId('parmament_division_id')->nullable()->constrained('divisions');
 
             $table->bigInteger('nid')->unique()->nullable();
             $table->string('passport')->unique()->nullable();
 
             $table->bigInteger('birth_certificate')->unique()->nullable();
             $table->date('date_of_birth')->nullable();
-            $table->foreignId('place_of_birth')->constrained('districts');
+            $table->foreignId('place_of_birth')->nullable()->constrained('districts');
 //            $table->string('place_of_birth', 100)->nullable();
 
             $table->integer('nationality_id')->default(0);

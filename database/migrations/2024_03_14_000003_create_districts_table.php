@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('districts', function (Blueprint $table) {
+        Schema::create('districts', function (Blueprint $table)
+        {
             $table->id();
             $table->foreignId('division_id')->constrained('divisions')->cascadeOnDelete();
             $table->string('name');
             $table->string('bn_name');
             $table->float('lat', 10, 6);
-            $table->float('lon', 10, 6);
-            $table->string('url');
+            $table->float('long', 10, 6);
+            $table->string('url')->nullable();
             $table->integer('code')->nullable();
             $table->integer('status_active')->default(1);
             $table->integer('is_delete')->default(0);
