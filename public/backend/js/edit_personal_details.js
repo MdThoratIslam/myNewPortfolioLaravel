@@ -81,8 +81,12 @@ function saveChanges()
 
     formData.append('user_type',            newData.cbo_user_type);
 
+    var urlContainer = document.getElementById('personalDetailsform');
+    var url = urlContainer.dataset.url; // Get the URL from data-url attribute
+    url = url.replace(':id', userId);
     $.ajax({
-        url: '/protfolio/admin/users-list/' + userId,
+        // url: '/protfolio/admin/users-list/' + userId,
+        url: url,
         type: 'POST',
         data: formData,
         headers: {

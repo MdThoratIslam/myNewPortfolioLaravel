@@ -37,7 +37,7 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
     Route::get('/users-list',                       [UserController::class, 'index'])->name('users-list');
     Route::get('/users-list/{id}',                  [UserController::class, 'show'])->name('users-list-show');
     Route::get('/edit-personal-details/',           [UserController::class, 'edit'])->name('edit-personal-details');
-    Route::post('/users-list/{id}',                [UserController::class, 'update'])->name('users-list-update');
+    Route::post('/user-update/{id}',                  [UserController::class, 'update'])->name('user-update');
     Route::delete('/users-list/{id}',               [UserController::class, 'destroy'])->name('users-list-destroy');
     Route::get('/create-user',                      [UserController::class, 'create'])->name('create-user');
 

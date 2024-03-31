@@ -35,7 +35,7 @@
                                         </div>
                                         <div id="collapsePersonalDetails" class="collapse show" aria-labelledby="PersonalDetails" data-parent="#accordionPersonalDetails">
                                             <div class="card-body">
-                                                <form  enctype="multipart/form-data">
+                                                <form id="personalDetailsform" enctype="multipart/form-data"  data-url="{{ route('user-update', ['id' => $user->id]) }}">
                                                     @csrf
                                                     <table class="table table-borderless" id="personalDetailsTable" data-user-id="{{$user->id}}">
                                                         <thead>

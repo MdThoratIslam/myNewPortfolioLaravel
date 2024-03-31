@@ -1,12 +1,10 @@
 @include('backend.layouts.head')
-   @include('backend.layouts.left_side_nav')
-    @include('backend.layouts.top_navbar')
-        <div class="content-wrapper">
-            @yield('content')
-        </div>
-    @include('backend.layouts.footer')
-
-
+@include('backend.layouts.left_side_nav')
+@include('backend.layouts.top_navbar')
+<div class="content-wrapper">
+    @yield('content')
+</div>
+@include('backend.layouts.footer')
 <script src="{{asset('public/backend/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/simplebar/simplebar.min.js')}}"></script>
