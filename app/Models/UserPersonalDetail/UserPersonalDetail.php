@@ -2,6 +2,9 @@
 
 namespace App\Models\UserPersonalDetail;
 
+use App\Models\Districts\Districts;
+use App\Models\Divisions\Divisions;
+use App\Models\Upazilas\Upazilas;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -79,5 +82,16 @@ class UserPersonalDetail extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-
+    public function present_upazila()
+    {
+        return $this->belongsTo(Upazilas::class,'present_upazila_id','id');
+    }
+    public function present_district()
+    {
+        return $this->belongsTo(Districts::class,'present_district_id','id');
+    }
+    public function present_division()
+    {
+        return $this->belongsTo(Divisions::class,'present_division_id','id');
+    }
 }

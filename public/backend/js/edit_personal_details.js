@@ -130,7 +130,7 @@ function saveChanges()
                     setTimeout(function()
                     {
                         closeEdit();
-                        window.location.href = "edit-personal-details";
+                        window.location.href = "users-setting";
                     }, 5000); // 5 seconds delay
                     break;
 
@@ -139,7 +139,7 @@ function saveChanges()
                     break;
             }
             closeEdit();
-            window.location.href = "edit-personal-details";
+            window.location.href = "users-setting";
         },
         error: function(xhr, status, error)
         {

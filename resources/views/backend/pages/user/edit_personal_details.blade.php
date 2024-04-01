@@ -269,7 +269,12 @@
                                         </div>
                                         <div id="collapseAddressDetails" class="collapse" aria-labelledby="headingAddressDetails" data-parent="#accordionShadow">
                                             <div class="card-body">
-
+                                                <div id="address_div">
+                                                    <strong>Present Address:</strong>
+                                                    Area/House: {{$user->userPersonalDetail->present_area}},
+                                                    District: {{ $user->userPersonalDetail->present_district->name }},
+                                                    Division: {{ $user->userPersonalDetail->present_division->name }},
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

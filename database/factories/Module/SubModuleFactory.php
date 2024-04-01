@@ -19,9 +19,9 @@ class SubModuleFactory extends Factory
     {
         return [
             [
-                'name'                  => 'Edit Personal Details',
+                'name'                  => 'Personal Details',
                 'icon'                  => 'mdi mdi-account-plus',
-                'route'                 => 'edit-personal-details',
+                'route'                 => 'users.details',
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'module_id'             => 3,

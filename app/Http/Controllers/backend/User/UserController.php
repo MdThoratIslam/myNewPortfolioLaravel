@@ -24,7 +24,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.pages.user.create_user');
+//        return view('backend.pages.user.create_user');
+        return view('backend.pages.user.profile.index');
     }
 
     /**
@@ -48,9 +49,8 @@ class UserController extends Controller
      */
     public function edit()
     {
-        $user = User::with('userPersonalDetail')->where('id', auth()->user()->id)->where('status_active', 1)->where('is_delete', 0)->first();
-        //return $user;
-        return view('backend.pages.user.edit_personal_details', compact('user'));
+        //return view('backend.pages.user.profile.profile');
+        return view('backend.pages.user.profile.profile');
     }
 
     /**
@@ -150,6 +150,33 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    // setting function
+    public function setting()
+    {
+        $user = User::with([
+            'userPersonalDetail' => function ($query)
+            {
+                $query->select('id', 'user_id', 'father_name', 'mother_name', 'present_area', 'present_upazila_id', 'present_district_id', 'present_division_id', 'parmament_area', 'parmament_upazila_id', 'parmament_district_id', 'parmament_division_id', 'nid', 'passport', 'birth_certificate', 'date_of_birth', 'place_of_birth', 'nationality_id', 'religion_id', 'blood_group_id', 'marital_status_id', 'gender_id', 'height', 'weight', 'status_active', 'is_delete');
+            },
+            'userPersonalDetail.present_upazila' => function ($query) {
+                $query->select('id', 'name');
+            },
+            'userPersonalDetail.present_district' => function ($query) {
+                $query->select('id', 'name');
+            },
+            'userPersonalDetail.present_division' => function ($query) {
+                $query->select('id', 'name');
+            }
+        ])
+            ->where('id', auth()->user()->id)
+            ->where('status_active', 1)
+            ->where('is_delete', 0)
+            ->first();
+//        return view('backend.pages.user.edit_personal_details', compact('user'));
+
+        return view('backend.pages.user.profile.component.profile',compact('user'));
     }
 
     private function saveImage($image, $directory)

@@ -36,11 +36,13 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
 //    ============================== User All Routes ===================================================================
     Route::get('/users-list',                       [UserController::class, 'index'])->name('users-list');
     Route::get('/users-list/{id}',                  [UserController::class, 'show'])->name('users-list-show');
-    Route::get('/edit-personal-details/',           [UserController::class, 'edit'])->name('edit-personal-details');
-    Route::post('/user-update/{id}',                  [UserController::class, 'update'])->name('user-update');
+
+    Route::get('/users-details/',                   [UserController::class, 'edit'])->name('users.details');
+    Route::get('/users-setting/',                   [UserController::class, 'setting'])->name('users.setting');
+
+    Route::post('/user-update/{id}',                [UserController::class, 'update'])->name('user-update');
     Route::delete('/users-list/{id}',               [UserController::class, 'destroy'])->name('users-list-destroy');
     Route::get('/create-user',                      [UserController::class, 'create'])->name('create-user');
-
 // ============================== User All Routes End ==================================================================
 
 //    =============================== Email ============================================================================
@@ -63,6 +65,7 @@ Route::middleware('auth')->group(function ()
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 require __DIR__.'/auth.php';
