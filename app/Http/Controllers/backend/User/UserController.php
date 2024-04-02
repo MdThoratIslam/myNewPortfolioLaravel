@@ -173,4 +173,6 @@ class UserController extends Controller
     {
         return view('backend.pages.email.inbox');
     }
+
+
 }
