@@ -46,12 +46,12 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
 // ============================== User All Routes End ==================================================================
 
 //    =============================== Email ============================================================================
-    Route::get('/inbox',                [UserController::class, 'inbox'])->name('inbox');
-    Route::get('/inbox-details',        [UserController::class, 'inboxShow'])->name('inbox-details');
-    Route::get('/inbox/{id}/edit',      [UserController::class, 'inboxEdit'])->name('inbox-edit');
-    Route::patch('/inbox/{id}',         [UserController::class, 'inboxUpdate'])->name('inbox-update');
-    Route::delete('/inbox/{id}',        [UserController::class, 'inboxDestroy'])->name('inbox-destroy');
-    Route::post('/email-compose',       [UserController::class, 'inboxStore'])->name('email-compose');
+    Route::get('/email-inbox',                  [UserController::class, 'emailInbox'])->name('email-inbox');
+    Route::get('/inbox-details',                [UserController::class, 'inboxShow'])->name('inbox-details');
+    Route::get('/inbox/{id}/edit',              [UserController::class, 'inboxEdit'])->name('inbox-edit');
+    Route::patch('/inbox/{id}',                 [UserController::class, 'inboxUpdate'])->name('inbox-update');
+    Route::delete('/inbox/{id}',                [UserController::class, 'inboxDestroy'])->name('inbox-destroy');
+    Route::post('/email-compose',               [UserController::class, 'inboxStore'])->name('email-compose');
 //    =============================== Email End ====================================================================
 //   =============================== Calender=======================================================================
     Route::get('/fullcalender',             [EventsController::class, 'index'])->name('fullcalender');

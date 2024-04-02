@@ -9,7 +9,7 @@
                 <div class="card-body pt-0">
                     <ul class="nav nav-settings">
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{route('users.setting')}}">
+                            <a class="nav-link {{request()->routeIs('users.setting') ? 'active' : ''}}" href="{{route('users.setting')}}">
                                 <i class="mdi mdi-account-outline mr-1"></i> Profile
                             </a>
                         </li>

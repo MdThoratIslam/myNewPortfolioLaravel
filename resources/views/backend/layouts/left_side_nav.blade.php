@@ -28,10 +28,10 @@
                 <ul class="nav sidebar-inner" id="sidebar-menu">
                     @foreach($modules as $index => $menu)
                         @if($menu->route_type == 0)
-                            <li class="section-title">{{ $menu->name }}</li>
+                            <li class="section-title ">{{ $menu->name }}</li>
 
                         @elseif($menu->route_type == 2)
-                            <li class="has-sub">
+                            <li class="has-sub {{ \App\UseHelpers::isActiveSubMenu($menu->subModules) ? 'expand active' : '' }}">
                                 <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#{{ strtolower(str_replace(' ', '_', $menu->name)) }}"
                                    aria-expanded="false" aria-controls="{{ strtolower(str_replace(' ', '_', $menu->name)) }}">
                                     <i class="{{ $menu['icon'] }}"></i>
@@ -39,11 +39,11 @@
                                     <b class="caret"></b>
                                 </a>
                                 @if($menu->subModules && count($menu->subModules) != null)
-                                    <ul class="collapse" id="{{ strtolower(str_replace(' ', '_', $menu->name)) }}" data-parent="#sidebar-menu">
+                                    <ul class="collapse {{ \App\UseHelpers::isActiveSubMenu($menu->subModules) ? 'show' : '' }}" id="{{ strtolower(str_replace(' ', '_', $menu->name)) }}" data-parent="#sidebar-menu">
                                         <div class="sub-menu">
                                             @foreach($menu->subModules as $submenu)
-                                                <li>
-                                                    <a class="sidenav-item-link" href="{{route($submenu->route ?? '')}}">
+                                                <li class="">
+                                                    <a class="sidenav-item-link {{request()->routeIs($submenu->route) ? 'active' : ''}}" href="{{route($submenu->route ?? '')}}">
                                                         <span class="nav-text">{{ ucfirst($submenu->name) }}</span>
                                                     </a>
                                                 </li>
@@ -55,7 +55,7 @@
 
                         @elseif($menu['route_type'] == 1)
 {{--                                <li class="active">--}}
-                                <li >
+                                <li class="{{request()->routeIs($menu['route']) ? 'active' : ''}}">
                                     <a class="sidenav-item-link" href="{{$menu['route']}}">
                                         <i class="{{$menu['icon']}}"></i>
                                         <span class="nav-text">{{ ucfirst($menu->name) }}</span>

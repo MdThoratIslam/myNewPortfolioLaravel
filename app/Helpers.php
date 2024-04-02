@@ -15,6 +15,14 @@ class UseHelpers
     {
         return Carbon::now()->timezone('Asia/Dhaka')->format('Y-m-d H:i:s');
     }
+    public static function isActiveSubMenu($subModules) {
+        foreach ($subModules as $submenu) {
+            if (request()->routeIs($submenu->route)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * Array mapping department IDs to department names.

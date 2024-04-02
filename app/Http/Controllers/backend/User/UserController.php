@@ -11,51 +11,27 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('errors.404');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-//        return view('backend.pages.user.create_user');
         return view('backend.pages.user.profile.index');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
 
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit()
     {
         //return view('backend.pages.user.profile.profile');
         return view('backend.pages.user.profile.profile');
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         try
@@ -143,15 +119,10 @@ class UserController extends Controller
         }
 
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         //
     }
-
     // setting function
     public function setting()
     {
@@ -178,14 +149,28 @@ class UserController extends Controller
 
         return view('backend.pages.user.profile.component.profile',compact('user'));
     }
-
     private function saveImage($image, $directory)
     {
 //        $image = $request->file('filePhoto');
-        $imageName = rand() . '.' . $image->getClientOriginalExtension();
+        $imageName = rand(0,6) . '.' . $image->getClientOriginalExtension();
 //        $directory = 'new_assets/assets/userImage/';
         $imgUrl = $directory . $imageName;
         $image->move($directory, $imageName);
         return $imgUrl;
+    }
+    private function savePDF($pdf, $directory)
+    {
+        // Generate a unique name for the PDF file
+        $pdfName = rand(0,4) . '_' . time() . '.' . $pdf->getClientOriginalExtension();
+        // Construct the path for storing the PDF file
+        $pdfUrl = $directory . $pdfName;
+        // Move the PDF file to the specified directory
+        $pdf->move($directory, $pdfName);
+        // Return the URL of the saved PDF file
+        return $pdfUrl;
+    }
+    public function emailInbox()
+    {
+        return view('backend.pages.email.inbox');
     }
 }

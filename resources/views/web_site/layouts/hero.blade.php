@@ -1,38 +1,45 @@
-<section id="hero" class="d-flex flex-column align-items-center justify-content-center" style="
-background: url('{{asset('public/web_site/assets/img/my_cover.jpg')}}') top center no-repeat;
-width: 100%;
-height: 90vh;
-background-size: cover;
-padding: 0 15px;
-display: flex;
-align-items: center;
-justify-content: center;
-">
-    <h1 id="web_title_name" style="
-            /*background: -webkit-linear-gradient(#3494e6, #ec6ead);*/
-            /*background: -webkit-linear-gradient(#cc95c0, #dbd4b4, #7aa1d2);*/
-            background: -webkit-linear-gradient(whitesmoke, lightyellow, lightgreen);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;"></h1>
-{{--    <h1>Hi, I'm Engr Muhammad Tourat Islam  (Oni)!</h1>--}}
-{{--    <h2>I am a Fullstack Developer</h2>--}}
-    <a href="#about" class="btn-get-started scrollto">
+<section id="hero" class="d-flex flex-column align-items-lg-center justify-content-center">
+    <div class="hero-container" data-aos="fade-in" style=" float: left;">
+        <h1 id="web_title_name" style="
+        background: -webkit-linear-gradient(whitesmoke, #ffffdd, #ff6b40);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        ">
+        </h1>
+    </div>
+    <a href="#about" class="btn-get-started scrollto" style=" align-items: center;">
         <i class="bi bi-chevron-double-down"></i>
     </a>
 </section>
 <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
 <script>
     var app = document.getElementById('web_title_name');
-
     var typewriter = new Typewriter(app, {
         loop: true
     });
-    typewriter.typeString('I am a Laravel Developer')
+
+    // now i want to typeString value a variable value from database or from controller
+        typewriter.typeString('Welcome to my website')
         .pauseFor(2500)
         .deleteAll()
-        .typeString('I am a Vue.js Developer')
+
+        .typeString('I am a <strong>Web Designer</strong>')
         .pauseFor(2500)
-        .deleteAll()
+        .deleteChars(8)
+
+        .typeString('<strong>Developer</strong>')
+        .pauseFor(2500)
+        .deleteChars(13)
+
+        .typeString('<strong>Technology Used to Vue.js</strong>')
+        .pauseFor(2500)
+        .deleteChars(6)
+
+        .typeString('<strong>Laravel</strong>')
+        .pauseFor(2500)
+        .deleteChars(26)
+
+
         .typeString('<strong>Full Stack Developer</strong>')
         .pauseFor(2500)
         .start();

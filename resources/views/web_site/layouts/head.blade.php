@@ -147,7 +147,34 @@
             color: var(--col);
             transition: all 0.3s ease;
         }
+        /* Default styles */
+        #hero {
+            /*flex-direction: column;*/ /* Adjusted to vertically center content */
+            background: url('{{asset('public/web_site/assets/img/my_cover.jpg')}}') top center no-repeat;
+            width: 100%;
+            height: 90vh;
+            background-size: cover;
+            padding: 0 15px;
+            display: flex;
+            justify-content: center;">
+        }
 
+        /* Responsive styles */
+        @media only screen and (max-width: 768px) and (min-width: 576px) {
+            #hero {
+                background: url('{{asset('public/web_site/assets/img/my_cover.jpg')}}') top center no-repeat;
+                align-items: center;
+                background-size: cover; /* Make the background image cover the entire background area */
+                height: 80vh; /* Example height adjustment for smaller screens */
+            }
+        }
+
+        @media only screen and (max-width: 768px) and (min-width: 576px) {
+            #hero {
+                height: 100vh; /* Example height adjustment for larger screens */
+                background-size: cover; /* Make the background image cover the entire background area */
+            }
+        }
     </style>
     <!-- =======================================================
     * Template Name: Lonely

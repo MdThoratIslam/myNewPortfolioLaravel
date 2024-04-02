@@ -14,10 +14,10 @@
             <div class="card-footer card-profile-footer">
                 <ul class="nav nav-border-top justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('users.details') }}">Profile</a>
+                        <a class="nav-link {{request()->routeIs('users.details') ? 'active' : ''}}" href="{{ route('users.details') }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('users.setting')}}">Settings</a>
+                        <a class="nav-link {{request()->routeIs('users.setting') ? 'active' : ''}}" href="{{route('users.setting')}}">Settings</a>
                     </li>
                 </ul>
             </div>
