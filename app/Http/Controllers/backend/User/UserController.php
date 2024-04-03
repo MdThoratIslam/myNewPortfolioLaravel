@@ -238,7 +238,7 @@ class UserController extends Controller
             $formattedMessages = [];
             foreach ($messages as $message) {
                 // Customize the format as per your need
-                $formattedMessages[] = 
+                $formattedMessages[] =
                     [
                         'subject' => $message->getSubject(),
                         'from' => $message->getFrom(),
