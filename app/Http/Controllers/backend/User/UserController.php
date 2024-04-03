@@ -8,6 +8,10 @@ use App\UseHelpers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Webklex\IMAP\Facades\Client;
+use Webklex\IMAP\Facades\Client as LaravelIMAP;
+use Webklex\IMAP\Message;
+
 
 class UserController extends Controller
 {
@@ -174,5 +178,77 @@ class UserController extends Controller
         return view('backend.pages.email.inbox');
     }
 
+    public function readEmails()
+    {
+//        try {
+//            // Get IMAP configuration from .env file
+//            $host           = env('IMAP_HOST');
+//            $port           = env('IMAP_PORT');
+//            $encryption     = env('IMAP_ENCRYPTION');
+//            $validateCert   = env('IMAP_VALIDATE_CERT', true); // Default to true if not specified
+//            $username       = env('IMAP_USERNAME');
+//            $password       = env('IMAP_PASSWORD');
+//            $defaultAccount = env('IMAP_DEFAULT_ACCOUNT');
+//            $protocol   = env('IMAP_PROTOCOL');
+//
+//            // Set IMAP configuration
+//            $test = LaravelIMAP::account($defaultAccount)->setConfig([
+//                'host' => $host,
+//                'port' => $port,
+//                'encryption' => $encryption,
+//                'validate_cert' => $validateCert,
+//                'username' => $username,
+//                'password' => $password,
+//                'protocol' => $protocol,
+//                'options' => [],
+//            ]);
+//            // now i want to read my emails from the inbox folder
+//            $inbox = LaravelIMAP::account($defaultAccount)->getFolder('INBOX');
+//            $messages = $inbox->query()->get();
+//            dd($messages);
+//            return response()->json(['messages' => $messages]);
+//        } catch (\Exception $e) {
+//            // Handle exceptions
+//            echo "Error: " . $e->getMessage();
+//        }
+        try {
+            // Get IMAP configuration from .env file
+            $host           = env('IMAP_HOST');
+            $port           = env('IMAP_PORT');
+            $encryption     = env('IMAP_ENCRYPTION');
+            $validateCert   = env('IMAP_VALIDATE_CERT', true); // Default to true if not specified
+            $username       = env('IMAP_USERNAME');
+            $password       = env('IMAP_PASSWORD');
+            $defaultAccount = env('IMAP_DEFAULT_ACCOUNT');
+            $protocol       = env('IMAP_PROTOCOL');
 
+            // Set IMAP configuration
+           $imap = LaravelIMAP::account($defaultAccount)->setConfig([
+                'host' => $host,
+                'port' => $port,
+                'encryption' => $encryption,
+                'validate_cert' => $validateCert,
+                'username' => $username,
+                'password' => $password,
+                'protocol' => $protocol,
+                'options' => [],
+            ]);
+            $inbox = $imap->getFolder('INBOX');
+            $messages = $imap->getFolder('INBOX')->query()->get();
+            $formattedMessages = [];
+            foreach ($messages as $message) {
+                // Customize the format as per your need
+                $formattedMessages[] = 
+                    [
+                        'subject' => $message->getSubject(),
+                        'from' => $message->getFrom(),
+                        'date' => $message->getDate(),
+                     ];
+            }
+            return  $formattedMessages;
+        } catch (\Exception $e) {
+            // Handle exceptions
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

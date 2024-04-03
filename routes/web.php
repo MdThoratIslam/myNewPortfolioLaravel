@@ -46,7 +46,7 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
 // ============================== User All Routes End ==================================================================
 
 //    =============================== Email ============================================================================
-    Route::get('/email-inbox',                  [UserController::class, 'emailInbox'])->name('email-inbox');
+    Route::get('/email-inbox',                  [UserController::class, 'readEmails'])->name('email-inbox');
     Route::get('/inbox-details',                [UserController::class, 'inboxShow'])->name('inbox-details');
     Route::get('/inbox/{id}/edit',              [UserController::class, 'inboxEdit'])->name('inbox-edit');
     Route::patch('/inbox/{id}',                 [UserController::class, 'inboxUpdate'])->name('inbox-update');
