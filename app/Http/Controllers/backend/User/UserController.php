@@ -8,9 +8,10 @@ use App\UseHelpers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Webklex\IMAP\Facades\Client;
-use Webklex\IMAP\Facades\Client as LaravelIMAP;
 use Webklex\IMAP\Message;
+use Webklex\IMAP\Facades\Client;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Response;
 
 
 class UserController extends Controller
@@ -216,14 +217,15 @@ class UserController extends Controller
             $host           = env('IMAP_HOST');
             $port           = env('IMAP_PORT');
             $encryption     = env('IMAP_ENCRYPTION');
-            $validateCert   = env('IMAP_VALIDATE_CERT', true); // Default to true if not specified
+            $validateCert   = env('IMAP_VALIDATE_CERT', true);
             $username       = env('IMAP_USERNAME');
             $password       = env('IMAP_PASSWORD');
             $defaultAccount = env('IMAP_DEFAULT_ACCOUNT');
             $protocol       = env('IMAP_PROTOCOL');
+            $defaultFolder  = env('IMAP_DEFAULT_FOLDER');
 
             // Set IMAP configuration
-           $imap = LaravelIMAP::account($defaultAccount)->setConfig([
+            $client = Client::account($defaultAccount)->connect([
                 'host' => $host,
                 'port' => $port,
                 'encryption' => $encryption,
@@ -233,22 +235,69 @@ class UserController extends Controller
                 'protocol' => $protocol,
                 'options' => [],
             ]);
-            $inbox = $imap->getFolder('INBOX');
-            $messages = $imap->getFolder('INBOX')->query()->get();
-            $formattedMessages = [];
-            foreach ($messages as $message) {
-                // Customize the format as per your need
-                $formattedMessages[] =
-                    [
-                        'subject' => $message->getSubject(),
-                        'from' => $message->getFrom(),
-                        'date' => $message->getDate(),
-                     ];
+
+            // Check if connected
+            if ($client->ping()) {
+                // If connected, fetch the inbox
+                $inbox = Cache::remember('inbox', 60, function () use ($client, $defaultFolder) {
+                    // Fetch inbox messages
+                    return $client->getFolder($defaultFolder)->messages()->paginate(10);
+                });
+                $pagination = $inbox->links();
+
+                // Return JSON response
+                return Response::json(['inbox' => $inbox, 'pagination' => $pagination]);
+            } else {
+                // If not connected, handle the error
+                return Response::json(['error' => 'Could not connect to the IMAP server'], 500);
             }
-            return  $formattedMessages;
         } catch (\Exception $e) {
             // Handle exceptions
-            echo "Error: " . $e->getMessage();
+            return Response::json(['error' => 'Error: ' . $e->getMessage()], 500);
         }
+//        try {
+//            // Get IMAP configuration from .env file
+//            $host           = (string) env('IMAP_HOST');
+//            $port           = (int) env('IMAP_PORT');
+//            $encryption     = (string) env('IMAP_ENCRYPTION');
+//            $validateCert   = (bool) env('IMAP_VALIDATE_CERT', true);
+//            $username       = (string) env('IMAP_USERNAME');
+//            $password       = (string) env('IMAP_PASSWORD');
+//            $defaultAccount = (string) env('IMAP_DEFAULT_ACCOUNT');
+//            $protocol       = (string) env('IMAP_PROTOCOL');
+//
+//
+//
+//            if ($mbox){
+//                return true;}
+//            else{
+//                return false;}
+//
+//            $imap = LaravelIMAP::account($defaultAccount)->setConfig([
+//                'host' => $host,
+//                'port' => $port,
+//                'encryption' => $encryption,
+//                'validate_cert' => $validateCert,
+//                'username' => $username,
+//                'password' => $password,
+//                'protocol' => $protocol,
+//                'options' => [],
+//            ]);
+//
+//            if ($imap->isConnected())
+//            {
+//                $inbox = Cache::remember('inbox', 60, function () use ($imap) {
+//                    return paginate($imap->getFolder('INBOX')->query()->get(), 10);
+//                });
+//                $pagination = $inbox->links();
+//                return response()->json(['inbox' => $inbox, 'pagination' => $pagination]);
+//            } else {
+//                // Could not connect to the IMAP server
+//                return response()->json(['error' => 'Could not connect to the IMAP server'], 500);
+//            }
+//        } catch (\Exception $e) {
+//            // Handle exceptions
+//            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
+//        }
     }
 }
