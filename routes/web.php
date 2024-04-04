@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\User\UserController;
 use App\Http\Controllers\Calender\CalenderController;
 use App\Http\Controllers\Events\EventsController;
+use App\Http\Controllers\backend\AcademicQualification\AcademicQualificationController as AcademicQualification;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,8 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
     Route::get('/', function () {return redirect()->route('dashboard');});
     Route::get('/dashboard',            [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 //    ============================== User All Routes ===================================================================
-    Route::get('/users-list',                       [UserController::class, 'index'])->name('users-list');
+    Route::get('/academic-dtails',                  [AcademicQualification::class, 'index'])->name('academic-dtails');
+
     Route::get('/users-list/{id}',                  [UserController::class, 'show'])->name('users-list-show');
     Route::get('/users-details/',                   [UserController::class, 'edit'])->name('users.details');
     Route::get('/users-setting/',                   [UserController::class, 'setting'])->name('users.setting');
@@ -43,6 +45,8 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
     Route::get('/create-user',                      [UserController::class, 'create'])->name('create-user');
 // ============================== User All Routes End ==================================================================
 
+    // ============================== Email All Routes =================================================================
+    Route::get('/email-inbox',                       [UserController::class, 'readEmails'])->name('email-inbox');
 //   =============================== Calender=======================================================================
     Route::get('/fullcalender',             [EventsController::class, 'index'])->name('fullcalender');
     Route::post('/store-event',             [EventsController::class, 'store']);

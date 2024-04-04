@@ -212,7 +212,7 @@ class UserController extends Controller
 //            // Handle exceptions
 //            echo "Error: " . $e->getMessage();
 //        }
-        try {
+        /*try {
             // Get IMAP configuration from .env file
             $host           = env('IMAP_HOST');
             $port           = env('IMAP_PORT');
@@ -298,6 +298,57 @@ class UserController extends Controller
 //        } catch (\Exception $e) {
 //            // Handle exceptions
 //            return response()->json(['error' => 'Error: ' . $e->getMessage()], 500);
-//        }
+//        }*/
+
+        /** @var \Webklex\PHPIMAP\Client $client */
+        //$client = Client::account('default');
+
+            $host           = (string) env('IMAP_HOST');
+            $port           = (int) env('IMAP_PORT');
+            $encryption     = (string) env('IMAP_ENCRYPTION');
+            $validateCert   = (bool) env('IMAP_VALIDATE_CERT', true);
+            $username       = (string) env('IMAP_USERNAME');
+            $password       = (string) env('IMAP_PASSWORD');
+            $defaultAccount = (string) env('IMAP_DEFAULT_ACCOUNT');
+            $protocol       = (string) env('IMAP_PROTOCOL');
+
+            $client = Client::account($defaultAccount)->connect([
+                'host' => $host,
+                'port' => $port,
+                'encryption' => $encryption,
+                'validate_cert' => $validateCert,
+                'username' => $username,
+                'password' => $password,
+                'protocol' => $protocol,
+                'options' => [],
+            ]);
+        $client->connect();
+
+//Get all Mailboxes
+        /** @var \Webklex\PHPIMAP\Support\FolderCollection $folders */
+        $folders = $client->getFolders();
+
+//Loop through every Mailbox
+        /** @var \Webklex\PHPIMAP\Folder $folder */
+        foreach($folders as $folder){
+
+            //Get all Messages of the current Mailbox $folder
+            /** @var \Webklex\PHPIMAP\Support\MessageCollection $messages */
+            $messages = $folder->messages()->all()->get();
+
+            /** @var \Webklex\PHPIMAP\Message $message */
+            foreach($messages as $message){
+                echo $message->getSubject().'<br />';
+                echo 'Attachments: '.$message->getAttachments()->count().'<br />';
+                echo $message->getHTMLBody();
+
+                //Move the current Message to 'INBOX.read'
+                if($message->move('INBOX.read') == true){
+                    echo 'Message has ben moved';
+                }else{
+                    echo 'Message could not be moved';
+                }
+            }
+        }
     }
 }

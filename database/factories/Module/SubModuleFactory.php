@@ -28,9 +28,9 @@ class SubModuleFactory extends Factory
                 'created_at'            => UseHelpers::currentDateTime()
             ],
             [
-                'name'                  => 'User List',
+                'name'                  => 'Academic Details',
                 'icon'                  => 'fas fa-users',
-                'route'                 => 'users-list',
+                'route'                 => 'academic-dtails',
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'module_id'             => 3,
