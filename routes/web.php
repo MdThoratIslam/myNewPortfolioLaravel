@@ -31,28 +31,18 @@ Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('genera
 
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
 {
+    Route::get('/', function () {return redirect()->route('dashboard');});
     Route::get('/dashboard',            [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
-
 //    ============================== User All Routes ===================================================================
     Route::get('/users-list',                       [UserController::class, 'index'])->name('users-list');
     Route::get('/users-list/{id}',                  [UserController::class, 'show'])->name('users-list-show');
-
     Route::get('/users-details/',                   [UserController::class, 'edit'])->name('users.details');
     Route::get('/users-setting/',                   [UserController::class, 'setting'])->name('users.setting');
 
     Route::post('/user-update/{id}',                [UserController::class, 'update'])->name('user-update');
-    Route::delete('/users-list/{id}',               [UserController::class, 'destroy'])->name('users-list-destroy');
     Route::get('/create-user',                      [UserController::class, 'create'])->name('create-user');
 // ============================== User All Routes End ==================================================================
 
-//    =============================== Email ============================================================================
-    Route::get('/email-inbox',                  [UserController::class, 'readEmails'])->name('email-inbox');
-    Route::get('/inbox-details',                [UserController::class, 'inboxShow'])->name('inbox-details');
-    Route::get('/inbox/{id}/edit',              [UserController::class, 'inboxEdit'])->name('inbox-edit');
-    Route::patch('/inbox/{id}',                 [UserController::class, 'inboxUpdate'])->name('inbox-update');
-    Route::delete('/inbox/{id}',                [UserController::class, 'inboxDestroy'])->name('inbox-destroy');
-    Route::post('/email-compose',               [UserController::class, 'inboxStore'])->name('email-compose');
-//    =============================== Email End ====================================================================
 //   =============================== Calender=======================================================================
     Route::get('/fullcalender',             [EventsController::class, 'index'])->name('fullcalender');
     Route::post('/store-event',             [EventsController::class, 'store']);

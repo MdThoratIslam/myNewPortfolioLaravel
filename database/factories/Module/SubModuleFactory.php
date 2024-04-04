@@ -36,33 +36,33 @@ class SubModuleFactory extends Factory
                 'module_id'             => 3,
                 'created_at'            => UseHelpers::currentDateTime()
             ],
-            [
-                'name'                  => 'Email Inbox',
-                'icon'                  => 'mdi mdi-email',
-                'route'                 => 'inbox',
-                'status_active'         => 1,
-                'is_delete'             => 0,
-                'module_id'             => 4,
-                'created_at'            => UseHelpers::currentDateTime()
-            ],
-            [
-                'name'                  => 'Email Details',
-                'icon'                  => 'mdi mdi-email-open',
-                'route'                 => 'inbox-details',
-                'status_active'         => 1,
-                'is_delete'             => 0,
-                'module_id'             => 4,
-                'created_at'            => UseHelpers::currentDateTime()
-            ],
-            [
-                'name'                  => 'Email Compose',
-                'icon'                  => 'mdi mdi-email-open',
-                'route'                 => 'email-compose',
-                'status_active'         => 1,
-                'is_delete'             => 0,
-                'module_id'             => 4,
-                'created_at'            => UseHelpers::currentDateTime()
-            ]
+//            [
+//                'name'                  => 'Email Inbox',
+//                'icon'                  => 'mdi mdi-email',
+//                'route'                 => 'inbox',
+//                'status_active'         => 1,
+//                'is_delete'             => 0,
+//                'module_id'             => 4,
+//                'created_at'            => UseHelpers::currentDateTime()
+//            ],
+//            [
+//                'name'                  => 'Email Details',
+//                'icon'                  => 'mdi mdi-email-open',
+//                'route'                 => 'inbox-details',
+//                'status_active'         => 1,
+//                'is_delete'             => 0,
+//                'module_id'             => 4,
+//                'created_at'            => UseHelpers::currentDateTime()
+//            ],
+//            [
+//                'name'                  => 'Email Compose',
+//                'icon'                  => 'mdi mdi-email-open',
+//                'route'                 => 'email-compose',
+//                'status_active'         => 1,
+//                'is_delete'             => 0,
+//                'module_id'             => 4,
+//                'created_at'            => UseHelpers::currentDateTime()
+//            ]
         ];
     }
 }

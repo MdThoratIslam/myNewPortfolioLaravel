@@ -14,7 +14,7 @@
                     <p>Click the current avatar to change your photo.</p>
                 </div>
             </div>
-            <form id="personalDetailsform" enctype="multipart/form-data"  data-url="{{ route('user-update', ['id' => $user->id]) }}">
+            <form id="personalDetailsform" onload="false" enctype="multipart/form-data"  data-url="{{ route('user-update', ['id' => $user->id]) }}">
                 @csrf
                 <table class="table table-borderless" id="personalDetailsTable" data-user-id="{{$user->id}}">
                     <thead>

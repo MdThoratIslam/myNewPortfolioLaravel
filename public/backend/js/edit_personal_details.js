@@ -133,13 +133,12 @@ function saveChanges()
                         window.location.href = "users-setting";
                     }, 5000); // 5 seconds delay
                     break;
-
                 case 'error':
                     toastr.error(message);
                     break;
             }
             closeEdit();
-            window.location.href = "users-setting";
+            //window.location.href = "users-setting";
         },
         error: function(xhr, status, error)
         {
