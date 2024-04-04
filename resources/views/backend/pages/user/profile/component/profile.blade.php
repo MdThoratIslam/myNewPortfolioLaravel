@@ -16,7 +16,7 @@
             </div>
             <form id="personalDetailsform" onload="false" enctype="multipart/form-data"  data-url="{{ route('user-update', ['id' => $user->id]) }}">
                 @csrf
-                <table class="table table-borderless" id="personalDetailsTable" data-user-id="{{$user->id}}">
+                <table class="table table-borderless table-responsive" id="personalDetailsTable" data-user-id="{{$user->id}}">
                     <thead>
                     <tr>
                         <th scope="col">
