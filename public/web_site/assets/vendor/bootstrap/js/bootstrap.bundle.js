@@ -604,7 +604,7 @@
       return {};
     }
     static get NAME() {
-      throw new Error('You have to implement the static method "NAME", for each component!');
+      throw new Error('You have to implement the static method "NAME", for each components!');
     }
     _getConfig(config) {
       config = this._mergeConfigObj(config);
@@ -638,7 +638,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap base-component.js
+   * Bootstrap base-components.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -796,7 +796,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap util/component-functions.js
+   * Bootstrap util/components-functions.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */

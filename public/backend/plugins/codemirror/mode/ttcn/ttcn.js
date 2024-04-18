@@ -244,7 +244,7 @@
   def(["text/x-ttcn", "text/x-ttcn3", "text/x-ttcnpp"], {
     name: "ttcn",
     keywords: words("activate address alive all alt altstep and and4b any" +
-    " break case component const continue control deactivate" +
+    " break case components const continue control deactivate" +
     " display do else encode enumerated except exception" +
     " execute extends extension external for from function" +
     " goto group if import in infinity inout interleave" +

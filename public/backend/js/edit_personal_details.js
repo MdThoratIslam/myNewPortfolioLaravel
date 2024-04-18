@@ -178,3 +178,29 @@ function closeEdit() {
     // $('#saveBtn, #closeBtn').remove();
     $('#personalDetailsTable tbody tr:last').remove();
 }
+
+
+// ==================== Academic Information when click Edit Button=====================================================
+    $(document).ready(function()
+        {
+            // Initialize the modal first but don't show it
+            $('#editAcademicModal').modal({show: false, backdrop: 'static', keyboard: false});
+            // Event handler for opening the modal on button click
+            $('.editAcademic').on('click', function (event)
+                {
+                    event.preventDefault();
+                    let academicInfo = $(this).data('obj');
+                    $('#academic_id').val(academicInfo.id);
+                    $('#txtExamTitle').val(academicInfo.examTitle);
+                    $('#txtConcentrationMajor').val(academicInfo.concentrationMajor);
+                    $('#txtInstituteName').val(academicInfo.instituteName);
+                    $('#nbrResult').val(academicInfo.result);
+                    $('#nbrOutOf').val(academicInfo.outOf);
+                    $('#yearAchievement').val(academicInfo.achievement);
+                    // Now show the modal
+                    $('#editAcademicModal').modal('show');
+                }
+            );
+        }
+    );
+// ==================== Academic Information when click Edit Button End=================================================

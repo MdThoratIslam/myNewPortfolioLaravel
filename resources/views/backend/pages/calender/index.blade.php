@@ -156,9 +156,7 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay',
                 },
-                    // i want to start friday and end thursday and friday color is blue
-                    firstDay: 5,
-                    // firstDay backgroud color is blue
+                    firstDay: 5, // Ensures the calendar week starts on Friday
                     businessHours: {
                         daysOfWeek: [ 0,1,2,3,4,6],
                         // startTime: '08:00',
@@ -168,7 +166,13 @@
                     themeSystem: 'bootstrap5',
                     height: 560,
                     dayMaxEvents: true,
-                events:
+
+                    weekdays: true,
+                    weekends: true,
+                    weekNumbers: true,
+                    weekNumberCalculation: 'ISO',
+
+                    events:
                     [
                         @foreach($events as $appointment)
                     {
@@ -177,7 +181,7 @@
                         description : '{{ $appointment->description }}',
                         start       : '{{ $appointment->start}}',
                         @if($appointment->end)
-                        {{--end         : '{{ $appointment->end }}',--}}
+                        end         : '{{ $appointment->end }}',
                         end:        moment('{{ $appointment->end }}').add(1, 'day').format('YYYY-MM-DD'), // Add 1 day to end date
                         @endif
                         display     : 'background',
@@ -186,7 +190,6 @@
                     },
                     @endforeach
                 ],
-
                 eventClick: function(info)
                 {
                     $('#eventId').val(info.event.id);
@@ -200,6 +203,8 @@
                     $('#editModal').modal();
                 }
             });
+            // and now friday background color is red and text color is yellow and other days are default color
+
             calendar.render();
             // how to add event
             $('#add-event').on('click', function()
@@ -310,5 +315,6 @@
                 }
             });
         });
+
     </script>
 @endsection

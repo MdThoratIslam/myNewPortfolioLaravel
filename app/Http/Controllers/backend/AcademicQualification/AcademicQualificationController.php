@@ -14,7 +14,10 @@ class AcademicQualificationController extends Controller
      */
     public function index()
     {
-        //
+        // All Academic Qualifications of the user will be shown here
+        $academicQualifications = AcademicQualification::where('user_id', auth()->user()->id)->get();
+
+        return view('backend.pages.user.profile.components.academic_dtails')->with('academicQualifications', $academicQualifications);
     }
 
     /**

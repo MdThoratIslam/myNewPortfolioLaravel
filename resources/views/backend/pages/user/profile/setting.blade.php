@@ -14,8 +14,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="user-account-settings.html">
-                                <i class="mdi mdi-settings-outline mr-1"></i> Account
+                            <a class="nav-link {{request()->routeIs('academic-dtails') ? 'active' : ''}}" href="{{route('academic-dtails')}}">
+                                <i class="mdi mdi-settings-outline mr-1"></i> Academic Dtails
                             </a>
                         </li>
                         <li class="nav-item">

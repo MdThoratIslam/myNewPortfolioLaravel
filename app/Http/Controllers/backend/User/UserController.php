@@ -152,7 +152,7 @@ class UserController extends Controller
             ->first();
 //        return view('backend.pages.user.edit_personal_details', compact('user'));
 
-        return view('backend.pages.user.profile.component.profile',compact('user'));
+        return view('backend.pages.user.profile.components.profile',compact('user'));
     }
     private function saveImage($image, $directory)
     {

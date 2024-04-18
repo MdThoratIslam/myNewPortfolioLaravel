@@ -8,7 +8,7 @@
   function MT(name) { test.mode(name, mode, Array.prototype.slice.call(arguments, 1), "gss"); }
 
   MT("atComponent",
-     "[def @component] {",
+     "[def @components] {",
      "[tag foo] {",
      "  [property color]: [keyword black];",
      "}",

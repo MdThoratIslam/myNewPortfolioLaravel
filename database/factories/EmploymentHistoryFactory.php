@@ -12,6 +12,7 @@ class EmploymentHistoryFactory extends Factory
     {
         return [
             [
+                'id'                => 1,
                 'company_name'      => "Unique Eastern Pvt. Ltd. concern of Unique Group",
                 'company_address'   => "",
                 'company_phone'     => "",
@@ -29,6 +30,7 @@ class EmploymentHistoryFactory extends Factory
                 'updated_at'        => null,
             ],
             [
+                'id'                => 2,
                 'company_name'      => "Logic Software Limited",
                 'company_address'   => "Flat: A2, House: NWD 4B, Road-62, Gulshan-2 ,Dhaka-1212, Banglades.",
                 'company_phone'     => "01909-299990",
@@ -46,6 +48,7 @@ class EmploymentHistoryFactory extends Factory
                 'updated_at'        => null,
             ],
             [
+                'id'                => 3,
                 'company_name'      => "Blue Planet Group",
                 'company_address'   => "House # 14, Road# 3, Sector# 6, Dhaka 1230",
                 'company_phone'     => "02-58951473",
@@ -64,6 +67,7 @@ class EmploymentHistoryFactory extends Factory
 
             ],
             [
+                'id'                => 4,
                 'company_name'      => "Smart Think",
                 'company_address'   => "Flat: E1,House: 99,Road-04,Block: A,Banani,Dhaka-1213,Bangladesh.",
                 'company_phone'     => "09654000400",

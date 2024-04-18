@@ -18,8 +18,11 @@
                 <h3 class="resume-title">Education</h3>
                 @foreach($academic_qualification_data as $education)
                     <div class="resume-item">
-                        <h4><span>Exam Title:&nbsp;</span>{{$education['examTitle']}}</h4>
-                        <h5><span>Passing Year:&nbsp;</span>{{$education['startingYear'] ?? $education['passingYear']}} - {{$education['endingYear']}}</h5>
+                        <h4><span>Exam Title:&nbsp;</span>{{$education['examTitle'] }} </h4>
+                        <h5><span>Passing Year:&nbsp;</span>
+{{--                            {{$education['startingYear'] ?? $education['passingYear']}} - {{$education['endingYear']}}--}}
+                            {{ $education['passingYear']}}
+                        </h5>
                         <p><span>Institute Name:&nbsp;</span><em>{{$education['instituteName']}}</em></p>
                         <p><span>Major:&nbsp;</span>{{$education['concentrationMajor']}}</p>
                     </div>
@@ -56,13 +59,18 @@
                         @endphp
                         <div class="row">
                         @foreach($experience['responsibilities'] as $index => $responsibility)
-                            @if($index % 4 == 0)
+                            @if($index % 5 == 0)
                                 <div class="col-lg-6" data-aos="fade-up">
                                     @endif
                                     <ul>
-                                        <li><strong>{{$responsibility['label']}}</strong>:&nbsp;<br>{{$responsibility['description']}}</li>
+                                        <li>
+                                            <strong style="color: #171a1d">
+                                                {{$responsibility['label']}}
+                                            </strong>:&nbsp;<br>
+                                            {{$responsibility['description']}}
+                                        </li>
                                     </ul>
-                                    @if(($index + 1) % 4 == 0 || $index == count($experience['responsibilities']) - 1)
+                                    @if(($index + 1) % 5 == 0 || $index == count($experience['responsibilities']) - 1)
                                 </div>
                             @endif
                         @endforeach
@@ -71,6 +79,5 @@
                 @endforeach
             </div>
         </div>
-
     </div>
 </section>
