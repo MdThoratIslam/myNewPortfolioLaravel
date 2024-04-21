@@ -3,6 +3,9 @@
     <div class="card card-default">
         <div class="card-header">
             <h2 class="mb-5">Academic Qualifications Settings</h2>
+            <button type="button" class="editAcademic" data-mode="edit" data-toggle="modal" data-target="#editAcademicModal">
+                Add New
+            </button>
         </div>
         <div class="card-body">
                 <table class="table table-bordered" id="" data-user-id="">
@@ -38,13 +41,17 @@
                                 <td>{{$row->result}}</td>
                                 <td>{{$row->outOf}}</td>
                                 <td>
-                                    <button type="button" class="editAcademic" data-obj="{{$row}}" data-toggle="modal" data-target="#editAcademicModal">
+                                    <button type="button" class="editAcademic" data-mode="edit" data-obj="{{$row}}" data-toggle="modal" data-target="#editAcademicModal">
                                         <i class="mdi mdi-open-in-new" ></i>
                                     </button>
+{{--                                    <button type="button" class="editAcademic" data-mode="edit" data-id="{{$index}}" data-examTitle="{{$row->examTitle}}" data-concentration-major="Science"--}}
+{{--                                            data-institute-name="XYZ High School" data-result="A" data-out-of="100" data-achievement="Top Scorer" data-toggle="modal" data-target="#editAcademicModal">--}}
+{{--                                        <i class="mdi mdi-open-in-new" ></i>--}}
+{{--                                    </button>--}}
                                     &nbsp;|&nbsp;
-                                    <a href="#" onclick="if(confirm('Are you sure to delete?')) { this.parentElement.submit(); }">
-                                        <i class="mdi mdi-close text-danger"></i>
-                                    </a>
+                                    <button type="button" class="deleteAcademic" data-id="{{$row->id}}">
+                                        <i class="mdi mdi-delete" ></i>
+                                    </button>
 {{--                                    <form action="{{route('academic-qualification.destroy', $row->id)}}" method="post">--}}
                                     <form action="" method="post">
                                         @csrf
@@ -143,12 +150,21 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary btn-pill">Save Changes</button>
+                    <button type="submit" id="modalButton" class="btn btn-primary btn-pill">Save Changes</button>
                 </div>
             </div>
         </div>
     </div>
+
+{{--    please Academic Information Edit when click Edit Button  wise a modal create --}}
+
+
+
 @endsection
+
+<script>
+
+</script>
 
 
 

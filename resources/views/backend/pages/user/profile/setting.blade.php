@@ -1,7 +1,7 @@
 @extends('backend.pages.user.profile.index')
 @section('profile-content')
     <div class="row">
-        <div class="col-xl-3">
+        <div class="col-xl-2">
             <div class="card card-default">
                 <div class="card-header">
                     <h2>Settings</h2>
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-9">
+        <div class="col-xl-10">
             @yield('profile-setting-content')
             <div class="card card-default">
                 <div class="card-header">

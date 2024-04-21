@@ -16,6 +16,7 @@
 <script src="{{asset('public/backend/plugins/jvectormap/jquery-jvectormap-us-aea.js')}}"></script>
 <script src="{{asset('public/backend/plugins/daterangepicker/moment.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/daterangepicker/daterangepicker.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 <script>
     jQuery(document).ready(function() {
         jQuery('input[name="dateRange"]').daterangepicker({
@@ -43,7 +44,8 @@
 <script src="{{asset('public/backend/plugins/fullcalendar/daygrid-4.3.0/main.min.js')}}"></script>
 {{--<script src="{{asset('public/backend/js/calendar.js')}}"></script>--}}
 <!--  -->
-<script>NProgress.done();
+<script>
+    NProgress.done();
     @if(Session::has('message'))
         toastr.options =
         {
@@ -85,5 +87,6 @@
 </script>
 
 <script src="{{ asset('public/backend/js/edit_personal_details.js') }}"></script>
+
 </body>
 </html>
