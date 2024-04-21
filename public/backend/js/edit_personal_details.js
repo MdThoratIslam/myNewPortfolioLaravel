@@ -232,32 +232,31 @@ $(document).ready(function() {
     $('#editAcademicModal').modal({ show: false, backdrop: 'static', keyboard: false });
 
     // Handle the click event on elements with class 'editAcademic'
-    $('.editAcademic').on('click', function(event) {
+    $('.editAcademic').on('click', function(event)
+    {
         event.preventDefault();
-
         let academicInfo = $(this).data('obj');
         let mode = $(this).data('mode');
 
         // Prepare modal for either adding or editing academic information
-        if (mode === 'edit') {
+        if (mode === 'edit')
+        {
             $('#editAcademicModal').find('.modal-title').text('Edit Academic Information');
             $('#editAcademicModal').find('.modal-footer button[type=submit]').text('Update');
+
+            // Set form fields with data
+            $('#academic_id').val(academicInfo.id);
+            $('#txtExamTitle').val(academicInfo.examTitle);
+            $('#txtConcentrationMajor').val(academicInfo.concentrationMajor);
+            $('#txtInstituteName').val(academicInfo.instituteName);
+            $('#nbrResult').val(academicInfo.result);
+            $('#nbrOutOf').val(academicInfo.outOf);
+            $('#yearAchievement').val(academicInfo.achievement);
         } else {
             $('#editAcademicModal').find('.modal-title').text('Add Academic Information');
             $('#editAcademicModal').find('.modal-footer button[type=submit]').text('Add');
             // Clear fields if adding new information
-            academicInfo = { id: '', examTitle: '', concentrationMajor: '', instituteName: '', result: '', outOf: '', achievement: '' };
         }
-
-        // Set form fields with data
-        $('#academic_id').val(academicInfo.id);
-        $('#txtExamTitle').val(academicInfo.examTitle);
-        $('#txtConcentrationMajor').val(academicInfo.concentrationMajor);
-        $('#txtInstituteName').val(academicInfo.instituteName);
-        $('#nbrResult').val(academicInfo.result);
-        $('#nbrOutOf').val(academicInfo.outOf);
-        $('#yearAchievement').val(academicInfo.achievement);
-
         // Show the modal
         $('#editAcademicModal').modal('show');
     });

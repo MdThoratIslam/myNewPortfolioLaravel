@@ -9,6 +9,7 @@ use App\Http\Controllers\backend\User\UserController;
 use App\Http\Controllers\Calender\CalenderController;
 use App\Http\Controllers\Events\EventsController;
 use App\Http\Controllers\backend\AcademicQualification\AcademicQualificationController as AcademicQualification;
+use App\Http\Controllers\backend\Mail\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,9 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
 
 // ============================== Email All Routes =====================================================================
     Route::get('/email-inbox',               [UserController::class, 'readEmails'])->name('email-inbox');
+
+    Route::get ('/mail-compose',[MailController::class,'mailform'])->name('mail.compose');
+    Route::post ('/mail-send',[MailController::class,'maildata'])->name('mail.send');
 //   =============================== Calender===========================================================================
     Route::get('/fullcalender',              [EventsController::class, 'index'])->name('fullcalender');
     Route::post('/store-event',              [EventsController::class, 'store']);
