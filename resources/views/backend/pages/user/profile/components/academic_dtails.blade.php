@@ -3,7 +3,7 @@
     <div class="card card-default">
         <div class="card-header">
             <h2 class="mb-5">Academic Qualifications Settings</h2>
-            <button type="button" class="editAcademic" data-mode="edit" data-toggle="modal" data-target="#editAcademicModal">
+            <button type="submit" class="editAcademic" data-mode="add" data-toggle="modal" data-target="#editAcademicModal">
                 Add New
             </button>
         </div>
@@ -49,7 +49,7 @@
 {{--                                        <i class="mdi mdi-open-in-new" ></i>--}}
 {{--                                    </button>--}}
                                     &nbsp;|&nbsp;
-                                    <button type="button" class="deleteAcademic" data-id="{{$row->id}}">
+                                    <button type="submit" class="deleteAcademic" data-id="{{$row->id}}">
                                         <i class="mdi mdi-delete" ></i>
                                     </button>
 {{--                                    <form action="{{route('academic-qualification.destroy', $row->id)}}" method="post">--}}
@@ -150,7 +150,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Close</button>
-                    <button type="submit" id="modalButton" class="btn btn-primary btn-pill">Save Changes</button>
+                    <button type="submit" id="modalButton" data-dismiss="modal" class="btn btn-primary btn-pill">Save Changes</button>
                 </div>
             </div>
         </div>

@@ -178,6 +178,7 @@ function closeEdit() {
     // $('#saveBtn, #closeBtn').remove();
     $('#personalDetailsTable tbody tr:last').remove();
 }
+
 // ===================deleteAcademic class bootbox alert use======================================================
     $(document).on('click', '.deleteAcademic', function () {
         var id = $(this).data('id');
@@ -227,39 +228,73 @@ function closeEdit() {
     });
 //======================================================================================================================
 // ==================== Academic Information Edit when click Edit Button=====================================================
-$(document).ready(function() {
-    // Initialize the modal but don't show it initially
-    $('#editAcademicModal').modal({ show: false, backdrop: 'static', keyboard: false });
+    $(document).ready(function() {
+        // Initialize the modal but don't show it initially
+        $('#editAcademicModal').modal({ show: false, backdrop: 'static', keyboard: false });
 
-    // Handle the click event on elements with class 'editAcademic'
-    $('.editAcademic').on('click', function(event)
-    {
-        event.preventDefault();
-        let academicInfo = $(this).data('obj');
-        let mode = $(this).data('mode');
+        $('.editAcademic').on('click', function(event) {
+            event.preventDefault();
+            let academicInfo = $(this).data('obj');
+            let mode = $(this).data('mode');
 
-        // Prepare modal for either adding or editing academic information
-        if (mode === 'edit')
+            if (mode === 'edit')
+            {
+                prepareModalForEdit(academicInfo);
+            } else {
+                clearFormFields();
+                $('#editAcademicModal').find('.modal-title').text('Add Academic Information');
+                $('#editAcademicModal').find('.modal-footer button[type=submit]').text('Add');
+            }
+            $('#editAcademicModal').modal('show');
+        });
+
+        // Handle form submission with AJAX
+        $('#formAcademic').submit(function(event)
         {
+            event.preventDefault(); // Prevent the default form submission
+
+            let url = (mode === 'edit') ? '/editAcademic' : '/addAcademic';
+            let formData = $(this).serialize(); // Serialize form data
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: formData,
+                success: function(response) {
+                    $('#editAcademicModal').modal('hide');
+                    clearFormFields();
+                    alert('Success!'); // or update your frontend as needed
+                },
+                error: function(xhr, status, error) {
+                    alert('Error: ' + error.message); // handle errors
+                }
+            });
+        });
+
+        function prepareModalForEdit(academicInfo) {
             $('#editAcademicModal').find('.modal-title').text('Edit Academic Information');
             $('#editAcademicModal').find('.modal-footer button[type=submit]').text('Update');
-
-            // Set form fields with data
-            $('#academic_id').val(academicInfo.id);
-            $('#txtExamTitle').val(academicInfo.examTitle);
-            $('#txtConcentrationMajor').val(academicInfo.concentrationMajor);
-            $('#txtInstituteName').val(academicInfo.instituteName);
-            $('#nbrResult').val(academicInfo.result);
-            $('#nbrOutOf').val(academicInfo.outOf);
-            $('#yearAchievement').val(academicInfo.achievement);
-        } else {
-            $('#editAcademicModal').find('.modal-title').text('Add Academic Information');
-            $('#editAcademicModal').find('.modal-footer button[type=submit]').text('Add');
-            // Clear fields if adding new information
+            fillFormFields(academicInfo);
         }
-        // Show the modal
-        $('#editAcademicModal').modal('show');
-    });
-});
 
+        function clearFormFields() {
+            $('#academic_id').val('');
+            $('#txtExamTitle').val('');
+            $('#txtConcentrationMajor').val('');
+            $('#txtInstituteName').val('');
+            $('#nbrResult').val('');
+            $('#nbrOutOf').val('');
+            $('#yearAchievement').val('');
+        }
+
+        function fillFormFields(info) {
+            $('#academic_id').val(info.id);
+            $('#txtExamTitle').val(info.examTitle);
+            $('#txtConcentrationMajor').val(info.concentrationMajor);
+            $('#txtInstituteName').val(info.instituteName);
+            $('#nbrResult').val(info.result);
+            $('#nbrOutOf').val(info.outOf);
+            $('#yearAchievement').val(info.achievement);
+        }
+    });
 // ==================== Academic Information when click Edit Button End=================================================

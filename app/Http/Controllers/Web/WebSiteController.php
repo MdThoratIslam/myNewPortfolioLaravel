@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Events\StatusLiked;
 use App\Http\Controllers\Controller;
 use App\Models\AcademicQualification\AcademicQualification;
 use App\Models\EmploymentHistory\EmploymentHistory;
@@ -213,4 +214,23 @@ class WebSiteController extends Controller
         }
         return $service_arr;
     }
+
+    public function pusher()
+    {
+        // how to count the number of this event is fired
+        //broadcast(new StatusLiked('tariq'))->toOthers();
+        // now i want to StatusLiked event is fired how many times show count and email as a array
+        // how to count the number of this event is fired
+        $dateTime = Carbon::now('Asia/Dhaka')->format('Y-m-d H:i:s');
+        broadcast(new StatusLiked([
+            'email'         => 'tariq',
+            'message'       => 'You have received a new Email!!',
+            'imageUrl'      => '#',
+            'title'         => 'New Email',
+            'description'   => 'You have received a new Email!!',
+            'timeAgo'       => $dateTime
+        ]))->toOthers();
+
+    }
+
 }

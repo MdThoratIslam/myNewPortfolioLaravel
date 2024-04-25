@@ -12,9 +12,26 @@
                     <input type="text" name="name" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="exampleInputEmail">Your Email</label>
-                    <input type="email" class="form-control" name="email" required>
+{{--                    <label for="exampleInputEmail">Your Email</label>--}}
+{{--                    <input type="email" class="form-control" name="email" required>--}}
+                    @php
+                        $data = [
+                            1 => 'mdthoratislam1995.oni@gmail.com',
+                            2 => 'thorat.pwad03@gmail.com',
+                        ];
+                    @endphp
+                    <label class="text-dark font-weight-medium">Multiple Select</label>
+                    <div class="">
+                        <select class="js-example-basic-multiple form-control" name="emails[]" multiple="multiple">
+                            @foreach($data as $key => $value)
+                                <option value="{{  $value }}">{{ $value }}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
                 </div>
+
+
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail">Subject</label>
@@ -24,7 +41,6 @@
                 <label for="exampleInputEmail">Message</label>
                 <textarea class="form-control" name="mess" rows="10" required></textarea>
             </div>
-
 
 
 

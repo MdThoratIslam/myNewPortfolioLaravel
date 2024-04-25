@@ -14,6 +14,9 @@
 <script src="{{asset('public/backend/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/jvectormap/jquery-jvectormap-world-mill.js')}}"></script>
 <script src="{{asset('public/backend/plugins/jvectormap/jquery-jvectormap-us-aea.js')}}"></script>
+
+<script src="{{asset('public/backend/plugins/select2/js/select2.min.js')}}"></script>
+<script src="{{asset('public/backend/plugins/select2/js/select2.full.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/daterangepicker/moment.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/daterangepicker/daterangepicker.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
@@ -44,6 +47,8 @@
 <script src="{{asset('public/backend/plugins/fullcalendar/daygrid-4.3.0/main.min.js')}}"></script>
 {{--<script src="{{asset('public/backend/js/calendar.js')}}"></script>--}}
 <!--  -->
+<script src="{{asset('public/backend/js/pusherJavaScripLibraryV8.2.0.js')}}"></script>
+{{--<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>--}}
 <script>
     NProgress.done();
     @if(Session::has('message'))
@@ -85,8 +90,62 @@
     }
     @endif
 </script>
-
 <script src="{{ asset('public/backend/js/edit_personal_details.js') }}"></script>
+<script>
 
+    // =================== If web site contact form is submitted successfully then show toastr message by Pusher========
+    $(document).ready(function() {
+        var $contentContainer = $('#all');
+        var $emailCountElements = $('.email-count');
+        var currentCount = 0;
+
+        if ($emailCountElements.length > 0) {
+            var match = $emailCountElements.first().text().match(/\d+/);
+            if (match) {
+                currentCount = parseInt(match[0], 10);
+            }
+        }
+
+        // Enable Pusher logging for debugging (disable in production)
+        Pusher.logToConsole = true;
+
+        // Initialize Pusher
+        var pusher = new Pusher('e3601fec7e647f163555', {
+            cluster: 'ap1',
+            encrypted: true
+        });
+
+        // Subscribe to a Pusher channel
+        var channel = pusher.subscribe('channel-portfolio');
+
+        // Bind a function to handle the 'status-liked' event
+        channel.bind('status-liked', function(data) {
+            toastr.success('Notification: ' + data.data.message);
+            currentCount++;
+
+            $emailCountElements.text(`(${currentCount})`);
+
+            // Dynamically create the media element for the notification
+            var mediaHtml = `
+                <div class="media media-sm p-4 mb-0">
+                    <div class="media-sm-wrapper">
+                        <a href="user-profile.html"><img src="${data.data.imageUrl}" alt="User Image" style="width: 50px; height: 50px;"></a>
+                    </div>
+                    <div class="media-body">
+                        <a href="user-profile.html">
+                            <span class="title mb-0">${data.data.title}</span>
+                            <span class="discribe">${data.data.description}</span>
+                            <span class="time"><time>${data.data.timeAgo}</time></span>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            $contentContainer.append(mediaHtml);
+            console.log('Data received and added to the DOM:', data);
+        });
+    });
+    //==================================================================================================================
+</script>
 </body>
 </html>

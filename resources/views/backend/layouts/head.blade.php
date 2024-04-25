@@ -21,6 +21,7 @@
     <link href="{{asset('public/backend/plugins/daterangepicker/daterangepicker.css')}}" rel="stylesheet" />
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link href="{{asset('public/backend/plugins/toaster/toastr.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('public/backend/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="{{asset('public/backend/css/style.css')}}" />
     <link href="{{asset('public/backend/images/paper-plane.png')}}" rel="shortcut icon" />
