@@ -6,7 +6,7 @@
                     <h2>Resume</h2>
                 </div>
                 <div class="col-lg-2">
-                    <a href="{{route('generate-pdf')}}"
+                    <a href="{{route('downloadCV')}}"
                        class="btn btn-block btn-sm text-white" target="_blank" style="background-color: #DB528C">
                         Download CV<i class="bx bxs-file-pdf"></i>
                     </a>

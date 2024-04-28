@@ -40,4 +40,19 @@ class PDFController extends Controller
         //return $pdf->download('myPDF.pdf');
         return $pdf->stream('myPDF.pdf');
     }
+
+    public function downloadCV()
+    {
+        // Path to the PDF file
+        $pdfPath = public_path('Md_Thorat_Islam_CV.pdf');
+
+        // Check if the file exists
+        if (file_exists($pdfPath)) {
+            // Return the file for download
+            return response()->download($pdfPath, 'cv.pdf');
+        } else {
+            // If file does not exist, return 404
+            abort(404);
+        }
+    }
 }
