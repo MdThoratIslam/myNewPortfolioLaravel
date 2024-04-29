@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-
         .pricing-plans {
             gap: 32px;
             display: flex;
@@ -40,24 +39,24 @@
 
             place-items: center;
             min-height: 100vh;
-            background-color: #171717;
+            /*background-color: #171717;*/
         }
 
         .pricing-card {
-            --col: #e4e4e7;
+            --col: #262626;
             position: relative;
             min-width: 360px;
             padding: 32px;
             padding-bottom: 96px;
             border-radius: 4px;
             border: 1px solid #262626;
-            background-color: #26262620;
+            /*background-color: #26262620;*/
             box-shadow: 0 0 32px transparent;
             text-align: center;
         }
 
         .pricing-card.basic {
-            --col: #0891b2;
+            --col: #3dd5f3;
         }
 
         .pricing-card.standard {
@@ -69,11 +68,15 @@
         }
 
         .pricing-card:hover {
-            border-color: var(--col);
-            background-color: #26262680;
-            box-shadow: 0 0 32px #171717;
+            /*border-color: var(--col);*/
+            /*background-color: #26262620;*/
+            /*box-shadow: 0 0 32px #171717;*/
             transform: translateY(-16px) scale(1.02);
             transition: all 0.5s ease;
+
+            background-color: rgb(10, 10, 10); /* Light Gray */
+            border-color: var(--col);
+            box-shadow: 0 0 32px rgba(150, 95, 0, 0.1);
         }
 
         .pricing-card > *:not(:last-child) {

@@ -13,6 +13,7 @@
     <!-- End Services Section -->
     <!-- ======= Portfolio Section ======= -->
      @include('web_site.section.portfolio')
+    @include('web_site.section.pricing')
     <!-- End Portfolio Section -->
     <!-- ======= Testimonials Section ======= -->
     @include('web_site.section.testimonials')
