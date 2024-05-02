@@ -67,17 +67,20 @@
             --col: #c026d3;
         }
 
-        .pricing-card:hover {
-            /*border-color: var(--col);*/
-            /*background-color: #26262620;*/
-            /*box-shadow: 0 0 32px #171717;*/
+        .pricing-card:hover
+        {
+
             transform: translateY(-16px) scale(1.02);
             transition: all 0.5s ease;
-
-            background-color: rgb(10, 10, 10); /* Light Gray */
+            background-color: lightyellow; /* Light Gray */
             border-color: var(--col);
-            box-shadow: 0 0 32px rgba(150, 95, 0, 0.1);
+            /*box-shadow: 0 0 32px rgba(150, 95, 0, 0.1);*/
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
+        .pricing-card:hover .features >li> .xmark {
+            text-decoration: line-through;
+        }
+
 
         .pricing-card > *:not(:last-child) {
             margin-bottom: 32px;
@@ -91,7 +94,7 @@
         }
 
         .pricing-card .heading p {
-            color: #a3a3a3;
+            color: #171a1d;
             font-size: 14px;
             font-weight: lighter;
         }
@@ -113,7 +116,7 @@
 
         .pricing-card .features li {
             padding-bottom: 16px;
-            color: #a3a3a3;
+            color: #171a1d;
             font-size: 16px;
             font-weight: lighter;
             text-align: left;
@@ -121,7 +124,7 @@
 
         .pricing-card .features li i,
         .pricing-card .features li strong {
-            color: #e4e4e7;
+            color: #171a1d;
             font-size: 16px;
             text-align: left;
         }
@@ -140,7 +143,7 @@
             border-radius: 4px;
             border: 1px solid var(--col);
             background-color: var(--col);
-            color: #e4e4e7;
+            color: #171a1d;
             font-size: 20px;
             font-weight: bold;
         }
@@ -150,9 +153,7 @@
             color: var(--col);
             transition: all 0.3s ease;
         }
-        /* Default styles */
         #hero {
-            /*flex-direction: column;*/ /* Adjusted to vertically center content */
             background: url('{{asset('public/web_site/assets/img/my_cover.jpg')}}') top center no-repeat;
             width: 100%;
             height: 90vh;

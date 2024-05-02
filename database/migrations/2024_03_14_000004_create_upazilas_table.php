@@ -14,11 +14,18 @@ return new class extends Migration
         Schema::create('upazilas', function (Blueprint $table)
         {
             $table->id();
-            $table->foreignId('district_id')->constrained('districts')->cascadeOnDelete();
+//            $table->foreignId('district_id')->constrained('districts')->cascadeOnDelete();
+//            $table->string('name');
+//            $table->string('bn_name');
+//            $table->string('url')->nullable();
+//            $table->integer('code')->nullable();
+//            $table->integer('status_active')->default(1);
+//            $table->integer('is_delete')->default(0);
+            $table->foreignId('division_id')->constrained('divisions');
+            $table->foreignId('district_id')->constrained('districts');
             $table->string('name');
-            $table->string('bn_name');
-            $table->string('url')->nullable();
-            $table->integer('code')->nullable();
+            $table->string('bn_name')->nullable();
+            $table->string('slug')->unique();
             $table->integer('status_active')->default(1);
             $table->integer('is_delete')->default(0);
             $table->timestamps();
