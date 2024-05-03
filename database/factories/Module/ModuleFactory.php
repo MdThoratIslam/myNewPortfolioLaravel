@@ -68,6 +68,16 @@ class ModuleFactory extends Factory
                 'created_at'            => UseHelpers::currentDateTime(),
                 'created_by'            => 1,
                 'updated_at'            => null,
+            ],
+            [
+                'name'                  => 'Visitor',
+                'route'                 => 'visitor',
+                'route_type'            => 1,
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'created_at'            => UseHelpers::currentDateTime(),
+                'created_by'            => 1,
+                'updated_at'            => null,
             ]
         ];
     }

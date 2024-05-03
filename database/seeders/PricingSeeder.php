@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Database\Factories\PricingFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PricingSeeder extends Seeder
@@ -16,7 +15,7 @@ class PricingSeeder extends Seeder
         $pricingFactory = new PricingFactory();
         $data = $pricingFactory->definition();
         foreach ($data as $val) {
-            \App\Models\Pricing::create($val);
+            \App\Models\pricing\Pricing::create($val);
         }
     }
 }

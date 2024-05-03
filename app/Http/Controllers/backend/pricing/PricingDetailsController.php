@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend\pricing;
 
-use App\Models\Pricing;
-use App\Http\Requests\StorePricingRequest;
-use App\Http\Requests\UpdatePricingRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePricing_detailsRequest;
+use App\Http\Requests\UpdatePricing_detailsRequest;
+use App\Models\pricing\Pricing_details;
 
-class PricingController extends Controller
+class PricingDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class PricingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePricingRequest $request)
+    public function store(StorePricing_detailsRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class PricingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pricing $pricing)
+    public function show(Pricing_details $pricing_details)
     {
         //
     }
@@ -43,7 +44,7 @@ class PricingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pricing $pricing)
+    public function edit(Pricing_details $pricing_details)
     {
         //
     }
@@ -51,7 +52,7 @@ class PricingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePricingRequest $request, Pricing $pricing)
+    public function update(UpdatePricing_detailsRequest $request, Pricing_details $pricing_details)
     {
         //
     }
@@ -59,7 +60,7 @@ class PricingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pricing $pricing)
+    public function destroy(Pricing_details $pricing_details)
     {
         //
     }

@@ -60,6 +60,10 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
     Route::post('/store-event',                 [EventsController::class, 'store']);
     Route::post('/event-update',                [EventsController::class, 'update']);
     Route::post('/delete-event',                [EventsController::class, 'destroy']);
+
+    //============================= Visitor ============================================================================
+    Route::get('visitor' , [DashboardController::class, 'visitor'])->name('visitor');
+    //==================================================================================================================
 });
 
 Route::middleware('auth')->group(function ()

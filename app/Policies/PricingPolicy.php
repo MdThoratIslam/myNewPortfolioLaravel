@@ -2,9 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Pricing;
+use App\Models\pricing\Pricing;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class PricingPolicy
 {

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend\subModule;
 
-use App\Models\Module\SubModule;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSubModuleRequest;
 use App\Http\Requests\UpdateSubModuleRequest;
+use App\Models\Module\SubModule;
 
 class SubModuleController extends Controller
 {

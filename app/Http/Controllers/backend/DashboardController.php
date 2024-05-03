@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Module\ModuleResource;
 use App\Models\Events\Events;
 use App\Models\Module\Module;
+use App\Models\VisitorData;
 
 class DashboardController extends Controller
 {
@@ -29,4 +30,12 @@ class DashboardController extends Controller
         return view('backend.pages.dashboard.index', compact('totalDays'));
 
     }
+    public function visitor()
+    {
+        $visitors       = VisitorData::all();
+        $totalVisitor   = VisitorData::count(); // Get total row count
+        return view('backend.pages.visitor.index',compact('visitors','totalVisitor'));
+
+    }
+
 }

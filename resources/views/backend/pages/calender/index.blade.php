@@ -1,5 +1,5 @@
 @extends('backend.master')
-@section('title', 'Dashboard')
+@section('title', 'Calender')
 @section('content')
     <div class="content">
         <div class="card card-default border-0 bg-transparent">

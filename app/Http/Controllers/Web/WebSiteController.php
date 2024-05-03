@@ -9,6 +9,7 @@ use App\Models\EmploymentHistory\EmploymentHistory;
 use App\Models\FieldsOfSkill\FieldsOfSkill;
 use App\Models\Portfolio\Portfolio;
 use App\Models\Portfolio\Portfolio_describe;
+use App\Models\pricing\Pricing;
 use App\Models\Service\Service;
 use App\Models\SkillSummary\SkillSummary;
 use App\Models\SpecialQualification\SpecialQualification;
@@ -232,5 +233,7 @@ class WebSiteController extends Controller
         ]))->toOthers();
 
     }
+    // need to pricing data and with pricing details data array return
+
 
 }
