@@ -153,6 +153,90 @@
             color: var(--col);
             transition: all 0.3s ease;
         }
+
+        /* CSS for the pricing modal */
+        /* CSS for the modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 9999; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+        }
+
+        /* Modal content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto; /* Center horizontally */
+            padding: 20px;
+            border: 1px solid #888;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            width: 80%; /* Set default width */
+            max-width: 80%; /* Adjust the maximum width as needed */
+            min-width: 280px; /* Set minimum width */
+            max-height: 80%; /* Adjust maximum height */
+            overflow-y: auto; /* Enable vertical scroll if needed */
+        }
+        .modal-header{
+            text-align: center !important;
+            display: block;
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Responsive layout */
+        @media screen and (max-width: 768px) {
+            .modal-content {
+                width: 90%; /* Adjust width for smaller screens */
+                max-width: 90%; /* Adjust maximum width for smaller screens */
+            }
+        }
+
+        /* Responsive layout for tablets */
+        @media screen and (max-width: 1024px) {
+            .modal-content {
+                width: 70%; /* Adjust width for tablets */
+                max-width: 70%; /* Adjust maximum width for tablets */
+            }
+        }
+
+        /* Responsive layout for smaller laptops and desktops */
+        @media screen and (min-width: 1025px) and (max-width: 1440px) {
+            .modal-content {
+                width: 50%; /* Adjust width for smaller laptops and desktops */
+                max-width: 50%; /* Adjust maximum width for smaller laptops and desktops */
+            }
+        }
+
+        /* Responsive layout for larger desktops */
+        @media screen and (min-width: 1441px) {
+            .modal-content {
+                width: 40%; /* Adjust width for larger desktops */
+                max-width: 40%; /* Adjust maximum width for larger desktops */
+            }
+        }
+
+        /*end*/
+
+
         #hero {
             background: url('{{asset('public/web_site/assets/img/my_cover.jpg')}}') top center no-repeat;
             width: 100%;

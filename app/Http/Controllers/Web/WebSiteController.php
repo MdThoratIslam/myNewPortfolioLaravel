@@ -30,6 +30,8 @@ class WebSiteController extends Controller
         $employment_history_data        = $this->employment_history();
         $portfolio_title                = $this->portfolio_title();
         $services                       = $this->service();
+        // need to pricing data and with pricing details data array return
+        $pricing_arr                    = $this->pricing();
 
 //        $portfolio_describe_data        = $this->portfolio_describe();
 //        dd($portfolio_title);
@@ -41,7 +43,8 @@ class WebSiteController extends Controller
                'academic_qualification_data',
                'employment_history_data',
                'portfolio_title',
-               'services'
+               'services',
+                'pricing_arr',
            ]));
     }
     public function special_qualification()
@@ -234,6 +237,30 @@ class WebSiteController extends Controller
 
     }
     // need to pricing data and with pricing details data array return
+    public function pricing()
+    {
+        // need to pricing data and with pricing details data array return
+        $data = Pricing::with('pricingDetails')->where('status_active', 1)
+            ->where('is_deleted', 0)
+            ->orderBy('type', 'asc')
+            ->get();
+        $pricing_arr = [];
+        foreach ($data as $record)
+        {
+            $pricing_arr[] = [
+                'id'                => $record->id,
+                'name'              => $record->name,
+                'description'       => $record->description,
+                'price'             => $record->price,
+                'type'             => $record->type,
+                'delivery_time'     => $record->delivery_time,
+                'revision'          => $record->revision,
+                'status_active'     => $record->status_active,
+                'pricingDetails'    => $record->pricingDetails,
+            ];
+        }
+        return $pricing_arr;
+    }
 
 
 }
