@@ -30,23 +30,23 @@
                             </thead>
                             @php($i=1)
                             <tbody>
-                                @foreach($visitors as $key => $visitor)
+                                @foreach($visitorArray as $key => $visitor)
                                     <tr>
                                         <td>{{$i}}</td>
-                                        <td>{{$visitor->ip_address}}</td>
-                                        <td>{{$visitor->server_name}}</td>
-                                        <td>{{$visitor->server_software}}</td>
-                                        <td>{{$visitor->server_http_referer}}</td>
-                                        <td>{{$visitor->server_port}}</td>
-                                        <td>{{$visitor->server_request_method}}</td>
-                                        <td>{{ \Carbon\Carbon::createFromTimestamp($visitor->server_request_time)
+                                        <td>{{$visitor['ip_address']}}</td>
+                                        <td>{{$visitor['server_name']}}</td>
+                                        <td>{{$visitor['server_software']}}</td>
+                                        <td>{{$visitor['server_http_referer']}}</td>
+                                        <td>{{$visitor['server_port']}}</td>
+                                        <td>{{$visitor['server_request_method']}}</td>
+                                        <td>{{ \Carbon\Carbon::createFromTimestamp($visitor['server_request_time'])
                                                 ->format('H:i:s A d-m-Y') }}
                                         </td>
 
-                                        @if(is_numeric($visitor->create_at))
-                                            <td>{{ \Carbon\Carbon::createFromTimestamp($visitor->create_at)->format('H:i:s A d-m-Y') }}</td>
+                                        @if(is_numeric($visitor['created_at']))
+                                            <td>{{ \Carbon\Carbon::createFromTimestamp($visitor['created_at'])->format('H:i:s A d-m-Y') }}</td>
                                         @else
-                                            <td>{{ \Carbon\Carbon::parse($visitor->create_at)->format('H:i:s A d-m-Y') }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($visitor['created_at'])->format('H:i:s A d-m-Y') }}</td>
                                         @endif
 
                                     </tr>
