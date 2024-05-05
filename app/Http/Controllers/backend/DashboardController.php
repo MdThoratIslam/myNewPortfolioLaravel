@@ -32,22 +32,22 @@ class DashboardController extends Controller
     }
     public function visitor()
     {
-        $visitors       = VisitorData::all();
-        $totalVisitor   = VisitorData::count(); // Get total row count
-        $visitorArray = []; // Declare an array variable
+        $visitors                       = VisitorData::all();
+        $totalVisitor                   = VisitorData::count(); // Get total row count
+        $visitorArray                   = []; // Declare an array variable
 
         foreach($visitors as $visitor)
         {
             // Set data in the array
             $visitorArray[] = [
-                'ip_address' => $visitor->ip_address,
-                'server_name' => $visitor->server_name,
-                'server_software' => $visitor->server_software,
-                'server_http_referer' => $visitor->server_http_referer,
-                'server_port' => $visitor->server_port,
+                'ip_address'            => $visitor->ip_address,
+                'server_name'           => $visitor->server_name,
+                'server_software'       => $visitor->server_software,
+                'server_request_uri'    => $visitor->server_request_uri,
+                'server_port'           => $visitor->server_port,
                 'server_request_method' => $visitor->server_request_method,
-                'server_request_time' => $visitor->server_request_time,
-                'created_at' => $visitor->created_at,
+                'server_request_time'   => $visitor->server_request_time,
+                'created_at'            => $visitor->created_at,
             ];
         }
 

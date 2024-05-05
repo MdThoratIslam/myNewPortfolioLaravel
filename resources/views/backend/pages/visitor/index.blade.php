@@ -13,19 +13,14 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>IP<br>Address</th>
-                                    <th>Server<br>Name
-                                    </th>
-                                    <th>Server<br>Software
-                                    </th>
-                                    <th>Server Http<br>Referer
-                                    </th>
-                                    <th>Server<br>Port
-                                    </th>
-                                    <th>Server Request<br>Method
-                                    </th>
-                                    <th>Server Request<br>Time</th>
-                                    <th>Visitng<br>Time</th>
+                                    <th>IP</th>
+                                    <th>Server</th>
+                                    <th>Software</th>
+                                    <th>URI</th>
+                                    <th>Port</th>
+                                    <th>Method</th>
+                                    <th>Time</th>
+                                    <th>Visitng</th>
                                 </tr>
                             </thead>
                             @php($i=1)
@@ -36,7 +31,7 @@
                                         <td>{{$visitor['ip_address']}}</td>
                                         <td>{{$visitor['server_name']}}</td>
                                         <td>{{$visitor['server_software']}}</td>
-                                        <td>{{$visitor['server_http_referer']}}</td>
+                                        <td>{{$visitor['server_request_uri']}}</td>
                                         <td>{{$visitor['server_port']}}</td>
                                         <td>{{$visitor['server_request_method']}}</td>
                                         <td>{{ \Carbon\Carbon::createFromTimestamp($visitor['server_request_time'])
