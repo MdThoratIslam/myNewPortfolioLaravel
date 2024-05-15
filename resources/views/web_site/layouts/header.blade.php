@@ -1,4 +1,4 @@
-<header id="header" class="d-flex align-items-center">
+<header id="header" class="d-flex align-items-center" style="background-color: lightcyan;">
     <div class="container d-flex align-items-center justify-content-between">
         <div class="logo">
             <h1><a href="{{url('/')}}">Engr Muhammad Tourat Islam  (Oni)</a></h1>
