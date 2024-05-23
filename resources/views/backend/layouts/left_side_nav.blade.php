@@ -17,8 +17,6 @@
                         ->select('id', 'name', 'route', 'route_type','icon')
                         ->orderBy('id', 'asc')
                         ->get();
-//                    echo '<pre>';
-//                    print_r($sql);die();
                     $modules = [];
                     foreach ($sql as $module)
                     {
