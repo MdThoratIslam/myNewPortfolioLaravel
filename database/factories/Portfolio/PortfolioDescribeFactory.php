@@ -17,56 +17,108 @@ class PortfolioDescribeFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+        return
             [
-                'portfolio_id'       => 1,
-                'portfolio_name'     => 'Web',
-                'Client'             => 'Client 2',
-                'project_url'        => 'https://www.google.com',
-                'project_date'       => '2024-03-23',
-                'title'              => 'Title 2',
-                'description'        => 'Description 2',
-                'image'              => json_encode(['portfolio-1.jpg', 'portfolio-2.jpg']),
-                'status_active'      => 1,
-                'is_delete'          => 0,
-                'created_by'         => 1,
-                'updated_by'         => null,
-                'created_at'         => UseHelpers::currentDateTime(),
-                'updated_at'         => null
-            ],
-            [
-                'portfolio_id'       => 2,
-                'portfolio_name'     => 'API',
-                'Client'             => 'Client 3',
-                'project_url'        => 'https://www.google.com',
-                'project_date'       => '2024-03-23',
-                'title'              => 'Title 3',
-                'description'        => 'Description 3',
-                'image'              => json_encode(['portfolio-3.jpg', 'portfolio-4.jpg']),
-                'status_active'      => 1,
-                'is_delete'          => 0,
-                'created_by'         => 1,
-                'updated_by'         => null,
-                'created_at'         => UseHelpers::currentDateTime(),
-                'updated_at'         => null
-            ],
-            [
-                'portfolio_id'       => 3,
-                'portfolio_name'     => 'ERP',
-                'Client'             => 'Client 4',
-                'project_url'        => 'https://www.google.com',
-                'project_date'       => '2024-03-23',
-                'title'              => 'Title 4',
-                'description'        => 'Description 4',
-                'image'              => json_encode(['portfolio-5.jpg', 'portfolio-6.jpg']),
-                'status_active'      => 1,
-                'is_delete'          => 0,
-                'created_by'         => 1,
-                'updated_by'         => null,
-                'created_at'         => UseHelpers::currentDateTime(),
-                'updated_at'         => null
-            ]
-        ];
+                [
+                    'portfolio_id'       => 1,
+                    'portfolio_name'     => 'Web',
+                    'Client'             => 'Dakbazar Bpodms',
+                    'project_url'        => 'https://dakbazar.bpodms.gov.bd/',
+                    'project_date'       => '2024-03-23',
+                    'title'              => 'Dakbazar Bpodms',
+                    'description'        => 'This is Dakbazar Bpodms E-commerce Website for Bangladesh Post Office Department ',
+                    'image'              => json_encode(["dackbazarCover.png", "dackbazarFullPage.png"]),
+                    'status_active'      => 1,
+                    'is_delete'          => 0,
+                    'created_by'         => 1,
+                    'updated_by'         => null,
+                    'created_at'         => UseHelpers::currentDateTime(),
+                    'updated_at'         => null
+                ],
+                [
+                    'portfolio_id'       => 1,
+                    'portfolio_name'     => 'Web',
+                    'Client'             => 'Moss Group',
+                    'project_url'        => 'https://mossgroupbd.com/',
+                    'project_date'       => '2024-03-23',
+                    'title'              => 'Moss Group',
+                    'description'        => 'Description 2',
+                    'image'              => json_encode(["mossGroupCover.png", "mossGroupFull.png"]),
+                    'status_active'      => 1,
+                    'is_delete'          => 0,
+                    'created_by'         => 1,
+                    'updated_by'         => null,
+                    'created_at'         => UseHelpers::currentDateTime(),
+                    'updated_at'         => null
+                ],
+                [
+                    'portfolio_id'       => 1,
+                    'portfolio_name'     => 'Web',
+                    'Client'             => 'MOSS REAL ESTATE LTD',
+                    'project_url'        => 'http://mossestateglobal.com/',
+                    'project_date'       => '2024-03-23',
+                    'title'              => 'MOSS REAL ESTATE LTD',
+                    'description'        => 'Description 2',
+                    'image'              => json_encode(["mossRealEasteadCover.png", "mossRealEasteadFull.png"]),
+                    'status_active'      => 1,
+                    'is_delete'          => 0,
+                    'created_by'         => 1,
+                    'updated_by'         => null,
+                    'created_at'         => UseHelpers::currentDateTime(),
+                    'updated_at'         => null
+                ],
+
+
+                [
+                    'portfolio_id'       => 2,
+                    'portfolio_name'     => 'API',
+                    'Client'             => 'Ekdak',
+                    'project_url'        => 'https://ekdak.com/',
+                    'project_date'       => '2024-05-30',
+                    'title'              => 'Ekdak',
+                    'description'        => 'Api Set',
+                    'image'              => json_encode(['ekdakCover.png', 'ekdakCover.png']),
+                    'status_active'      => 1,
+                    'is_delete'          => 0,
+                    'created_by'         => 1,
+                    'updated_by'         => null,
+                    'created_at'         => UseHelpers::currentDateTime(),
+                    'updated_at'         => null
+                ],
+                [
+                    'portfolio_id'       => 2,
+                    'portfolio_name'     => 'API',
+                    'Client'             => 'Booking BPODMS',
+                    'project_url'        => 'https://booking.bpodms.gov.bd',
+                    'project_date'       => '2024-05-30',
+                    'title'              => 'Booking BPODMS',
+                    'description'        => 'Database Management System for Bangladesh Post Office Department (BPODMS) and Booking System set to API',
+                    'image'              => json_encode(['BPODMSCOVer.png', 'BPODMS.png']),
+                    'status_active'      => 1,
+                    'is_delete'          => 0,
+                    'created_by'         => 1,
+                    'updated_by'         => null,
+                    'created_at'         => UseHelpers::currentDateTime(),
+                    'updated_at'         => null
+                ],
+
+                [
+                    'portfolio_id'       => 3,
+                    'portfolio_name'     => 'ERP',
+                    'Client'             => 'Logic Sostware Ltd',
+                    'project_url'        => 'https://www.logicsoftbd.com/',
+                    'project_date'       => '2024-03-23',
+                    'title'              => 'Logic Sostware Ltd',
+                    'description'        => 'This is a Garments ERP Software for Logic Sostware Ltd and it is a complete solution for Garments ERP Software',
+                    'image'              => json_encode(['portfolio-5.jpg', 'portfolio-6.jpg']),
+                    'status_active'      => 1,
+                    'is_delete'          => 0,
+                    'created_by'         => 1,
+                    'updated_by'         => null,
+                    'created_at'         => UseHelpers::currentDateTime(),
+                    'updated_at'         => null
+                ]
+            ];
 
     }
 }
