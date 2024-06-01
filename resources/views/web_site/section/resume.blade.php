@@ -6,8 +6,8 @@
                     <h2>Resume</h2>
                 </div>
                 <div class="col-lg-2">
-                    <a href="{{route('downloadCV')}}"
-                       class="btn btn-block btn-sm text-white" target="_blank" style="background-color: #DB528C">
+                    <a class="btn btn-block btn-sm text-white" target="_blank"
+                       style="background-color: #DB528C" id="downloadCV">
                         Download CV<i class="bx bxs-file-pdf"></i>
                     </a>
                 </div>
@@ -20,7 +20,6 @@
                     <div class="resume-item">
                         <h4><span>Exam Title:&nbsp;</span>{{$education['examTitle'] }} </h4>
                         <h5><span>Passing Year:&nbsp;</span>
-{{--                            {{$education['startingYear'] ?? $education['passingYear']}} - {{$education['endingYear']}}--}}
                             {{ $education['passingYear']}}
                         </h5>
                         <p><span>Institute Name:&nbsp;</span><em>{{$education['instituteName']}}</em></p>

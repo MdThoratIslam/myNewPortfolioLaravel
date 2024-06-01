@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>@if (config('app.name')){{ config('app.name') }}&nbsp;|&nbsp;@endif{{ $title ?? 'Md Thorat Islam' }}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content="" name="Md Thorat Islam">
     <meta content="" name="Md Thorat Islam">
     <!-- Favicons -->
@@ -23,6 +24,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
+        .largeWidth {
+            margin: 0 auto;
+            width: 90%;
+        }
         .pricing-plans {
             gap: 32px;
             display: flex;

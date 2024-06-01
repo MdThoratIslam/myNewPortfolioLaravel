@@ -28,9 +28,11 @@ use App\Http\Controllers\backend\Mail\MailController;
     Route::get('/portfolio_details/{id}',   [WebController::class, 'portfolio_describe'])->name('portfolio_details');
     Route::get('/generate-pdf',             [PDFController::class, 'generatePDF'])->name('generate-pdf');
 
-    Route::get('/downloadCV',              [PDFController::class, 'downloadCV'])->name('downloadCV');
+    Route::get('/downloadCV',               [PDFController::class, 'downloadCV'])->name('downloadCV');
+    Route::post('/downloadCV',              [PDFController::class, 'downloadReason'])->name('downloadCV');
 
-    Route::get('/pusher',                    [WebController::class, 'pusher'])->name('pusher');
+
+    Route::get('/pusher',                   [WebController::class, 'pusher'])->name('pusher');
 
 
 // ============== Web Routes End =======================================================================================
