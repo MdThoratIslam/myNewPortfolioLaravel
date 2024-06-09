@@ -1,4 +1,3 @@
-{{-- $pricing_arr if count  ==3--}}
 @if(count($pricing_arr) == 3)
 <section class="pricing-plans" id="pricing">
     @foreach($pricing_arr as $pricing)
@@ -12,7 +11,7 @@
             <ul class="features" style="list-style-type: none;">
                 @foreach($pricing['pricingDetails'] as $detail)
                     <li>
-                        @if($detail->icon == 'check' && $detail->xmark != 'xmark')
+                        @if($detail->icon === 'check' && $detail->xmark !== 'xmark')
                             <i class="fa fa-solid fa-check "></i>
                             <strong>{{ $detail->name }}</strong>
                         @else
@@ -22,31 +21,24 @@
                     </li>
                 @endforeach
             </ul>
-            <button class="cta-btn"
-                    data-type="{{ $pricing['type'] }}"
-                    data-description="{{$pricing['description']}}"
-                    data-price="{{$pricing['price']}}"
-            >
+            <button class="cta-btn" data-type="{{ $pricing['type'] }}" data-description="{{$pricing['description']}}" data-price="{{$pricing['price']}}">
                 Get Started
             </button>
         </div>
     @endforeach
 </section>
 @endif
-{{-- Modal small --}}
-{{-- Modal small --}}
-<div id="myModal" class="modal">
+<div id="myModal" class="modal" data-backdrop="static" data-keyboard="false" data-focus="true">
     <div class="modal-content small">
         <span class="close float-left">&times;</span>
         <h4 class="modal-header text-success float-left" id="package_name"></h4>
         <p class="text-success text-center" id="description"></p>
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+        <form action="" method="post" role="form" class="php-email-form">
             @csrf
             <input type="hidden" name="type"  id="type">
-
             <div class="form-group">
                 <label for="service">Service</label>
-                <select name="service" id="" class="form-control">
+                <select name="service" id="service" class="form-control">
                 </select>
             </div>
 
@@ -69,45 +61,15 @@
             </div>
 
             <div class="my-3">
-                <div class="loading">Loading</div>
+{{--                <div class="loading">Loading</div>--}}
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has landed safely in my inbox, like a gentle breeze on a sunny day. Thank you!</div>
+                <div class="sent-message">
+                    Your message has landed safely in my inbox, like a gentle breeze on a sunny day. Thank you!
+                </div>
             </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-success">Send Message</button>
+            </div>
         </form>
     </div>
 </div>
-
-{{-- CSS --}}
-
-{{-- JavaScript --}}
-<script>
-    // Get the modal
-    // var modal = document.getElementById("myModal");
-    // // Get the button that opens the modal
-    // var btns = document.getElementsByClassName("cta-btn");
-    // // Get the <span> element that closes the modal
-    // var span = document.getElementsByClassName("close")[0];
-    // // When the user clicks the button, open the modal
-    // for (var i = 0; i < btns.length; i++) {
-    //     btns[i].onclick = function() {
-    //         modal.style.display = "block";
-    //         var id = this.getAttribute('data-id');
-    //         // You can use the 'id' here as needed
-    //     }
-    // }
-    //
-    // // When the user clicks on <span> (x), close the modal
-    // span.onclick = function() {
-    //     modal.style.display = "none";
-    // }
-    //
-    // // When the user clicks anywhere outside of the modal, close it
-    // window.onclick = function(event) {
-    //     if (event.target == modal) {
-    //         modal.style.display = "none";
-    //     }
-    // }
-    // now i want to when click on the button get started data-type=1 then open the modal
-
-</script>

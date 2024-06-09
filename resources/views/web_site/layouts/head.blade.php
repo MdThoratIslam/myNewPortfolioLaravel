@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>@if (config('app.name')){{ config('app.name') }}&nbsp;|&nbsp;@endif{{ $title ?? 'Md Thorat Islam' }}</title>
+    <title>@if (config('app.name')){{ config('app.name') }}&nbsp;::&nbsp;@endif{{ $title ?? 'Md Thorat Islam' }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta content="" name="Md Thorat Islam">
     <meta content="" name="Md Thorat Islam">
     <!-- Favicons -->
     <link href="{{asset('public/web_site/assets/img/paper-plane.png')}}" rel="icon">
@@ -36,7 +35,6 @@
             justify-content: center;
             width: 100%;
             padding: 64px;
-
             margin: 0;
             box-sizing: border-box;
             list-style: none;
@@ -46,7 +44,6 @@
             min-height: 100vh;
             /*background-color: #171717;*/
         }
-
         .pricing-card {
             --col: #262626;
             position: relative;
@@ -59,7 +56,6 @@
             box-shadow: 0 0 32px transparent;
             text-align: center;
         }
-
         .pricing-card.basic {
             --col: #3dd5f3;
         }

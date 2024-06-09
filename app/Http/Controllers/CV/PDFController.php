@@ -44,12 +44,8 @@ class PDFController extends Controller
 
     public function downloadCV()
     {
-        // Path to the PDF file
         $pdfPath = public_path('Md_Thorat_Islam_CV.pdf');
-
-        // Check if the file exists
         if (file_exists($pdfPath)) {
-            // Return the file for download
             return response()->download($pdfPath, 'cv.pdf');
         } else {
             // If file does not exist, return 404
@@ -60,43 +56,54 @@ class PDFController extends Controller
     {
 
         $request->validate([
-            'device_id' => 'nullable|string',
-            'device_type' => 'nullable|string',
-            'device_name' => 'nullable|string',
-            'device_model' => 'nullable|string',
-            'device_os' => 'nullable|string',
-            'device_os_version' => 'nullable|string',
-            'device_browser' => 'nullable|string',
-            'device_browser_version' => 'nullable|string',
-            'device_is_mobile' => 'nullable|string',
-            'device_is_tablet' => 'nullable|string',
-            'device_is_desktop' => 'nullable|string',
-            'reason' => 'required|string',  // Making reason required
-            'status' => 'nullable|string'
+            'device_id'                 => 'nullable|string',
+            'device_type'               => 'nullable|string',
+            'device_name'               => 'nullable|string',
+            'device_model'              => 'nullable|string',
+            'device_os'                 => 'nullable|string',
+            'device_os_version'         => 'nullable|string',
+            'device_browser'            => 'nullable|string',
+            'device_browser_version'    => 'nullable|string',
+            'device_is_mobile'          => 'nullable|string',
+            'device_is_tablet'          => 'nullable|string',
+            'device_is_desktop'         => 'nullable|string',
+            'reason'                    => 'required|string',  // Making reason required
+            'status'                    => 'nullable|string'
         ]);
-        $reason = new Reasoncv();
-        $reason->ip_address = $request->ip();
-        // Store the device information frome server side to the database
-        $reason->device_id = $request->input('device_id');
-        $reason->device_type = $request->input('device_type');
-        $reason->device_name = $request->input('device_name');
-        $reason->device_model = $request->input('device_model');
-        $reason->device_os = $request->input('device_os');
-        $reason->device_os_version = $request->input('device_os_version');
-        $reason->device_browser = $request->input('device_browser');
-        $reason->device_browser_version = $request->input('device_browser_version');
-        $reason->device_is_mobile = $request->input('device_is_mobile');
-        $reason->device_is_tablet = $request->input('device_is_tablet');
-        $reason->device_is_desktop = $request->input('device_is_desktop');
-        $reason->reason = $request->input('reason');
-        $reason->status = $request->input('status');
-        $reason->save();
+       // dd($request->all());
+        if ($request->input('reason_type') != 'Professional')
+        {
+            return response()->json([
+                'success' => false,
+                'message' => 'Not a professional reason type'
+            ]);
+        }else
+        {
+            $reason = new Reasoncv();
+            $reason->ip_address             = $request->ip();
+            $reason->device_id              = $request->input('device_id');
+            $reason->device_type            = $request->input('device_type');
+            $reason->device_name            = $request->input('device_name');
+            $reason->device_model           = $request->input('device_model');
+            $reason->device_os              = $request->input('device_os');
+            $reason->device_os_version      = $request->input('device_os_version');
+            $reason->device_browser         = $request->input('device_browser');
+            $reason->device_browser_version = $request->input('device_browser_version');
+            $reason->device_is_mobile       = $request->input('device_is_mobile');
+            $reason->device_is_tablet       = $request->input('device_is_tablet');
+            $reason->device_is_desktop      = $request->input('device_is_desktop');
+            $reason->device_manufacturer    = $request->input('device_brand');
+            $reason->reason                 = $request->input('reason');
+            $reason->status                 = $request->input('status');
+            $reason->save();
 
-        // Respond with the URL to download the CV and a success message
-        return response()->json([
-            'cvUrl' => route('downloadCV'),  // Make sure the route is defined in your routes/web.php
-            'success' => true,  // Set success to true after saving
-            'message' => 'Reason stored successfully. Proceeding to download.'
-        ]);
+            // Respond with the URL to download the CV and a success message
+            return response()->json([
+                'cvUrl' => route('downloadCV'),  // Make sure the route is defined in your routes/web.php
+                'success' => true,  // Set success to true after saving
+                'message' => 'Reason stored successfully. Proceeding to download.'
+            ]);
+        }
+
     }
 }

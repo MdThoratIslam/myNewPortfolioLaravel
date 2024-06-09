@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('device_is_mobile')->nullable();
             $table->string('device_is_tablet')->nullable();
             $table->string('device_is_desktop')->nullable();
+            $table->string('device_manufacturer')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

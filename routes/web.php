@@ -10,6 +10,7 @@ use App\Http\Controllers\Calender\CalenderController;
 use App\Http\Controllers\Events\EventsController;
 use App\Http\Controllers\backend\AcademicQualification\AcademicQualificationController as AcademicQualification;
 use App\Http\Controllers\backend\Mail\MailController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,10 @@ use App\Http\Controllers\backend\Mail\MailController;
 
     Route::get('/downloadCV',               [PDFController::class, 'downloadCV'])->name('downloadCV');
     Route::post('/downloadCV',              [PDFController::class, 'downloadReason'])->name('downloadCV');
-
-
     Route::get('/pusher',                   [WebController::class, 'pusher'])->name('pusher');
+
+    //order route resource
+    Route::resource('order', 'OrderController')->only(['store']);
 
 
 // ============== Web Routes End =======================================================================================
