@@ -30,7 +30,6 @@ class WebSiteController extends Controller
         $employment_history_data        = $this->employment_history();
         $portfolio_title                = $this->portfolio_title();
         $services                       = $this->service();
-        // need to pricing data and with pricing details data array return
         $pricing_arr                    = $this->pricing();
 
 //        $portfolio_describe_data        = $this->portfolio_describe();
@@ -127,6 +126,12 @@ class WebSiteController extends Controller
         $employmentHistory = [];
         foreach ($data as $record)
         {
+            $startDate  = Carbon::parse($record->joinin_date)->format('d-M-Y');
+            $endDate    = Carbon::parse($record->leaving_date)->format('d-M-Y');
+            $totalExperienceYears = Carbon::parse($record->joinin_date)->diffInYears($record->leaving_date);
+            $totalExperienceMonths = Carbon::parse($record->joinin_date)->diffInMonths($record->leaving_date);
+            $totalExperience = $totalExperienceYears.' Years '.$totalExperienceMonths.' Months';
+
             $employmentHistory[] = [
                 'company_name'      => $record->company_name,
                 'company_address'   => $record->company_address,
@@ -146,8 +151,10 @@ class WebSiteController extends Controller
                 'created_at'        => $record->created_at,
                 'updated_at'        => $record->updated_at,
                 'responsibilities'  => $record->responsibilities,
-            ];
+                'total_experience'  => $totalExperience,
+                ];
         }
+        dd($employmentHistory);
         // employmentHistory return a array not a json
         return $employmentHistory;
     }
