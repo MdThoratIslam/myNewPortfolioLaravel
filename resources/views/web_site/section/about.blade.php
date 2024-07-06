@@ -11,16 +11,16 @@
                     <div class="row">
                         <div class="col-md-6 d-md-flex align-items-md-stretch">
                             <div class="count-box">
-                                <i class="bi bi-emoji-smile"></i>
-                                <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1" class="purecounter"></span>
-                                <p><strong>Happy Clients</strong> consequuntur voluptas nostrum aliquid ipsam architecto ut.</p>
+                                <i class="bi {{$aboutSummary_arr['happy_clients_icon']}}"></i>
+                                <span data-purecounter-start="0" data-purecounter-end="{{$aboutSummary_arr['happy_clients']}}" data-purecounter-duration="1" class="purecounter"></span>
+                                <p><strong>{{substr($aboutSummary_arr['happy_clients_disc'],0,13)}}</strong> {{substr($aboutSummary_arr['happy_clients_disc'],13)}}</p>
                             </div>
                         </div>
                         <div class="col-md-6 d-md-flex align-items-md-stretch">
                             <div class="count-box">
-                                <i class="bi bi-journal-richtext"></i>
-                                <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
-                                <p><strong>Projects</strong> adipisci atque cum quia aspernatur totam laudantium et quia dere tan</p>
+                                <i class="bi {{$aboutSummary_arr['projects_complete_icon']}}"></i>
+                                <span data-purecounter-start="0" data-purecounter-end="{{$aboutSummary_arr['projects_complete']}}" data-purecounter-duration="1" class="purecounter"></span>
+                                <p><strong>{{substr($aboutSummary_arr['projects_complete_disc'],0,8)}}</strong> {{substr($aboutSummary_arr['happy_clients_disc'],8)}}</p>
                             </div>
                         </div>
                         <div class="col-md-6 d-md-flex align-items-md-stretch">

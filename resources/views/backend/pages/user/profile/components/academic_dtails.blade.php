@@ -15,13 +15,13 @@
                             <th scope="col">Title</th>
                             <th scope="col">Major</th>
                             <th scope="col">InstituteName</th>
-                            <th scope="col">Starting</th>
-                            <th scope="col">Ending</th>
-                            <th scope="col">Passing</th>
+                            <th scope="col">Start</th>
+                            <th scope="col">End</th>
+                            <th scope="col">Pass</th>
                             <th scope="col">Duration</th>
-                            <th scope="col">Achievement</th>
+                            <th scope="col">Achieve</th>
                             <th scope="col">Result</th>
-                            <th scope="col">Out of CGPA</th>
+                            <th scope="col">Out of</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>

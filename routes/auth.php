@@ -16,8 +16,10 @@ Route::prefix('adminPanel')->middleware('guest')->group(function ()
 //    Route::get('register',  [RegisteredUserController::class, 'create'])->name('register');
 //    Route::post('register', [RegisteredUserController::class, 'store']);
 
-    Route::get('/',         [AuthenticatedSessionController::class,         'create']);
+    Route::get('/',         [AuthenticatedSessionController::class,         'create'])->name('login');
     Route::post('login',    [AuthenticatedSessionController::class,         'store'])->name('login');
+
+
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
     Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');

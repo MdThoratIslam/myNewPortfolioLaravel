@@ -38,40 +38,41 @@ use App\Http\Controllers\OrderController;
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
 {
     Route::get('/', function () {return redirect()->route('dashboard');});
-    Route::get('/dashboard',                [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
-    //================================== User All Routes ===================================================================
-    Route::get('/academic-dtails',              [AcademicQualification::class, 'index'])->name('academic-dtails');
+    Route::get('/dashboard',                [DashboardController::class, 'dashboard'])
+        ->middleware(['auth', 'verified'])
+        ->name('dashboard');
+    //================================== User All Routes ===============================================================
+    Route::get('/academic-dtails',          [AcademicQualification::class, 'index'])->name('academic-dtails');
 
-    Route::get('/users-list/{id}',              [UserController::class, 'show'])->name('users-list-show');
-    Route::get('/users-details/',               [UserController::class, 'edit'])->name('users.details');
-    Route::get('/users-setting/',               [UserController::class, 'setting'])->name('users.setting');
+    Route::get('/users-list/{id}',          [UserController::class, 'show'])->name('users-list-show');
+    Route::get('/users-details/',           [UserController::class, 'edit'])->name('users.details');
+    Route::get('/users-setting/',           [UserController::class, 'setting'])->name('users.setting');
 
-    Route::post('/user-update/{id}',            [UserController::class, 'update'])->name('user-update');
-    Route::get('/create-user',                  [UserController::class, 'create'])->name('create-user');
-    // ============================== User All Routes End ==================================================================
+    Route::post('/user-update/{id}',        [UserController::class, 'update'])->name('user-update');
+    Route::get('/create-user',              [UserController::class, 'create'])->name('create-user');
+    // ============================== User All Routes End ==============================================================
 
-    // ============================== Email All Routes =====================================================================
-    Route::get('/email-inbox',                  [UserController::class, 'readEmails'])->name('email-inbox');
+    // ============================== Employment History ===============================================================
+    Route::resource('employment-history', \App\Http\Controllers\backend\EmploymentHistory\EmploymentHistoryController::class)
+        ->only(['index', 'store', 'show', 'create', 'edit', 'update', 'destroy']);
 
-    Route::get ('/mail-compose',                [MailController::class,'mailform'])->name('mail.compose');
-    Route::post ('/mail-send',                  [MailController::class,'maildata'])->name('mail.send');
-    //   =============================== Calender===========================================================================
-    Route::get('/fullcalender',                 [EventsController::class, 'index'])->name('fullcalender');
-    Route::post('/store-event',                 [EventsController::class, 'store']);
-    Route::post('/event-update',                [EventsController::class, 'update']);
-    Route::post('/delete-event',                [EventsController::class, 'destroy']);
+    // ============================== Earning Money ====================================================================
+    Route::resource('earning-money', \App\Http\Controllers\EarningMoneyController::class);
+
+    // ============================== Email All Routes =================================================================
+    Route::get('/email-inbox',              [UserController::class, 'readEmails'])->name('email-inbox');
+
+    Route::get ('/mail-compose',            [MailController::class,'mailform'])->name('mail.compose');
+    Route::post ('/mail-send',              [MailController::class,'maildata'])->name('mail.send');
+    //   =============================== Calender=======================================================================
+    Route::get('/fullcalender',             [EventsController::class, 'index'])->name('fullcalender');
+    Route::post('/store-event',             [EventsController::class, 'store']);
+    Route::post('/event-update',            [EventsController::class, 'update']);
+    Route::post('/delete-event',            [EventsController::class, 'destroy']);
 
     //============================= Visitor ============================================================================
-    Route::get('visitor' , [DashboardController::class, 'visitor'])->name('visitor');
+    Route::get('visitor' ,                  [DashboardController::class, 'visitor'])->name('visitor');
     //==================================================================================================================
-});
-
-Route::middleware('auth')->group(function ()
-{
-    Route::get('/profile',      [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile',    [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile',   [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 });
 
 require __DIR__.'/auth.php';

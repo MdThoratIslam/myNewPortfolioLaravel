@@ -23,6 +23,7 @@ class ModuleFactory extends Factory
                 'name'                  => 'Dashboard',
                 'route'                 => 'dashboard',
                 'route_type'            => 1,
+                'priority'              => 1,
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
@@ -42,6 +43,7 @@ class ModuleFactory extends Factory
                 'name'                  => 'User Management',
                 'route'                 => null,
                 'route_type'            => 2,
+                'priority'              => 2,
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
@@ -52,6 +54,7 @@ class ModuleFactory extends Factory
                 'name'                  => 'email',
                 'route'                 => null,
                 'route_type'            => 2,
+                'priority'              => 3,
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
@@ -63,6 +66,7 @@ class ModuleFactory extends Factory
                 'route'                 => 'fullcalender',
                 'icon'                 => 'mdi mdi-calender-check',
                 'route_type'            => 1,
+                'priority'              => 5,
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
@@ -73,12 +77,25 @@ class ModuleFactory extends Factory
                 'name'                  => 'Visitor',
                 'route'                 => 'visitor',
                 'route_type'            => 1,
+                'priority'              => 5,
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'created_at'            => UseHelpers::currentDateTime(),
+                'created_by'            => 1,
+                'updated_at'            => null,
+            ],
+            [
+                'name'                  => 'Earning Money',
+                'route'                 => 'earning-money',
+                'route_type'            => 1,
+                'priority'              => 4,
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_at'            => UseHelpers::currentDateTime(),
                 'created_by'            => 1,
                 'updated_at'            => null,
             ]
+
         ];
     }
 }

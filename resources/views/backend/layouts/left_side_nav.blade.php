@@ -15,7 +15,7 @@
                         ->with('subModules')
                         ->where('is_delete',0)
                         ->select('id', 'name', 'route', 'route_type','icon')
-                        ->orderBy('id', 'asc')
+                        ->orderBy('priority', 'asc')
                         ->get();
                     $modules = [];
                     foreach ($sql as $module)

@@ -14,7 +14,7 @@ class EmploymentHistoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.pages.user.employmentHistory.component.index');
     }
 
     /**

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->string('route')->nullable();
             $table->integer('route_type')->default(0);
+            $table->integer('priority')->default(0);
             $table->integer('status_active')->default(1);
             $table->integer('is_delete')->default(0);
             $table->foreignId('created_by')->nullable()->constrained('users');

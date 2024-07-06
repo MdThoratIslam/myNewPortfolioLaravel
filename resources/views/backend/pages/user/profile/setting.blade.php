@@ -19,17 +19,17 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="user-planing-settings.html">
-                                <i class="mdi mdi-currency-usd mr-1"></i> Planing
+                            <a class="nav-link {{request()->routeIs('employment-history.index') ? 'active' : ''}}" href="{{route('employment-history.index')}}">
+                                <i class="mdi mdi-tie"></i> Employment
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="user-billing.html">
+                            <a class="nav-link" href="#">
                                 <i class="mdi mdi-set-top-box mr-1"></i> Billing
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="user-notify-settings.html">
+                            <a class="nav-link" href="#">
                                 <i class="mdi mdi-bell-outline mr-1"></i> Notifications
                             </a>
                         </li>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Events\StatusLiked;
 use App\Http\Controllers\Controller;
+use App\Models\About\AboutSummary;
 use App\Models\AcademicQualification\AcademicQualification;
 use App\Models\EmploymentHistory\EmploymentHistory;
 use App\Models\FieldsOfSkill\FieldsOfSkill;
@@ -22,7 +23,6 @@ class WebSiteController extends Controller
      */
     public function index()
     {
-        //dd($this->portfolio_describe());
         $special_qualification_data     = $this->special_qualification();
         $skill_summary_data             = $this->skill_summary();
         $field_of_skill_data            = $this->field_of_skill();
@@ -31,6 +31,7 @@ class WebSiteController extends Controller
         $portfolio_title                = $this->portfolio_title();
         $services                       = $this->service();
         $pricing_arr                    = $this->pricing();
+        $aboutSummary_arr               = $this->aboutSummary();
 
 //        $portfolio_describe_data        = $this->portfolio_describe();
 //        dd($portfolio_title);
@@ -44,6 +45,7 @@ class WebSiteController extends Controller
                'portfolio_title',
                'services',
                 'pricing_arr',
+               'aboutSummary_arr'
            ]));
     }
     public function special_qualification()
@@ -154,7 +156,7 @@ class WebSiteController extends Controller
                 'total_experience'  => $totalExperience,
                 ];
         }
-        dd($employmentHistory);
+        //dd($employmentHistory);
         // employmentHistory return a array not a json
         return $employmentHistory;
     }
@@ -267,6 +269,36 @@ class WebSiteController extends Controller
             ];
         }
         return $pricing_arr;
+    }
+
+    public function aboutSummary()
+    {
+       $data= AboutSummary::where('status_active', 1)
+           ->where('is_deleted', 0)
+           ->get();
+       $aboutSmmary_arr= [];
+       foreach ($data as $val)
+       {
+           $aboutSmmary_arr=[
+               'id'                         => $val->id,
+               'happy_clients'              => $val->happy_clients,
+               'happy_clients_disc'         => $val->happy_clients_disc,
+               'happy_clients_icon'         => $val->happy_clients_icon,
+
+               'projects_complete'          => $val->projects_complete,
+               'projects_complete_disc'     => $val->projects_complete_disc,
+               'projects_complete_icon'     => $val->projects_complete_icon,
+
+               'years_of_experience'        => $val->years_of_experience,
+               'years_of_experience_disc'   => $val->years_of_experience_disc,
+               'years_of_experience_icon'   => $val->years_of_experience_icon,
+
+               'awards'                     => $val->awards,
+               'awards_disc'                => $val->years_of_experience_disc,
+               'awards_icon'                => $val->years_of_experience_icon,
+               ];
+       }
+       return $aboutSmmary_arr;
     }
 
 

@@ -34,7 +34,7 @@
                                       @endif
                                   </div>
                                   <div class="col-md-12 app-brand w-100 d-flex justify-content-end border-bottom-0">
-                                      <button type="submit" class="btn btn-sm btn-primary btn-pill mb-4">Sign In</button>
+                                      <button type="submit" class="btn btn-sm btn-primary btn-pill mb-4 btn-auth" >Sign In</button>
                                   </div>
                               </div>
                           </form>
