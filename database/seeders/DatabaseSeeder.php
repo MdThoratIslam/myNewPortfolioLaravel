@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             SkillSummarySeeder::class,
             DivisionsSeeder::class,
             DistrictsSeeder::class,
-            UpazilasSeeder::class,
+            PoliceStationSeeder::class,
             FieldsOfSkillSeeder::class,
             EmploymentHistorySeeder::class,
             ResponsibilitiesSeeder::class,
@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             UserPersonalDetailSeeder::class,
             PricingSeeder::class,
             PricingDetailsSeeder::class,
+            PostOfficeSeeder::class
         ]);
     }
 }

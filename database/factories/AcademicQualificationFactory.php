@@ -32,7 +32,7 @@ class AcademicQualificationFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_by'            => 1,
-                'created_at'            => UseHelpers::currentDateTime(),
+                'created_at'            => currentDateTime(),
                 'updated_by'            => null,
                 'updated_at'            => null
             ],
@@ -51,7 +51,7 @@ class AcademicQualificationFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_by'            => 1,
-                'created_at'            => UseHelpers::currentDateTime(),
+                'created_at'            => currentDateTime(),
                 'updated_by'            => null,
                 'updated_at'            => null
             ],
@@ -70,7 +70,7 @@ class AcademicQualificationFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'created_by'            => 1,
-                'created_at'            => UseHelpers::currentDateTime(),
+                'created_at'            => currentDateTime(),
                 'updated_by'            => null,
                 'updated_at'            => null
             ],

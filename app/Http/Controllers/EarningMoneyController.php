@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EarningMoney\EarningMoney;
 use App\Http\Requests\StoreEarningMoneyRequest;
 use App\Http\Requests\UpdateEarningMoneyRequest;
+use League\Config\Exception\ValidationException;
 
 class EarningMoneyController extends Controller
 {
@@ -13,7 +14,7 @@ class EarningMoneyController extends Controller
      */
     public function index()
     {
-        dd('test');
+        return view('backend.pages.money.earning.index');
     }
 
     /**
@@ -29,7 +30,36 @@ class EarningMoneyController extends Controller
      */
     public function store(StoreEarningMoneyRequest $request)
     {
-        //
+        try {
+            EarningMoney::create([
+                'purpose'       => $request->purpose,
+                'amount'        => $request->amount,
+                'form'          => $request->form,
+                'date'          => $request->date,
+                'status_active' =>  1,
+                'created_at'    => now(),
+                'updated_at'    => null,
+            ]);
+
+
+            return response()->json([
+                'massage'       => 'Successfully Earn Money Add!!',
+                'code'          => 200,
+            ],200);
+
+        }catch (\Exception $e)
+        {
+            return response()->json([
+                'massage'   => $e->getMessage(),
+                'code'      => 500
+            ],500);
+        }
+        catch (\Illuminate\Validation\ValidationException $v){
+            return response()->json([
+                'massage'   => $v->getMessage(),
+                'code'      => 500
+            ],500);
+        }
     }
 
     /**
@@ -62,5 +92,18 @@ class EarningMoneyController extends Controller
     public function destroy(EarningMoney $earningMoney)
     {
         //
+    }
+    public function get_data()
+    {
+        try {
+            $data=EarningMoney::all();
+            return response()->json([
+                'data' => $data
+            ]);
+        }catch (\Exception $e){
+            return response()->json([
+               'error' => $e->getMessage()
+            ]);
+        }
     }
 }

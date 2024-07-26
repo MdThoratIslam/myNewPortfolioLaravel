@@ -11,6 +11,9 @@ use App\Http\Controllers\Events\EventsController;
 use App\Http\Controllers\backend\AcademicQualification\AcademicQualificationController as AcademicQualification;
 use App\Http\Controllers\backend\Mail\MailController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\EarningMoneyController;
+use App\Http\Controllers\ExpansiveController;
+use App\Http\Controllers\backend\Module\ModuleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +32,15 @@ use App\Http\Controllers\OrderController;
     Route::get('/portfolio_details/{id}',   [WebController::class, 'portfolio_describe'])->name('portfolio_details');
     Route::get('/generate-pdf',             [PDFController::class, 'generatePDF'])->name('generate-pdf');
     Route::get('/downloadCV',               [PDFController::class, 'downloadCV'])->name('downloadCV');
+
+    Route::get('/get_data/',                [PDFController::class, 'get_data'])->name('get_data');
+
+
     Route::post('/downloadCV',              [PDFController::class, 'downloadReason'])->name('downloadCV');
     Route::get('/pusher',                   [WebController::class, 'pusher'])->name('pusher');
     Route::resource('order',                'OrderController')->only(['store']);
+    Route::post('whatsapp', [\App\Http\Controllers\WhatsAppController::class, 'store'])->name('whatsapp.post');
+    Route::post('/email/send', [MailController::class, 'index'])->name('maildata');
 // ============== Web Routes End =======================================================================================
 
 
@@ -57,7 +66,10 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
         ->only(['index', 'store', 'show', 'create', 'edit', 'update', 'destroy']);
 
     // ============================== Earning Money ====================================================================
-    Route::resource('earning-money', \App\Http\Controllers\EarningMoneyController::class);
+    Route::resource('earning-money', EarningMoneyController::class);
+    Route::resource('expansive', ExpansiveController::class);
+    Route::get('money-report',[ExpansiveController::class,'report'])->name('money.report');
+    Route::get('get-earning-data', [EarningMoneyController::class,'get_data'])->name('get-earning-data');
 
     // ============================== Email All Routes =================================================================
     Route::get('/email-inbox',              [UserController::class, 'readEmails'])->name('email-inbox');
@@ -72,6 +84,12 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
 
     //============================= Visitor ============================================================================
     Route::get('visitor' ,                  [DashboardController::class, 'visitor'])->name('visitor');
+    Route::get('/visitors/data',            [DashboardController::class, 'getVisitors'])->name('visitors.data');
+    //==================================================================================================================
+
+    // =========================== Modules =============================================================================
+    Route::resource('modules',ModuleController::class);
+    Route::get('modules-data', [ModuleController::class, 'getModules'])->name('modules.data');
     //==================================================================================================================
 });
 

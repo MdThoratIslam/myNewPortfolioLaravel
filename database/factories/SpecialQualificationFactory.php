@@ -30,7 +30,7 @@ class SpecialQualificationFactory extends Factory
                 'is_delete'         => 0,
                 'created_by'        => 1,
                 'updated_by'        => null,
-                'created_at'        => UseHelpers::currentDateTime(),
+                'created_at'        => currentDateTime(),
                 'updated_at'        => null
             ],
         ];

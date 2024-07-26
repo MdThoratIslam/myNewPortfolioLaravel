@@ -23,7 +23,7 @@ class CareerSummaryFactory extends Factory
                 'career_summary'    => 'Excellent knowledge of developing web applications and websites. Career oriented, hardworking and ability to handle multiple tasks. Developing and creating PHP MySQL application as per the specifications. Quick learner and ability to learn new concept. Experience on coordinating with team members in database structure Passionate about giving best design and coding practices',
                 'created_by'        => 1,
                 'updated_by'        => null,
-                'created_at'        => UseHelpers::currentDateTime(),
+                'created_at'        => currentDateTime(),
                 'updated_at'        => null
             ]
         ];

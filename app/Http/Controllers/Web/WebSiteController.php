@@ -14,6 +14,7 @@ use App\Models\pricing\Pricing;
 use App\Models\Service\Service;
 use App\Models\SkillSummary\SkillSummary;
 use App\Models\SpecialQualification\SpecialQualification;
+use App\Models\User;
 use Carbon\Carbon;
 
 class WebSiteController extends Controller
@@ -23,6 +24,7 @@ class WebSiteController extends Controller
      */
     public function index()
     {
+        $user_info                      = $this->userInfo();
         $special_qualification_data     = $this->special_qualification();
         $skill_summary_data             = $this->skill_summary();
         $field_of_skill_data            = $this->field_of_skill();
@@ -37,6 +39,7 @@ class WebSiteController extends Controller
 //        dd($portfolio_title);
        return view('web_site.index',compact(
            [
+               'user_info',
                'special_qualification_data',
                'skill_summary_data',
                'field_of_skill_data',
@@ -47,6 +50,12 @@ class WebSiteController extends Controller
                 'pricing_arr',
                'aboutSummary_arr'
            ]));
+    }
+
+    public function userInfo()
+    {
+        $data=User::with('userPersonalDetail')->where('status_active','0',1)->where('is_delete','=',0)->first();
+        return $data;
     }
     public function special_qualification()
     {

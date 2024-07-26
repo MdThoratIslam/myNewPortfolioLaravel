@@ -27,7 +27,7 @@ class FieldsOfSkillDescriptionFactory extends Factory
                 'user_id'               => 1,
                 'created_by'            => 1,
                 'updated_by'            => null,
-                'created_at'            => UseHelpers::currentDateTime(),
+                'created_at'            => currentDateTime(),
                 'updated_at'            => null
             ],
             [
@@ -39,7 +39,7 @@ class FieldsOfSkillDescriptionFactory extends Factory
                 'user_id'               => 1,
                 'created_by'            => 1,
                 'updated_by'            => null,
-                'created_at'            => UseHelpers::currentDateTime(),
+                'created_at'            => currentDateTime(),
                 'updated_at'            => null
             ],
         ];

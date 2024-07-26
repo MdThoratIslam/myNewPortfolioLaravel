@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\CV;
 
 use App\Http\Controllers\Controller;
+use App\Models\PoliceStation;
+use App\Models\PostOffice;
 use App\Models\Reasoncv;
 use App\Models\User;
 use Barryvdh\DomPDF\PDF;
@@ -10,6 +12,7 @@ use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory as ViewFactory;
+use Illuminate\Support\Facades\Http;
 
 class PDFController extends Controller
 {
@@ -27,9 +30,10 @@ class PDFController extends Controller
     {
         $dompdf = new \Dompdf\Dompdf(); // Create a new Dompdf instance
         $pdf = new PDF($dompdf, $this->config, $this->filesystem, $this->view, 'UTF-8', true); // Instantiate the Barryvdh\DomPDF\PDF class
-        $users = User::get();
+        $users = User::with('userPersonalDetail')->get();
+
         $data = [
-            'title' => 'Welcome to ItSolutionStuff.com',
+            'title' => 'Md Thorat Islam',
             'date' => date('m/d/Y'),
             'users' => $users
         ];
@@ -39,7 +43,8 @@ class PDFController extends Controller
         $pdf->setOptions(['isPhpEnabled' => true]);
         //i want return open pdf file another teb not download
         //return $pdf->download('myPDF.pdf');
-        return $pdf->stream('myPDF.pdf');
+        $filename = 'tr_'.time().'_cv.pdf';
+        return $pdf->stream($filename);
     }
 
     public function downloadCV()
@@ -106,4 +111,55 @@ class PDFController extends Controller
         }
 
     }
+   /* public function get_data(Request $request)
+    {
+        $policeStationIds = PoliceStation::pluck('id');
+        foreach ($policeStationIds as $policeStationId)
+        {
+            $apiUrl = 'https://ekdak.com/thikana/pocode/post-offices?t=' . $policeStationId;
+            $response = Http::withHeaders([
+                'Authorization' => 'Token 1c4dc27192141d9c2e674b52e3bf8ae0d0afc3bd',
+            ])->get($apiUrl);
+
+            if ($response->successful()) {
+                $responseData = $response->json();
+
+                // Check if the 'data' key exists and is an array
+                if (isset($responseData['data']) && is_array($responseData['data'])) {
+                    $postOffices = $responseData['data'];
+
+                    foreach ($postOffices as $postOffice) {
+                        if (is_array($postOffice)) {
+                            PostOffice::updateOrCreate(
+                                [
+                                    'en_name' => $postOffice['en_name']
+                                ],
+                                [
+                                    'police_stations_id' => $policeStationId,
+                                    'bn_name' => $postOffice['bn_name'],
+                                    'slug' => $postOffice['slug'],
+                                    'code' => $postOffice['code'],
+                                    'lat' => $postOffice['lat'] ?? null,
+                                    'long' => $postOffice['long'] ?? null,
+                                    'url' => $postOffice['url'] ?? null,
+                                    'status_active' => 1,
+                                    'is_delete' => 0,
+                                    'created_by' => null,
+                                    'updated_by' => null,
+                                ]
+                            );
+                        } else {
+                            return redirect()->back()->with('error', 'Invalid post office data format.');
+                        }
+                    }
+                } else {
+                    return redirect()->back()->with('error', 'Unexpected API response format for police station ID ' . $policeStationId);
+                }
+            } else {
+                return redirect()->back()->with('error', 'Failed to fetch post offices for police station ID ' . $policeStationId);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Post offices have been successfully fetched and stored.');
+    }*/
 }

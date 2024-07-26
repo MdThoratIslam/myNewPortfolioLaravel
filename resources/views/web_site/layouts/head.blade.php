@@ -20,7 +20,7 @@
     <!-- Template Main CSS File -->
     <link href="{{asset('public/web_site/assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('public/web_site/plugins/material/css/materialdesignicons.min.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('public/font-awesome.4.7.0.css')}}">
 
     <style>
         .largeWidth {
@@ -264,6 +264,63 @@
                 background-size: cover; /* Make the background image cover the entire background area */
             }
         }
+        .php-email-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .php-email-form fieldset {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .php-email-form legend {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 0 10px;
+        }
+
+        .php-email-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .php-email-form .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .php-email-form .form-control:focus {
+            border-color: #66afe9;
+            outline: 0;
+        }
+
+        .php-email-form .loading,
+        .php-email-form .error-message,
+        .php-email-form .sent-message {
+            display: none;
+        }
+
+        .php-email-form .text-center {
+            text-align: center;
+        }
+
+        .php-email-form button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .php-email-form button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
     </style>
     <!-- =======================================================
     * Template Name: Lonely

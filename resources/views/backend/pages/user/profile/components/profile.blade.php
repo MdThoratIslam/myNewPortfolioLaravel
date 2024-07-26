@@ -85,7 +85,7 @@
                         <tr>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_religion" name="religion_id" disabled>
-                                    @foreach(\App\UseHelpers::$religionArr as $key => $value)
+                                    @foreach(religionArr() as $key => $value)
                                         <option value="{{$key}}"
                                                 @if($key == optional($user->userPersonalDetail)->religion_id) selected @endif>
                                             {{$value}}
@@ -95,7 +95,7 @@
                             </td>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_marital_status" name="marital_status_id" disabled>
-                                    @foreach(\App\UseHelpers::$maritalStatusArr as $key => $value)
+                                    @foreach(maritalStatusArr() as $key => $value)
                                         <option value="{{$key}}"
                                                 @if($key == optional($user->userPersonalDetail)->marital_status_id) selected @endif>
                                             {{$value}}
@@ -105,7 +105,7 @@
                             </td>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_gender" name="gender_id" disabled>
-                                    @foreach(\App\UseHelpers::$genderArr as $key => $value)
+                                    @foreach(gender() as $key => $value)
                                         <option value="{{$key}}"
                                                 @if($key == optional($user->userPersonalDetail)->gender_id) selected @endif>
                                             {{$value}}
@@ -129,7 +129,7 @@
                         <tr>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_blood_group_id" name="blood_group_id" disabled>
-                                    @foreach(\App\UseHelpers::$bloodGroupArr as $key => $value)
+                                    @foreach(blood_group() as $key => $value)
                                         <option value="{{$key}}"
                                                 @if($key == optional($user->userPersonalDetail)->blood_group_id) selected @endif>
                                             {{$value}}
@@ -139,7 +139,7 @@
                             </td>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_place_of_birth" name="place_of_birth" disabled>
-                                    @foreach(\App\Models\Districts\Districts::pluck('name', 'id') as $key => $value)
+                                    @foreach(\App\Models\Districts\Districts::pluck('en_name', 'id') as $key => $value)
                                         <option value="{{$key}}"
                                                 @if($key == optional($user->userPersonalDetail)->place_of_birth) selected @endif>
                                             {{$value}}
@@ -166,7 +166,7 @@
                         <tr>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_nationality_id" name="nationality_id" disabled>
-                                    @foreach(\App\UseHelpers::$nationalityArr as $key => $value)
+                                    @foreach(nationalityArr() as $key => $value)
                                         <option value="{{$key}}"
                                                 @if($key == optional($user->nationality_id)->blood_group_id) selected @endif>
                                             {{$value}}
@@ -201,7 +201,7 @@
                             </td>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_user_type" name="user_type" disabled>
-                                    @foreach(\App\UseHelpers::$userTypeArr as $key => $value)
+                                    @foreach(userTypeArr() as $key => $value)
                                         <option value="{{$key}}"
                                                 @if($key == $user->user_type) selected @endif>
                                             {{$value}}
@@ -221,20 +221,23 @@
                             </td>
                         </tr>
                         <tr>
+                            <th colspan="3" scope="col">Present Address</th>
+                        </tr>
+                        <tr>
                             <th scope="col">
-                                <label for="cbo_present_division_id" class="form-label">Present Division</label>
+                                <label for="cbo_present_division_id" class="form-label">Division</label>
                             </th>
                             <th scope="col">
-                                <label for="cbo_present_district_id" class="form-label">Present District</label>
+                                <label for="cbo_present_district_id" class="form-label">District</label>
                             </th>
                             <th scope="col">
-                                <label for="txtPostalCode" class="form-label">Postal Code</label>
+                                <label for="txtPostalCode" class="form-label">Police Station</label>
                             </th>
                         </tr>
                         <tr>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_present_division_id" name="present_division_id" disabled>
-                                    @foreach(\App\Models\Divisions\Divisions::pluck('name', 'id') as $key => $value)
+                                    @foreach(\App\Models\Divisions\Divisions::pluck('en_name', 'id') as $key => $value)
                                         <option value="{{$key}}"
                                                 @if($key == optional($user->userPersonalDetail)->present_division_id) selected @endif>
                                             {{$value}}
@@ -244,7 +247,7 @@
                             </td>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_present_district_id" name="present_district_id" disabled>
-                                    @foreach(\App\Models\Districts\Districts::pluck('name','id') as $key => $value)
+                                    @foreach(\App\Models\Districts\Districts::pluck('en_name','id') as $key => $value)
                                         <option value="{{$key}}"
                                                 @if($key == optional($user->userPersonalDetail)->present_district_id) selected @endif>
                                             {{$value}}
@@ -254,9 +257,9 @@
                             </td>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_present_district_id" name="present_district_id" disabled>
-                                    @foreach(\App\Models\Upazilas\Upazilas::pluck('name','id') as $key => $value)
+                                    @foreach(\App\Models\PoliceStation::pluck('en_name','id') as $key => $value)
                                         <option value="{{$key}}"
-                                                @if($key == optional($user->userPersonalDetail)->present_upazila_id) selected @endif>
+                                                @if($key == optional($user->userPersonalDetail)->present_police_station_id) selected @endif>
                                             {{$value}}
                                         </option>
                                     @endforeach
@@ -265,19 +268,55 @@
                         </tr>
                         <tr>
                             <th scope="col">
-                                <label for="cbo_present_division_id" class="form-label">Present Division</label>
+                                <label for="cbo_present_division_id" class="form-label">Post Office</label>
                             </th>
                             <th scope="col">
-                                <label for="cbo_present_district_id" class="form-label">Present District</label>
+                                <label for="cbo_present_district_id" class="form-label">Post Code</label>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <td  colspan="2">
+                                <select class="form-control rounded-0" id="cbo_present_division_id" name="present_division_id" disabled>
+                                    @foreach(\App\Models\PostOffice::pluck('en_name','id') as $key => $value)
+                                        <option value="{{$key}}"
+                                                @if($key == optional($user->userPersonalDetail)->present_post_offices_id) selected @endif>
+                                            {{$value}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control rounded-0" id="cbo_present_division_id" name="present_division_id" disabled>
+                                    @foreach(\App\Models\PostOffice::pluck('code','id') as $key => $value)
+                                        <option value="{{$key}}"
+                                                @if($key == optional($user->userPersonalDetail)->present_post_offices_id) selected @endif>
+                                            {{$value}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th colspan="3">Parmament Address</th>
+                        </tr>
+
+                        <tr>
+                            <th scope="col">
+                                <label for="cbo_present_division_id" class="form-label">Parmament Division</label>
                             </th>
                             <th scope="col">
-                                <label for="txtPostalCode" class="form-label">Postal Code</label>
+                                <label for="cbo_present_district_id" class="form-label">Parmament District</label>
+                            </th>
+                            <th scope="col">
+                                <label for="txtPostalCode" class="form-label">Parmament Code</label>
                             </th>
                         </tr>
                         <tr>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_present_division_id" name="present_division_id" disabled>
-                                    @foreach(\App\Models\Divisions\Divisions::pluck('name', 'id') as $key => $value)
+                                    @foreach(\App\Models\Divisions\Divisions::pluck('en_name', 'id') as $key => $value)
                                         <option value="{{$key}}"
                                                 @if($key == optional($user->userPersonalDetail)->present_division_id) selected @endif>
                                             {{$value}}
@@ -287,9 +326,9 @@
                             </td>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_present_district_id" name="present_district_id" disabled>
-                                    @foreach(\App\Models\Districts\Districts::pluck('name','id') as $key => $value)
+                                    @foreach(\App\Models\Districts\Districts::pluck('en_name','id') as $key => $value)
                                         <option value="{{$key}}"
-                                                @if($key == optional($user->userPersonalDetail)->present_district_id) selected @endif>
+                                                @if($key == optional($user->userPersonalDetail)->parmament_district_id) selected @endif>
                                             {{$value}}
                                         </option>
                                     @endforeach
@@ -297,15 +336,48 @@
                             </td>
                             <td>
                                 <select class="form-control rounded-0" id="cbo_present_district_id" name="present_district_id" disabled>
-                                    @foreach(\App\Models\Upazilas\Upazilas::pluck('name','id') as $key => $value)
+                                    @foreach(\App\Models\PoliceStation::pluck('en_name','id') as $key => $value)
                                         <option value="{{$key}}"
-                                                @if($key == optional($user->userPersonalDetail)->present_upazila_id) selected @endif>
+                                                @if($key == optional($user->userPersonalDetail)->parmament_police_station_id) selected @endif>
                                             {{$value}}
                                         </option>
                                     @endforeach
                                 </select>
                             </td>
                         </tr>
+
+                        <tr>
+                            <th scope="col">
+                                <label for="cbo_present_division_id" class="form-label">Post Office</label>
+                            </th>
+                            <th scope="col">
+                                <label for="cbo_present_district_id" class="form-label">Post Code</label>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <td  colspan="2">
+                                <select class="form-control rounded-0" id="cbo_present_division_id" name="present_division_id" disabled>
+                                    @foreach(\App\Models\PostOffice::pluck('en_name','id') as $key => $value)
+                                        <option value="{{$key}}"
+                                                @if($key == optional($user->userPersonalDetail)->parmament_post_offices_id) selected @endif>
+                                            {{$value}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control rounded-0" id="cbo_present_division_id" name="present_division_id" disabled>
+                                    @foreach(\App\Models\PostOffice::pluck('code','id') as $key => $value)
+                                        <option value="{{$key}}"
+                                                @if($key == optional($user->userPersonalDetail)->parmament_post_offices_id) selected @endif>
+                                            {{$value}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </td>
+                        </tr>
+
                         <tr>
                             <td colspan="3" class="text-right">
                                 <label for="signInput" class="form-label">

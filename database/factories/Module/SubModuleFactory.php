@@ -25,7 +25,7 @@ class SubModuleFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'module_id'             => 3,
-                'created_at'            => UseHelpers::currentDateTime()
+                'created_at'            => currentDateTime()
             ],
             [
                 'name'                  => 'Academic Details',
@@ -34,7 +34,7 @@ class SubModuleFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'module_id'             => 3,
-                'created_at'            => UseHelpers::currentDateTime()
+                'created_at'            => currentDateTime()
             ],
             [
                 'name'                  => 'Compose',
@@ -43,26 +43,53 @@ class SubModuleFactory extends Factory
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'module_id'             => 4,
-                'created_at'            => UseHelpers::currentDateTime()
+                'created_at'            => currentDateTime()
             ],
-//            [
-//                'name'                  => 'Email Details',
-//                'icon'                  => 'mdi mdi-email-open',
-//                'route'                 => 'inbox-details',
-//                'status_active'         => 1,
-//                'is_delete'             => 0,
-//                'module_id'             => 4,
-//                'created_at'            => UseHelpers::currentDateTime()
-//            ],
-//            [
-//                'name'                  => 'Email Compose',
-//                'icon'                  => 'mdi mdi-email-open',
-//                'route'                 => 'email-compose',
-//                'status_active'         => 1,
-//                'is_delete'             => 0,
-//                'module_id'             => 4,
-//                'created_at'            => UseHelpers::currentDateTime()
-//            ]
+            [
+                'name'                  => 'Earning',
+                'icon'                  => 'mdi mdi-cash',
+                'route'                 => 'earning-money.index',
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'module_id'             => 7,
+                'created_at'            => currentDateTime()
+            ],
+            [
+                'name'                  => 'Expansive',
+                'icon'                  => 'mdi mdi-cash-multiple',
+                'route'                 => 'expansive.index',
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'module_id'             => 7,
+                'created_at'            => currentDateTime()
+            ],
+            [
+                'name'                  => 'Report',
+                'icon'                  => 'mdi mdi-file-document-box-multiple-outline',
+                'route'                 => 'money.report',
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'module_id'             => 7,
+                'created_at'            => currentDateTime()
+            ],
+            [
+                'name'                  => 'Modules',
+                'icon'                  => 'mdi mdi-menu',
+                'route'                 => 'modules.index',
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'module_id'             => 8,
+                'created_at'            => currentDateTime()
+            ],
+            [
+                'name'                  => 'Index',
+                'icon'                  => 'mdi mdi-menu',
+                'route'                 => 'modules.create',
+                'status_active'         => 1,
+                'is_delete'             => 0,
+                'module_id'             => 8,
+                'created_at'            => currentDateTime()
+            ]
         ];
     }
 }

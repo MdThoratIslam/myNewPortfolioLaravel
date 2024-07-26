@@ -12,43 +12,36 @@ use App\Mail\SendMessageToEndUser;
 use Mail;
 class MailController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        try {
+            $name = $request->name;
+            $email = $request->email;
+            $sub = $request->subject;
+            $mess = $request->message;
+
+            if (empty($email)) {
+                throw new \Exception("No email address provided.");
+            }
+            $mailData = [
+                'url' => 'http://www.zasusoft.com/',
+                'name' => $name,
+                'subject' => $sub,
+                'message' => $mess
+            ];
+            $senderMessage = "Thanks for your message, we will reply to you later.";
+            Mail::to($email)->send(new SendMessageToEndUser($name, $senderMessage, $mailData));
+            return response()->json('OK');
+        } catch (\Exception $e)
+        {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
     public function mailform()
     {
         return view('backend.pages.email.compose');
     }
-
-//    public function maildata(Request $request)
-//    {
-//        $name = $request->name;
-////        $email = $request->email;
-//        $emails = $request->emails;
-//        dd($emails);
-//        // now email is multiple so i will use this email in array form so i will use this email in array form
-//        $sub = $request->sub;
-//        $mess = $request->mess;
-//        $mailData = [
-//            'url'       => 'http://www.zasusoft.com/',
-//            'name'      => $name,
-//            'email'     => $emails,
-//            'subject'   => $sub,
-//            'message'   => $mess
-//        ];
-//        $send_mail = "mdthoratislam1993.oni@gmail.com";
-////        Mail::to($send_mail)->send(new SendMail($name, $email, $sub, $mess));
-//        $senderMessage = "Thanks for your message , we will reply you in later";
-////        Mail::to( $email)->send(new SendMessageToEndUser($name,$senderMessage,$mailData));
-//        foreach ($emails as $email) {
-//            $mailData['email'] = $email; // Set the email for each iteration
-//            Mail::to($email)->send(new SendMessageToEndUser($name, $senderMessage, $mailData));
-//        }
-//
-//
-//        $notification = [
-//            'message' => 'Mail Send Successfully',
-//            'alert-type' => 'success'
-//        ];
-//        return redirect()->back()->with($notification);
-//    }
 
     public function maildata(Request $request)
     {
@@ -97,6 +90,40 @@ class MailController extends Controller
     // now i will this mail read in the inbox page
     public function readEmails()
     {
-        //data from may smpt mail data
+        try {
+            // Connect to the IMAP server
+            $client = Client::account('default');
+            $client->connect();
+
+            // Get all the mailboxes
+            $mailboxes = $client->getFolders();
+
+            $emails = [];
+
+            foreach ($mailboxes as $mailbox) {
+                // Get all the messages in the mailbox
+                $messages = $mailbox->messages()->all()->get();
+
+                foreach ($messages as $message) {
+                    $emails[] = [
+                        'subject' => $message->getSubject(),
+                        'from' => $message->getFrom(),
+                        'body' => $message->getTextBody(),
+                        'date' => $message->getDate()
+                    ];
+                }
+            }
+
+            // Disconnect from the server
+            $client->disconnect();
+
+            return view('backend.pages.email.inbox', ['emails' => $emails]);
+        } catch (\Exception $e) {
+            $notification = [
+                'message' => 'Failed to read emails: ' . $e->getMessage(),
+                'alert-type' => 'error'
+            ];
+            return redirect()->back()->with($notification);
+        }
     }
 }

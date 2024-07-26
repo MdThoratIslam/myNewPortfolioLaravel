@@ -38,7 +38,7 @@ class ServiceFactory extends Factory
                 'route'                 => null,
                 'status_active'         => 1,
                 'is_delete'             => 0,
-                'created_at'            => UseHelpers::currentDateTime(),
+                'created_at'            => currentDateTime(),
                 'created_by'            => 1
             ],
             [
@@ -48,7 +48,7 @@ class ServiceFactory extends Factory
                 'route'                 => null,
                 'status_active'         => 1,
                 'is_delete'             => 0,
-                'created_at'            => UseHelpers::currentDateTime(),
+                'created_at'            => currentDateTime(),
                 'created_by'            => 1
             ],
             [
@@ -58,7 +58,7 @@ class ServiceFactory extends Factory
                 'route'                 => null,
                 'status_active'         => 1,
                 'is_delete'             => 0,
-                'created_at'            => UseHelpers::currentDateTime(),
+                'created_at'            => currentDateTime(),
                 'created_by'            => 1
                 ],
             [
@@ -68,7 +68,7 @@ class ServiceFactory extends Factory
                 'route'                 => null,
                 'status_active'         => 1,
                 'is_delete'             => 0,
-                'created_at'            => UseHelpers::currentDateTime(),
+                'created_at'            => currentDateTime(),
                 'created_by'            => 1
                 ]
         ];

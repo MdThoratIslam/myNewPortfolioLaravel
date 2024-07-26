@@ -34,6 +34,6 @@ class Module extends Model
     // now i want to join the module table with sub_module table
     public function subModules()
     {
-        return $this->hasMany(SubModule::class, 'module_id', 'id');
+        return $this->hasMany(SubModule::class, 'module_id', 'id')->where('status_active','=',1)->where('is_delete','=',0);
     }
 }

@@ -11,18 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('districts', function (Blueprint $table)
-        {
+        Schema::create('districts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('division_id')->constrained('divisions')->cascadeOnDelete();
-            $table->string('name');
+            $table->foreignId('division_id')->constrained('divisions');
+            $table->string('en_name');
             $table->string('bn_name');
-            $table->float('lat', 10, 6);
-            $table->float('long', 10, 6);
+            $table->string('slug');
+            $table->string('lat')->nullable();
+            $table->string('long')->nullable();
             $table->string('url')->nullable();
-            $table->integer('code')->nullable();
             $table->integer('status_active')->default(1);
             $table->integer('is_delete')->default(0);
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

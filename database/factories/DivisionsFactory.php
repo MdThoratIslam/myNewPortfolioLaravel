@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Divisions\Divisions;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Http;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Divisions\Divisions>
@@ -14,66 +16,105 @@ class DivisionsFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    /*public function definition(): array
     {
-        return
+        return [
             [
-                [
-                    'id' => "1",
-                    'name' => "Barishal",
-                    'bn_name' => "বরিশাল",
-                    'lat' => "22.701002",
-                    'long' => "90.353451"
-                ],
-                [
-                    'id' => "2",
-                    'name' => "Chattogram",
-                    'bn_name' => "চট্টগ্রাম",
-                    'lat' => "22.356851",
-                    'long' => "91.783182"
-                ],
-                [
-                    'id' => "3",
-                    'name' => "Dhaka",
-                    'bn_name' => "ঢাকা",
-                    'lat' => "23.810332",
-                    'long' => "90.412518"
-                ],
-                [
-                    'id' => "4",
-                    'name' => "Khulna",
-                    'bn_name' => "খুলনা",
-                    'lat' => "22.845641",
-                    'long' => "89.540328"
-                ],
-                [
-                    'id' => "5",
-                    'name' => "Rajshahi",
-                    'bn_name' => "রাজশাহী",
-                    'lat' => "24.363589",
-                    'long' => "88.624135"
-                ],
-                [
-                    'id' => "6",
-                    'name' => "Rangpur",
-                    'bn_name' => "রংপুর",
-                    'lat' => "25.743892",
-                    'long' => "89.275227"
-                ],
-                [
-                    'id' => "7",
-                    'name' => "Sylhet",
-                    'bn_name' => "সিলেট",
-                    'lat' => "24.894929",
-                    'long' => "91.868706"
-                ],
-                [
-                    'id' => "8",
-                    'name' => "Mymensingh",
-                    'bn_name' => "ময়মনসিংহ",
-                    'lat' => "24.747149",
-                    'long' => "90.420273"
-                ]
-            ];
+                'id' => 1,
+                'en_name' => 'Dhaka',
+                'bn_name' => 'Dhaka',
+                'slug' => 'dhaka',
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 2,
+                'en_name' => 'Chattogram',
+                'bn_name' => 'Chattogram',
+                'slug' => 'chattogram',
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 3,
+                'en_name' => 'Khulna',
+                'bn_name' => 'Khulna',
+                'slug' => 'khulna',
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 4,
+                'en_name' => 'Rajshahi',
+                'bn_name' => 'Rajshahi',
+                'slug' => 'rajshahi',
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 5,
+                'en_name' => 'Sylhet',
+                'bn_name' => 'Sylhet',
+                'slug' => 'sylhet',
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 6,
+                'en_name' => 'Barishal',
+                'bn_name' => 'Barishal',
+                'slug' => 'barishal',
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 7,
+                'en_name' => 'Mymensingh',
+                'bn_name' => 'Mymensingh',
+                'slug' => 'mymensingh',
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 8,
+                'en_name' => 'Rangpur',
+                'bn_name' => 'Rangpur',
+                'slug' => 'rangpur',
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+        ];
+    }*/
+
+    protected $model = Divisions::class;
+
+    public function definition()
+    {
+        $apiUrl = 'https://ekdak.com/thikana/pocode/divisions';
+        $apiToken = '1c4dc27192141d9c2e674b52e3bf8ae0d0afc3bd';
+        $response = Http::withHeaders(['Authorization' => 'Token ' . $apiToken])->get($apiUrl);
+
+        if ($response->successful()) {
+            $data = $response->json();
+            return collect($data['data'])->map(function ($division) {
+                return [
+                    'id'            => $division['id'],
+                    'en_name'       => $division['en_name'],
+                    'bn_name'       => $division['bn_name'],
+                    'slug'          => $division['slug'],
+                ];
+            })->toArray();
+        } else {
+            throw new \Exception('Failed to fetch divisions from API');
+        }
     }
+
 }

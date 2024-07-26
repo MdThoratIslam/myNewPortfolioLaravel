@@ -1,4 +1,4 @@
-<div class="page-wrapper">
+0.<div class="page-wrapper">
     <header class="main-header" id="header">
         <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
             <button id="sidebar-toggler" class="sidebar-toggle">
@@ -47,7 +47,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li>
-                                <a class="dropdown-link-item" href="user-profile.html">
+                                <a class="dropdown-link-item" href="{{ route('users.details')}}">
                                     <i class="mdi mdi-account-outline"></i>
                                     <span class="nav-text">My Profile</span>
                                 </a>
@@ -65,7 +65,7 @@
                                     <span class="nav-text">Activitise</span></a>
                             </li>
                             <li>
-                                <a class="dropdown-link-item" href="user-account-settings.html">
+                                <a class="dropdown-link-item" href="{{route('users.setting')}}">
                                     <i class="mdi mdi-settings"></i>
                                     <span class="nav-text">Account Setting</span>
                                 </a>

@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Divisions\Divisions;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Http;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Districts\Districts>
@@ -14,531 +16,687 @@ class DistrictsFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    /*public function definition(): array
     {
-        $json_data = '[
-            {
-              "id": "1",
-              "division_id": "3",
-              "name": "Dhaka",
-              "bn_name": "ঢাকা",
-              "lat": "23.7115253",
-              "long": "90.4111451"
-            },
-            {
-              "id": "2",
-              "division_id": "3",
-              "name": "Faridpur",
-              "bn_name": "ফরিদপুর",
-              "lat": "23.6070822",
-              "long": "89.8429406"
-            },
-            {
-              "id": "3",
-              "division_id": "3",
-              "name": "Gazipur",
-              "bn_name": "গাজীপুর",
-              "lat": "24.0022858",
-              "long": "90.4264283"
-            },
-            {
-              "id": "4",
-              "division_id": "3",
-              "name": "Gopalganj",
-              "bn_name": "গোপালগঞ্জ",
-              "lat": "23.0050857",
-              "long": "89.8266059"
-            },
-            {
-              "id": "5",
-              "division_id": "8",
-              "name": "Jamalpur",
-              "bn_name": "জামালপুর",
-              "lat": "24.937533",
-              "long": "89.937775"
-            },
-            {
-              "id": "6",
-              "division_id": "3",
-              "name": "Kishoreganj",
-              "bn_name": "কিশোরগঞ্জ",
-              "lat": "24.444937",
-              "long": "90.776575"
-            },
-            {
-              "id": "7",
-              "division_id": "3",
-              "name": "Madaripur",
-              "bn_name": "মাদারীপুর",
-              "lat": "23.164102",
-              "long": "90.1896805"
-            },
-            {
-              "id": "8",
-              "division_id": "3",
-              "name": "Manikganj",
-              "bn_name": "মানিকগঞ্জ",
-              "lat": "23.8644",
-              "long": "90.0047"
-            },
-            {
-              "id": "9",
-              "division_id": "3",
-              "name": "Munshiganj",
-              "bn_name": "মুন্সিগঞ্জ",
-              "lat": "23.5422",
-              "long": "90.5305"
-            },
-            {
-              "id": "10",
-              "division_id": "8",
-              "name": "Mymensingh",
-              "bn_name": "ময়মনসিংহ",
-              "lat": "24.7471",
-              "long": "90.4203"
-            },
-            {
-              "id": "11",
-              "division_id": "3",
-              "name": "Narayanganj",
-              "bn_name": "নারায়াণগঞ্জ",
-              "lat": "23.63366",
-              "long": "90.496482"
-            },
-            {
-              "id": "12",
-              "division_id": "3",
-              "name": "Narsingdi",
-              "bn_name": "নরসিংদী",
-              "lat": "23.932233",
-              "long": "90.71541"
-            },
-            {
-              "id": "13",
-              "division_id": "8",
-              "name": "Netrokona",
-              "bn_name": "নেত্রকোণা",
-              "lat": "24.870955",
-              "long": "90.727887"
-            },
-            {
-              "id": "14",
-              "division_id": "3",
-              "name": "Rajbari",
-              "bn_name": "রাজবাড়ি",
-              "lat": "23.7574305",
-              "long": "89.6444665"
-            },
-            {
-              "id": "15",
-              "division_id": "3",
-              "name": "Shariatpur",
-              "bn_name": "শরীয়তপুর",
-              "lat": "23.2423",
-              "long": "90.4348"
-            },
-            {
-              "id": "16",
-              "division_id": "8",
-              "name": "Sherpur",
-              "bn_name": "শেরপুর",
-              "lat": "25.0204933",
-              "long": "90.0152966"
-            },
-            {
-              "id": "17",
-              "division_id": "3",
-              "name": "Tangail",
-              "bn_name": "টাঙ্গাইল",
-              "lat": "24.2513",
-              "long": "89.9167"
-            },
-            {
-              "id": "18",
-              "division_id": "5",
-              "name": "Bogura",
-              "bn_name": "বগুড়া",
-              "lat": "24.8465228",
-              "long": "89.377755"
-            },
-            {
-              "id": "19",
-              "division_id": "5",
-              "name": "Joypurhat",
-              "bn_name": "জয়পুরহাট",
-              "lat": "25.0968",
-              "long": "89.0227"
-            },
-            {
-              "id": "20",
-              "division_id": "5",
-              "name": "Naogaon",
-              "bn_name": "নওগাঁ",
-              "lat": "24.7936",
-              "long": "88.9318"
-            },
-            {
-              "id": "21",
-              "division_id": "5",
-              "name": "Natore",
-              "bn_name": "নাটোর",
-              "lat": "24.420556",
-              "long": "89.000282"
-            },
-            {
-              "id": "22",
-              "division_id": "5",
-              "name": "Nawabganj",
-              "bn_name": "নবাবগঞ্জ",
-              "lat": "24.5965034",
-              "long": "88.2775122"
-            },
-            {
-              "id": "23",
-              "division_id": "5",
-              "name": "Pabna",
-              "bn_name": "পাবনা",
-              "lat": "23.998524",
-              "long": "89.233645"
-            },
-            {
-              "id": "24",
-              "division_id": "5",
-              "name": "Rajshahi",
-              "bn_name": "রাজশাহী",
-              "lat": "24.3745",
-              "long": "88.6042"
-            },
-            {
-              "id": "25",
-              "division_id": "5",
-              "name": "Sirajgonj",
-              "bn_name": "সিরাজগঞ্জ",
-              "lat": "24.4533978",
-              "long": "89.7006815"
-            },
-            {
-              "id": "26",
-              "division_id": "6",
-              "name": "Dinajpur",
-              "bn_name": "দিনাজপুর",
-              "lat": "25.6217061",
-              "long": "88.6354504"
-            },
-            {
-              "id": "27",
-              "division_id": "6",
-              "name": "Gaibandha",
-              "bn_name": "গাইবান্ধা",
-              "lat": "25.328751",
-              "long": "89.528088"
-            },
-            {
-              "id": "28",
-              "division_id": "6",
-              "name": "Kurigram",
-              "bn_name": "কুড়িগ্রাম",
-              "lat": "25.805445",
-              "long": "89.636174"
-            },
-            {
-              "id": "29",
-              "division_id": "6",
-              "name": "Lalmonirhat",
-              "bn_name": "লালমনিরহাট",
-              "lat": "25.9923",
-              "long": "89.2847"
-            },
-            {
-              "id": "30",
-              "division_id": "6",
-              "name": "Nilphamari",
-              "bn_name": "নীলফামারী",
-              "lat": "25.931794",
-              "long": "88.856006"
-            },
-            {
-              "id": "31",
-              "division_id": "6",
-              "name": "Panchagarh",
-              "bn_name": "পঞ্চগড়",
-              "lat": "26.3411",
-              "long": "88.5541606"
-            },
-            {
-              "id": "32",
-              "division_id": "6",
-              "name": "Rangpur",
-              "bn_name": "রংপুর",
-              "lat": "25.7558096",
-              "long": "89.244462"
-            },
-            {
-              "id": "33",
-              "division_id": "6",
-              "name": "Thakurgaon",
-              "bn_name": "ঠাকুরগাঁও",
-              "lat": "26.0336945",
-              "long": "88.4616834"
-            },
-            {
-              "id": "34",
-              "division_id": "1",
-              "name": "Barguna",
-              "bn_name": "বরগুনা",
-              "lat": "22.0953",
-              "long": "90.1121"
-            },
-            {
-              "id": "35",
-              "division_id": "1",
-              "name": "Barishal",
-              "bn_name": "বরিশাল",
-              "lat": "22.7010",
-              "long": "90.3535"
-            },
-            {
-              "id": "36",
-              "division_id": "1",
-              "name": "Bhola",
-              "bn_name": "ভোলা",
-              "lat": "22.685923",
-              "long": "90.648179"
-            },
-            {
-              "id": "37",
-              "division_id": "1",
-              "name": "Jhalokati",
-              "bn_name": "ঝালকাঠি",
-              "lat": "22.6406",
-              "long": "90.1987"
-            },
-            {
-              "id": "38",
-              "division_id": "1",
-              "name": "Patuakhali",
-              "bn_name": "পটুয়াখালী",
-              "lat": "22.3596316",
-              "long": "90.3298712"
-            },
-            {
-              "id": "39",
-              "division_id": "1",
-              "name": "Pirojpur",
-              "bn_name": "পিরোজপুর",
-              "lat": "22.5841",
-              "long": "89.9720"
-            },
-            {
-              "id": "40",
-              "division_id": "2",
-              "name": "Bandarban",
-              "bn_name": "বান্দরবান",
-              "lat": "22.1953275",
-              "long": "92.2183773"
-            },
-            {
-              "id": "41",
-              "division_id": "2",
-              "name": "Brahmanbaria",
-              "bn_name": "ব্রাহ্মণবাড়িয়া",
-              "lat": "23.9570904",
-              "long": "91.1119286"
-            },
-            {
-              "id": "42",
-              "division_id": "2",
-              "name": "Chandpur",
-              "bn_name": "চাঁদপুর",
-              "lat": "23.2332585",
-              "long": "90.6712912"
-            },
-            {
-              "id": "43",
-              "division_id": "2",
-              "name": "Chattogram",
-              "bn_name": "চট্টগ্রাম",
-              "lat": "22.335109",
-              "long": "91.834073"
-            },
-            {
-              "id": "44",
-              "division_id": "2",
-              "name": "Cumilla",
-              "bn_name": "কুমিল্লা",
-              "lat": "23.4682747",
-              "long": "91.1788135"
-            },
-            {
-              "id": "45",
-              "division_id": "2",
-              "name": "Cox\'s Bazar",
-              "bn_name": "কক্স বাজার",
-              "lat": "21.4272",
-              "long": "92.0058"
-            },
-            {
-              "id": "46",
-              "division_id": "2",
-              "name": "Feni",
-              "bn_name": "ফেনী",
-              "lat": "23.0159",
-              "long": "91.3976"
-            },
-            {
-              "id": "47",
-              "division_id": "2",
-              "name": "Khagrachari",
-              "bn_name": "খাগড়াছড়ি",
-              "lat": "23.119285",
-              "long": "91.984663"
-            },
-            {
-              "id": "48",
-              "division_id": "2",
-              "name": "Lakshmipur",
-              "bn_name": "লক্ষ্মীপুর",
-              "lat": "22.942477",
-              "long": "90.841184"
-            },
-            {
-              "id": "49",
-              "division_id": "2",
-              "name": "Noakhali",
-              "bn_name": "নোয়াখালী",
-              "lat": "22.869563",
-              "long": "91.099398"
-            },
-            {
-              "id": "50",
-              "division_id": "2",
-              "name": "Rangamati",
-              "bn_name": "রাঙ্গামাটি",
-              "lat": "22.7324",
-              "long": "92.2985"
-            },
-            {
-              "id": "51",
-              "division_id": "7",
-              "name": "Habiganj",
-              "bn_name": "হবিগঞ্জ",
-              "lat": "24.374945",
-              "long": "91.41553"
-            },
-            {
-              "id": "52",
-              "division_id": "7",
-              "name": "Maulvibazar",
-              "bn_name": "মৌলভীবাজার",
-              "lat": "24.482934",
-              "long": "91.777417"
-            },
-            {
-              "id": "53",
-              "division_id": "7",
-              "name": "Sunamganj",
-              "bn_name": "সুনামগঞ্জ",
-              "lat": "25.0658042",
-              "long": "91.3950115"
-            },
-            {
-              "id": "54",
-              "division_id": "7",
-              "name": "Sylhet",
-              "bn_name": "সিলেট",
-              "lat": "24.8897956",
-              "long": "91.8697894"
-            },
-            {
-              "id": "55",
-              "division_id": "4",
-              "name": "Bagerhat",
-              "bn_name": "বাগেরহাট",
-              "lat": "22.651568",
-              "long": "89.785938"
-            },
-            {
-              "id": "56",
-              "division_id": "4",
-              "name": "Chuadanga",
-              "bn_name": "চুয়াডাঙ্গা",
-              "lat": "23.6401961",
-              "long": "88.841841"
-            },
-            {
-              "id": "57",
-              "division_id": "4",
-              "name": "Jashore",
-              "bn_name": "যশোর",
-              "lat": "23.16643",
-              "long": "89.2081126"
-            },
-            {
-              "id": "58",
-              "division_id": "4",
-              "name": "Jhenaidah",
-              "bn_name": "ঝিনাইদহ",
-              "lat": "23.5448176",
-              "long": "89.1539213"
-            },
-            {
-              "id": "59",
-              "division_id": "4",
-              "name": "Khulna",
-              "bn_name": "খুলনা",
-              "lat": "22.815774",
-              "long": "89.568679"
-            },
-            {
-              "id": "60",
-              "division_id": "4",
-              "name": "Kushtia",
-              "bn_name": "কুষ্টিয়া",
-              "lat": "23.901258",
-              "long": "89.120482"
-            },
-            {
-              "id": "61",
-              "division_id": "4",
-              "name": "Magura",
-              "bn_name": "মাগুরা",
-              "lat": "23.487337",
-              "long": "89.419956"
-            },
-            {
-              "id": "62",
-              "division_id": "4",
-              "name": "Meherpur",
-              "bn_name": "মেহেরপুর",
-              "lat": "23.762213",
-              "long": "88.631821"
-            },
-            {
-              "id": "63",
-              "division_id": "4",
-              "name": "Narail",
-              "bn_name": "নড়াইল",
-              "lat": "23.172534",
-              "long": "89.512672"
-            },
-            {
-              "id": "64",
-              "division_id": "4",
-              "name": "Satkhira",
-              "bn_name": "সাতক্ষীরা",
-              "lat": "22.7185",
-              "long": "89.0705"
-            },
-             {
-                "id": "65",
-                "division_id": "5",
-                "name": "Chapinawabganj",
-                "bn_name": "চাপাইনবাবগঞ্জ",
-                "lat": "22.7185",
-                "long": "89.0705"
-              }
-        ]';
+        return [
+            [
+                'id' => 1,
+                'en_name' => 'Dhaka',
+                'bn_name' => 'Dhaka',
+                'slug' => 'dhaka',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 2,
+                'en_name' => 'Faridpur',
+                'bn_name' => 'Faridpur',
+                'slug' => 'faridpur',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 3,
+                'en_name' => 'Gazipur',
+                'bn_name' => 'Gazipur',
+                'slug' => 'gazipur',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 4,
+                'en_name' => 'Gopalganj',
+                'bn_name' => 'Gopalganj',
+                'slug' => 'gopalganj',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 5,
+                'en_name' => 'Kishoreganj',
+                'bn_name' => 'Kishoreganj',
+                'slug' => 'kishoreganj',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 6,
+                'en_name' => 'Madaripur',
+                'bn_name' => 'Madaripur',
+                'slug' => 'madaripur',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 7,
+                'en_name' => 'Manikganj',
+                'bn_name' => 'Manikganj',
+                'slug' => 'manikganj',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 8,
+                'en_name' => 'Munshiganj',
+                'bn_name' => 'Munshiganj',
+                'slug' => 'munshiganj',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 9,
+                'en_name' => 'Narayanganj',
+                'bn_name' => 'Narayanganj',
+                'slug' => 'narayanganj',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 10,
+                'en_name' => 'Narshingdi',
+                'bn_name' => 'Narshingdi',
+                'slug' => 'narshingdi',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 11,
+                'en_name' => 'Rajbari',
+                'bn_name' => 'Rajbari',
+                'slug' => 'rajbari',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 12,
+                'en_name' => 'Shariatpur',
+                'bn_name' => 'Shariatpur',
+                'slug' => 'shariatpur',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 13,
+                'en_name' => 'Tangail',
+                'bn_name' => 'Tangail',
+                'slug' => 'tangail',
+                'division_id' => 1,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 14,
+                'en_name' => 'Bandarban',
+                'bn_name' => 'Bandarban',
+                'slug' => 'bandarban',
+                'division_id' => 2,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 15,
+                'en_name' => 'Brahmanbaria',
+                'bn_name' => 'Brahmanbaria',
+                'slug' => 'brahmanbaria',
+                'division_id' => 2,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 16,
+                'en_name' => 'Chandpur',
+                'bn_name' => 'Chandpur',
+                'slug' => 'chandpur',
+                'division_id' => 2,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 17,
+                'en_name' => 'Chattogram',
+                'bn_name' => 'Chattogram',
+                'slug' => 'chattogram',
+                'division_id' => 2,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 18,
+                'en_name' => 'Cumilla',
+                'bn_name' => 'Cumilla',
+                'slug' => 'cumilla',
+                'division_id' => 2,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 19,
+                'en_name' => "Cox's bazar",
+                'bn_name' => "Cox's bazar",
+                'slug' => 'coxs-bazar',
+                'division_id' => 2,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 20,
+                'en_name' => 'Feni',
+                'bn_name' => 'Feni',
+                'slug' => 'feni',
+                'division_id' => 2,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 21,
+                'en_name' => 'Khagrachari',
+                'bn_name' => 'Khagrachari',
+                'slug' => 'khagrachari',
+                'division_id' => 2,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 22,
+                'en_name' => 'Lakshmipur',
+                'bn_name' => 'Lakshmipur',
+                'slug' => 'lakshmipur',
+                'division_id' => 2,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 23,
+                'en_name' => 'Noakhali',
+                'bn_name' => 'Noakhali',
+                'slug' => 'noakhali',
+                'division_id' => 2,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 24,
+                'en_name' => 'Rangamati',
+                'bn_name' => 'Rangamati',
+                'slug' => 'rangamati',
+                'division_id' => 2,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 25,
+                'en_name' => 'Bagerhat',
+                'bn_name' => 'Bagerhat',
+                'slug' => 'bagerhat',
+                'division_id' => 3,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 26,
+                'en_name' => 'Chuadanga',
+                'bn_name' => 'Chuadanga',
+                'slug' => 'chuadanga',
+                'division_id' => 3,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 27,
+                'en_name' => 'Jashore',
+                'bn_name' => 'Jashore',
+                'slug' => 'jashore',
+                'division_id' => 3,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 28,
+                'en_name' => 'Jhenaidah',
+                'bn_name' => 'Jhenaidah',
+                'slug' => 'jhenaidah',
+                'division_id' => 3,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 29,
+                'en_name' => 'Khulna',
+                'bn_name' => 'Khulna',
+                'slug' => 'khulna',
+                'division_id' => 3,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 30,
+                'en_name' => 'Kushtia',
+                'bn_name' => 'Kushtia',
+                'slug' => 'kushtia',
+                'division_id' => 3,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 31,
+                'en_name' => 'Magura',
+                'bn_name' => 'Magura',
+                'slug' => 'magura',
+                'division_id' => 3,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 32,
+                'en_name' => 'Meherpur',
+                'bn_name' => 'Meherpur',
+                'slug' => 'meherpur',
+                'division_id' => 3,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 33,
+                'en_name' => 'Narail',
+                'bn_name' => 'Narail',
+                'slug' => 'narail',
+                'division_id' => 3,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 34,
+                'en_name' => 'Satkhira',
+                'bn_name' => 'Satkhira',
+                'slug' => 'satkhira',
+                'division_id' => 3,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 35,
+                'en_name' => 'Bogura',
+                'bn_name' => 'Bogura',
+                'slug' => 'bogura',
+                'division_id' => 4,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 36,
+                'en_name' => 'Joypurhat',
+                'bn_name' => 'Joypurhat',
+                'slug' => 'joypurhat',
+                'division_id' => 4,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 37,
+                'en_name' => 'Nogaon',
+                'bn_name' => 'Nogaon',
+                'slug' => 'nogaon',
+                'division_id' => 4,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 38,
+                'en_name' => 'Natore',
+                'bn_name' => 'Natore',
+                'slug' => 'natore',
+                'division_id' => 4,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 39,
+                'en_name' => 'Chapai',
+                'bn_name' => 'Chapai',
+                'slug' => 'chapai',
+                'division_id' => 4,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 40,
+                'en_name' => 'Pabna',
+                'bn_name' => 'Pabna',
+                'slug' => 'pabna',
+                'division_id' => 4,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 41,
+                'en_name' => 'Rajshahi',
+                'bn_name' => 'Rajshahi',
+                'slug' => 'rajshahi',
+                'division_id' => 4,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 42,
+                'en_name' => 'Sirajganj',
+                'bn_name' => 'Sirajganj',
+                'slug' => 'sirajganj',
+                'division_id' => 4,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 43,
+                'en_name' => 'Hobiganj',
+                'bn_name' => 'Hobiganj',
+                'slug' => 'hobiganj',
+                'division_id' => 5,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 44,
+                'en_name' => 'Moulvibazar',
+                'bn_name' => 'Moulvibazar',
+                'slug' => 'moulvibazar',
+                'division_id' => 5,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 45,
+                'en_name' => 'Sunamganj',
+                'bn_name' => 'Sunamganj',
+                'slug' => 'sunamganj',
+                'division_id' => 5,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 46,
+                'en_name' => 'Sylhet',
+                'bn_name' => 'Sylhet',
+                'slug' => 'sylhet',
+                'division_id' => 5,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 47,
+                'en_name' => 'Barguna',
+                'bn_name' => 'Barguna',
+                'slug' => 'barguna',
+                'division_id' => 6,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 48,
+                'en_name' => 'Barishal',
+                'bn_name' => 'Barishal',
+                'slug' => 'barishal',
+                'division_id' => 6,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 49,
+                'en_name' => 'Bhola',
+                'bn_name' => 'Bhola',
+                'slug' => 'bhola',
+                'division_id' => 6,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 50,
+                'en_name' => 'Jhalakathi',
+                'bn_name' => 'Jhalakathi',
+                'slug' => 'jhalakathi',
+                'division_id' => 6,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 51,
+                'en_name' => 'Patuakhali',
+                'bn_name' => 'Patuakhali',
+                'slug' => 'patuakhali',
+                'division_id' => 6,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 52,
+                'en_name' => 'Pirojpur',
+                'bn_name' => 'Pirojpur',
+                'slug' => 'pirojpur',
+                'division_id' => 6,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 53,
+                'en_name' => 'Jamalpur',
+                'bn_name' => 'Jamalpur',
+                'slug' => 'jamalpur',
+                'division_id' => 7,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 54,
+                'en_name' => 'Mymensingh',
+                'bn_name' => 'Mymensingh',
+                'slug' => 'mymensingh',
+                'division_id' => 7,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 55,
+                'en_name' => 'Netrakona',
+                'bn_name' => 'Netrakona',
+                'slug' => 'netrakona',
+                'division_id' => 7,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 56,
+                'en_name' => 'Sherpur',
+                'bn_name' => 'Sherpur',
+                'slug' => 'sherpur',
+                'division_id' => 7,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 57,
+                'en_name' => 'Dinajpur',
+                'bn_name' => 'Dinajpur',
+                'slug' => 'dinajpur',
+                'division_id' => 8,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 58,
+                'en_name' => 'Gaibandha',
+                'bn_name' => 'Gaibandha',
+                'slug' => 'gaibandha',
+                'division_id' => 8,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 59,
+                'en_name' => 'Kurigram',
+                'bn_name' => 'Kurigram',
+                'slug' => 'kurigram',
+                'division_id' => 8,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 60,
+                'en_name' => 'Lalmonirhat',
+                'bn_name' => 'Lalmonirhat',
+                'slug' => 'lalmonirhat',
+                'division_id' => 8,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 61,
+                'en_name' => 'Nilphamari',
+                'bn_name' => 'Nilphamari',
+                'slug' => 'nilphamari',
+                'division_id' => 8,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 62,
+                'en_name' => 'Panchagarh',
+                'bn_name' => 'Panchagarh',
+                'slug' => 'panchagarh',
+                'division_id' => 8,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 63,
+                'en_name' => 'Rangpur',
+                'bn_name' => 'Rangpur',
+                'slug' => 'rangpur',
+                'division_id' => 8,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+            [
+                'id' => 64,
+                'en_name' => 'Thakurgaon',
+                'bn_name' => 'Thakurgaon',
+                'slug' => 'thakurgaon',
+                'division_id' => 8,
+                'lat' => '',
+                'long' => '',
+                'url' => '',
+            ],
+        ];
+    }*/
+    public function definition()
+    {
+        // Get an array of all division IDs
+        $allDivisionIds = Divisions::pluck('id')->toArray();
 
-        return json_decode($json_data, true);
+        // Initialize an empty array to store the district data
+        $districts = [];
+
+        // API token and base URL for the API
+        $apiToken = '1c4dc27192141d9c2e674b52e3bf8ae0d0afc3bd';
+        $baseUrl = 'https://ekdak.com/thikana/pocode/districts?v=';
+
+        // Loop through each division ID and fetch the district data
+        foreach ($allDivisionIds as $divisionId) {
+            $apiUrl = $baseUrl . $divisionId;
+            $response = Http::withHeaders(['Authorization' => 'Token ' . $apiToken])->get($apiUrl);
+
+            if ($response->successful()) {
+                $data = $response->json();
+
+                // Map the API data to the district model and append to the districts array
+                $districts = array_merge($districts, collect($data['data'])->map(function ($district) use ($divisionId) {
+                    return [
+                        'id' => $district['id'], // Assuming your database allows setting IDs
+                        'division_id' => $divisionId,
+                        'en_name' => $district['en_name'],
+                        'bn_name' => $district['bn_name'],
+                        'slug' => $district['slug'],
+                    ];
+                })->toArray());
+            } else {
+                throw new \Exception('Failed to fetch districts from API for division ID: ' . $divisionId);
+            }
+        }
+
+        return $districts;
     }
+
 }

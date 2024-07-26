@@ -66,7 +66,7 @@ class UserController extends Controller
                         'password'          => $request->password ? bcrypt($request->password) : $user->password,
                         'user_type'         => $request->user_type ?? $user->user_type,
                         'updated_by'        => auth()->user()->id,
-                        'updated_at'        => UseHelpers::currentDateTime(),
+                        'updated_at'        => currentDateTime(),
                         ]);
                     if ($user->userPersonalDetail)
                     {
@@ -87,7 +87,7 @@ class UserController extends Controller
                             'passport'              => $request->passport ?? $user->userPersonalDetail->passport,
                             'nationality_id'        => $request->nationality_id ?? $user->userPersonalDetail->nationality_id,
                             'updated_by'        => auth()->user()->id,
-                            'updated_at'        => UseHelpers::currentDateTime(),
+                            'updated_at'        => currentDateTime(),
                         ]);
                     } else {
                         $user->userPersonalDetail()->create(
@@ -105,7 +105,7 @@ class UserController extends Controller
                                 'passport'              => $request->passport,
                                 'nationality_id'        => $request->nationality_id,
                                 'created_by'            => auth()->user()->id,
-                                'created_at'            => UseHelpers::currentDateTime(),
+                                'created_at'            => currentDateTime(),
                                 'updated_by'            => null,
                                 'updated_at'            => null
                             ]);
@@ -134,16 +134,16 @@ class UserController extends Controller
         $user = User::with([
             'userPersonalDetail' => function ($query)
             {
-                $query->select('id', 'user_id', 'father_name', 'mother_name', 'present_area', 'present_upazila_id', 'present_district_id', 'present_division_id', 'parmament_area', 'parmament_upazila_id', 'parmament_district_id', 'parmament_division_id', 'nid', 'passport', 'birth_certificate', 'date_of_birth', 'place_of_birth', 'nationality_id', 'religion_id', 'blood_group_id', 'marital_status_id', 'gender_id', 'height', 'weight', 'status_active', 'is_delete');
+                $query->select('id', 'user_id', 'father_name', 'mother_name', 'present_area', 'present_police_station_id', 'present_district_id', 'present_division_id', 'parmament_area','parmament_police_station_id', 'present_post_offices_id', 'parmament_district_id', 'parmament_division_id', 'nid', 'passport', 'birth_certificate', 'date_of_birth', 'place_of_birth', 'nationality_id', 'religion_id', 'blood_group_id', 'marital_status_id', 'gender_id', 'height', 'weight', 'status_active', 'is_delete');
             },
             'userPersonalDetail.present_upazila' => function ($query) {
-                $query->select('id', 'name');
+                $query->select('id', 'en_name');
             },
             'userPersonalDetail.present_district' => function ($query) {
-                $query->select('id', 'name');
+                $query->select('id', 'en_name');
             },
             'userPersonalDetail.present_division' => function ($query) {
-                $query->select('id', 'name');
+                $query->select('id', 'en_name');
             }
         ])
             ->where('id', auth()->user()->id)

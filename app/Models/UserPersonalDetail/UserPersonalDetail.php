@@ -4,7 +4,9 @@ namespace App\Models\UserPersonalDetail;
 
 use App\Models\Districts\Districts;
 use App\Models\Divisions\Divisions;
+use App\Models\PoliceStation;
 use App\Models\Upazilas\Upazilas;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,7 +20,7 @@ class UserPersonalDetail extends Model
             $table->string('father_name', 100);
             $table->string('mother_name', 100);
             $table->string('present_area', 255);
-            $table->foreignId('present_upazila_id')->constrained('upazilas');
+            $table->foreignId('present_police_station_id')->constrained('upazilas');
             $table->foreignId('present_district_id')->constrained('districts');
             $table->foreignId('present_division_id')->constrained('divisions');
 
@@ -52,7 +54,8 @@ class UserPersonalDetail extends Model
         'father_name',
         'mother_name',
         'present_area',
-        'present_upazila_id',
+        'present_post_offices_id',
+        'present_police_station_id',
         'present_district_id',
         'present_division_id',
         'parmament_area',
@@ -84,7 +87,7 @@ class UserPersonalDetail extends Model
     }
     public function present_upazila()
     {
-        return $this->belongsTo(Upazilas::class,'present_upazila_id','id');
+        return $this->belongsTo(PoliceStation::class,'present_police_station_id','id');
     }
     public function present_district()
     {

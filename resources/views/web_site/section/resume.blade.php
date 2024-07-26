@@ -41,7 +41,7 @@
                             @endphp
                             ({{ $totalYears }}.{{ $remainingMonths }} )
                         </h2>
-                        <h4>{{ \App\UseHelpers::$designationArr[$experience['designation_id']]}}</h4>
+                        <h4>{{ designationArr($experience['designation_id'])}}</h4>
                         <h5>
                             {{\Carbon\Carbon::parse($experience['joinin_date'])->format('F Y')}} -
                             @if($experience['leaving_date'] == null)

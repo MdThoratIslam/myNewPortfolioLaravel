@@ -51,7 +51,7 @@ class AboutSummaryFactory extends Factory
             'status_active'             => 1, // 90% chance of being active
             'is_deleted'                => 0, // 10% chance of being deleted
             'created_by'                => 1,
-            'created_at'                => UseHelpers::currentDateTime(),
+            'created_at'                => currentDateTime(),
             'updated_by'                => null,
             'updated_at'                => null
         ];

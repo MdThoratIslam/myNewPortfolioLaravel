@@ -9,7 +9,7 @@
                     </div>
                     <div class="text-left">
                         <span class="h2 d-block">890</span>
-                        <p>New Users</p>
+                        <p>Total Experianse</p>
                     </div>
                 </div>
             </div>

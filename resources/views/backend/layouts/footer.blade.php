@@ -1,8 +1,9 @@
 <footer class="footer mt-auto" >
     <div class="copyright bg-white">
-        <p>
-            &copy; <span id="copy-year"></span>
-            Copyright Mono Dashboard Bootstrap Template by
+        <p>Copyright
+            &copy; <span id="copy-year"></span>,
+{{--            Copyright Mono Dashboard Bootstrap Template by--}}
+
             <a class="text-primary" href="" target="_blank" >Md Thorat Islam</a>.
         </p>
     </div>
@@ -12,7 +13,7 @@
         // var date = new Date().getDate();
         // months is full name show
          var month = d.toLocaleString('default', { month: 'long' });
-        var date = d.getDate() +" - "+ month +" - "+ d.getFullYear();
+        var date = d.getDate()+"-"+ month +"-"+ d.getFullYear();
         document.getElementById("copy-year").innerHTML = date;
     </script>
 </footer>
@@ -21,7 +22,9 @@
 <script src="{{asset('public/backend/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/simplebar/simplebar.min.js')}}"></script>
-<script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+
+{{--<script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>--}}
+
 <script src="{{asset('public/backend/plugins/apexcharts/apexcharts.js')}}"></script>
 <script src="{{asset('public/backend/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js')}}"></script>
@@ -33,35 +36,22 @@
 <script src="{{asset('public/backend/plugins/daterangepicker/moment.min.js')}}"></script>
 <script src="{{asset('public/backend/plugins/daterangepicker/daterangepicker.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
-<script>
-    jQuery(document).ready(function() {
-        jQuery('input[name="dateRange"]').daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            locale: {
-                cancelLabel: 'Clear'
-            }
-        });
-        jQuery('input[name="dateRange"]').on('apply.daterangepicker', function (ev, picker) {
-            jQuery(this).val(picker.startDate.format('MM/DD/YYYY'));
-        });
-        jQuery('input[name="dateRange"]').on('cancel.daterangepicker', function (ev, picker) {
-            jQuery(this).val('');
-        });
-    });
-</script>
+
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="{{asset('public/backend/plugins/toaster/toastr.min.js')}}"></script>
 <script src="{{asset('public/backend/js/mono.js')}}"></script>
 <script src="{{asset('public/backend/js/chart.js')}}"></script>
 <script src="{{asset('public/backend/js/map.js')}}"></script>
 <script src="{{asset('public/backend/js/custom.js')}}"></script>
-<script src="{{asset('public/backend/plugins/fullcalendar/core-4.3.1/main.min.js')}}"></script>
-<script src="{{asset('public/backend/plugins/fullcalendar/daygrid-4.3.0/main.min.js')}}"></script>
+
 {{--<script src="{{asset('public/backend/js/calendar.js')}}"></script>--}}
 <!--  -->
 <script src="{{asset('public/backend/js/pusherJavaScripLibraryV8.2.0.js')}}"></script>
 {{--<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>--}}
+<script>
+
+</script>
+<script src="{{ asset('public/backend/js/edit_personal_details.js') }}"></script>
 <script>
     NProgress.done();
     @if(Session::has('message'))
@@ -102,9 +92,21 @@
             break;
     }
     @endif
-</script>
-<script src="{{ asset('public/backend/js/edit_personal_details.js') }}"></script>
-<script>
+    jQuery(document).ready(function() {
+        jQuery('input[name="dateRange"]').daterangepicker({
+            autoUpdateInput: false,
+            singleDatePicker: true,
+            locale: {
+                cancelLabel: 'Clear'
+            }
+        });
+        jQuery('input[name="dateRange"]').on('apply.daterangepicker', function (ev, picker) {
+            jQuery(this).val(picker.startDate.format('MM/DD/YYYY'));
+        });
+        jQuery('input[name="dateRange"]').on('cancel.daterangepicker', function (ev, picker) {
+            jQuery(this).val('');
+        });
+    });
 
     // =================== If web site contact form is submitted successfully then show toastr message by Pusher========
     $(document).ready(function() {
@@ -160,5 +162,6 @@
     });
     //==================================================================================================================
 </script>
+@yield('script')
 </body>
 </html>

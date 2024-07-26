@@ -14,7 +14,12 @@ class EmploymentHistoryController extends Controller
      */
     public function index()
     {
-        return view('backend.pages.user.employmentHistory.component.index');
+        $employeementHistory = EmploymentHistory::with(['user','responsibilities'])->where('status_active','=',1)->where
+        ('is_delete','=',0)
+            ->where('user_id','=', auth()->user()->id)
+            ->orderBy('id','desc')
+            ->get();
+        return view('backend.pages.user.employmentHistory.component.index', compact('employeementHistory'));
     }
 
     /**

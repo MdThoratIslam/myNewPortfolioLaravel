@@ -4,8 +4,8 @@
             <!-- Application Brand -->
             <div class="app-brand">
                 <a href="{{ route('dashboard') }}">
-                    <img src="{{ asset('public/backend/images/paper-plane.png') }}" alt="Logo" width="60">
-                    <span class="brand-name">Oni</span>
+                    <img src="{{ asset(auth()->user()->user_photo_path) }}" alt="Logo" width="60" class="user-image rounded-circle">
+                    <span class="brand-name"></span>
                 </a>
             </div>
             <div class="sidebar-left" data-simplebar style="height: 100%;">
@@ -29,7 +29,7 @@
                             <li class="section-title ">{{ $menu->name }}</li>
 
                         @elseif($menu->route_type == 2)
-                            <li class="has-sub {{ \App\UseHelpers::isActiveSubMenu($menu->subModules) ? 'expand active' : '' }}">
+                            <li class="has-sub {{ isActiveSubMenu($menu->subModules) ? 'expand active' : '' }}">
                                 <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#{{ strtolower(str_replace(' ', '_', $menu->name)) }}"
                                    aria-expanded="false" aria-controls="{{ strtolower(str_replace(' ', '_', $menu->name)) }}">
                                     <i class="{{ $menu['icon'] }}"></i>
@@ -37,7 +37,7 @@
                                     <b class="caret"></b>
                                 </a>
                                 @if($menu->subModules && count($menu->subModules) != null)
-                                    <ul class="collapse {{ \App\UseHelpers::isActiveSubMenu($menu->subModules) ? 'show' : '' }}" id="{{ strtolower(str_replace(' ', '_', $menu->name)) }}" data-parent="#sidebar-menu">
+                                    <ul class="collapse {{ isActiveSubMenu($menu->subModules) ? 'show' : '' }}" id="{{ strtolower(str_replace(' ', '_', $menu->name)) }}" data-parent="#sidebar-menu">
                                         <div class="sub-menu">
                                             @foreach($menu->subModules as $submenu)
                                                 <li class="">
@@ -69,12 +69,12 @@
 {{--                    <ul class="d-flex" style="background-color: #491217">--}}
                     <ul class="d-flex" >
                         <li>
-                            <a href="user-account-settings.html" data-toggle="tooltip" title="Profile settings">
+                            <a href="{{route('users.setting')}}" data-toggle="tooltip" title="Profile settings">
                                 <i class="mdi mdi-settings"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="#" data-toggle="tooltip" title="No chat messages">
+                            <a href="{{route('email-inbox')}}" data-toggle="tooltip" title="No chat messages">
                                 <i class="mdi mdi-chat-processing"></i>
                             </a>
                         </li>

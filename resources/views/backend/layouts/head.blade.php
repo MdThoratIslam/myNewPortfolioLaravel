@@ -32,7 +32,7 @@
 </head>
 <body class="navbar-fixed sidebar-fixed" id="body">
 <script>
-    NProgress.configure({ showSpinner: false });
+    NProgress.configure({ showSpinner: true });
     NProgress.start();
 </script>
 {{--<div id="toaster"></div>--}}

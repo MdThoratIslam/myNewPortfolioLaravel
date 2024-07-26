@@ -7,25 +7,50 @@
                 Add New
             </button>
         </div>
-        <div class="card-body">
-            <table class="table table-bordered" id="" data-user-id="">
+        <div class="card-body ">
+            <table class="table table-bordered" id="" data-user-id="" style="width: 100%">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Company</th>
-                    <th scope="col">Designation</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Responsibilities</th>
-                    <th scope="col">Joining Date</th>
-                    <th scope="col">Resign Date</th>
-                    <th scope="col">Duration</th>
-                    <th scope="col">Achievement</th>
-                    <th scope="col">Result</th>
-                    <th scope="col">Out of CGPA</th>
-                    <th scope="col">Action</th>
+                    <th  style="width: 5.2%">#</th>
+                    <th  style="width: 23.2%">Company</th>
+                    <th  style="width: 18.2%">Designation</th>
+                    <th  style="width: 14.2%">Address</th>
+{{--                    <th scope="col">Responsibilities</th>--}}
+                    <th  style="width: 18.2%">Joining Date</th>
+                    <th  style="width: 14.2%">Resign Date</th>
+                    <th  style="width: 8.2%">Duration</th>
+
+                    <th  style="width: 14.2%">Action</th>
                 </tr>
                 </thead>
                 <tbody>
+                @php
+                $i=1;
+                @endphp
+                @foreach($employeementHistory as $userId => $userData)
+                    <tr>
+                        <td style="vertical-align: middle">{{$i++}}</td>
+                        <td style="vertical-align: middle">{{$userData->company_name}}</td>
+                        <td style="vertical-align: middle">{{designationArr($userData->designation_id)}}</td>
+                        <td style="vertical-align: middle">{{$userData->company_address}}</td>
+{{--                        <td style="vertical-align: middle; text-justify: distribute">--}}
+{{--                            {{$userData->responsibilities[0]->description}}--}}
+{{--                            @foreach($userData->responsibilities as $key => $val)--}}
+{{--                                {{$val->description}}--}}
+{{--                            @endforeach--}}
+{{--                        </td>--}}
+                        <td>{{\Carbon\Carbon::parse($userData->joinin_date)->format('d-M-Y')}}</td>
+                        <td>
+                            @if($userData->leaving_date != null)
+                                {{\Carbon\Carbon::parse($userData->leaving_date)->format('d-M-Y')}}
+                            @else
+                                Continue..
+                            @endif
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

@@ -42,34 +42,38 @@
             </div>
 
             <div class="col-lg-5 col-md-8">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
 
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group mt-3">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                    </div>
+                    <form action="{{ route('maildata') }}" method="post" class="php-email-form">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                        </div>
 
-                    <div class="form-group mt-3">
-                        <input type="number" name="phone" class="form-control" id="phone" placeholder="Your Phone" required>
-                    </div>
+                        <div class="form-group mt-3">
+                            <input type="number" name="phone" class="form-control" id="phone" placeholder="Your Phone" required>
+                        </div>
 
-                    <div class="form-group mt-3">
-                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                    </div>
+                        <div class="form-group mt-3">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                        </div>
 
-                    <div class="form-group mt-3">
-                        <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                    </div>
+                        <div class="form-group mt-3">
+                            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                        </div>
 
-                    <div class="my-3">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your message has landed safely in my inbox, like a gentle breeze on a sunny day. Thank you!</div>
-                    </div>
-                    <div class="text-center"><button type="submit">Send Message</button></div>
-                </form>
+                        <div class="my-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has landed safely in my inbox, like a gentle breeze on a sunny day. Thank you!</div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit">Send Message</button>
+                        </div>
+                    </form>
+
             </div>
 
         </div>

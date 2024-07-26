@@ -17,12 +17,17 @@ return new class extends Migration
             $table->string('father_name', 100);
             $table->string('mother_name', 100);
             $table->string('present_area', 255);
-            $table->foreignId('present_upazila_id')->nullable()->constrained('upazilas');
+
+            $table->foreignId('present_post_offices_id')->nullable()->constrained('post_offices');
+
+            $table->foreignId('present_police_station_id')->nullable()->constrained('police_stations');
             $table->foreignId('present_district_id')->nullable()->constrained('districts');
             $table->foreignId('present_division_id')->nullable()->constrained('divisions');
 
             $table->string('parmament_area', 255);
-            $table->foreignId('parmament_upazila_id')->nullable()->constrained('upazilas');
+            $table->foreignId('parmament_post_offices_id')->nullable()->constrained('post_offices');
+
+            $table->foreignId('parmament_police_station_id')->nullable()->constrained('police_stations');
             $table->foreignId('parmament_district_id')->nullable()->constrained('districts');
             $table->foreignId('parmament_division_id')->nullable()->constrained('divisions');
 
@@ -61,10 +66,12 @@ return new class extends Migration
             $table->dropForeign(['user_id']);
             $table->dropForeign(['created_by']);
             $table->dropForeign(['updated_by']);
-            $table->dropForeign(['present_upazila_id']);
+            $table->dropForeign(['present_post_offices_id']);
+            $table->dropForeign(['present_police_station_id']);
             $table->dropForeign(['present_district_id']);
             $table->dropForeign(['present_division_id']);
-            $table->dropForeign(['parmament_upazila_id']);
+            $table->dropForeign(['parmament_post_offices_id']);
+            $table->dropForeign(['parmament_police_station_id']);
             $table->dropForeign(['parmament_district_id']);
             $table->dropForeign(['parmament_division_id']);
 

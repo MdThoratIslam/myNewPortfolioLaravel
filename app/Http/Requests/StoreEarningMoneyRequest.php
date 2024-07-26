@@ -11,7 +11,7 @@ class StoreEarningMoneyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreEarningMoneyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'purpose'           => 'required',
+            'form'              => 'required',
+            'date'              => 'required',
+            'amount'            => 'required',
         ];
     }
 }

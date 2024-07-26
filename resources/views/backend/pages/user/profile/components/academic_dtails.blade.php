@@ -162,11 +162,6 @@
 
 @endsection
 
-<script>
-
-</script>
-
-
 
 
 

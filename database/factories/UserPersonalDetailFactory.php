@@ -23,18 +23,19 @@ class UserPersonalDetailFactory extends Factory
                 'father_name'           => 'Md Abu Hossain',
                 'mother_name'           => 'Parvin Nahar',
                 'present_area'          => '34/4, Ahammedbagh,',
-                'present_upazila_id'    => 146, // Example: generating a random upazila_id between 1 and 10
+                'present_police_station_id'    => 32, // Example: generating a random police_station_id between 1 and 10
                 'present_district_id'   => 1, // Example: generating a random district_id between 1 and 20
-                'present_division_id'   => 3, // Example: generating a random division_id between 1 and 5
+                'present_division_id'   => 1, // Example: generating a random division_id between 1 and 5
                 'parmament_area'        => 'Dhanua Sarkarbari, Kamalpur',
-                'parmament_upazila_id'  => 171, // Example: generating a random upazila_id between 1 and 10
-                'parmament_district_id' => 5, // Example: generating a random district_id between 1 and 20
-                'parmament_division_id' => 8, // Example: generating a random division_id between 1 and 5
+                'parmament_police_station_id'  => 477, // Example: generating a random police_station_id between 1
+                // and 10
+                'parmament_district_id' => 53, // Example: generating a random district_id between 1 and 20
+                'parmament_division_id' => 4, // Example: generating a random division_id between 1 and 5
                 'nid'                   => 6441413637, // Example: generating a random 9-digit NID
                 'passport'              => 'A11982001', // Example: generating a random 9-digit passport number
                 'birth_certificate'     => null, // Example: generating a random 9-digit birth certificate number
                 'date_of_birth'         => '1995-05-04',
-                'place_of_birth'        => 5,
+                'place_of_birth'        => 53,
                 'nationality_id'        => 1, // Example: generating a random nationality_id between 1 and 10
                 'religion_id'           => 1, // Example: generating a random religion_id between 1 and 5
                 'blood_group_id'        => 7, // Example: generating a random blood_group_id between 1 and 4
@@ -46,7 +47,7 @@ class UserPersonalDetailFactory extends Factory
                 'is_delete'             => 0, // Assuming default is not deleted
                 'created_by'            => 1, // Example: generating a random created_by between 1 and 100
                 'updated_by'            => null, // Example: generating a random updated_by between 1 and 100
-                'created_at'            => UseHelpers::currentDateTime(),
+                'created_at'            => currentDateTime(),
                 'updated_at'            => null,
             ]
         ];
