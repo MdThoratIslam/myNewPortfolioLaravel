@@ -286,6 +286,7 @@ class WebSiteController extends Controller
            ->where('is_deleted', 0)
            ->get();
        $aboutSmmary_arr= [];
+       //dd(AboutSummary::get());
        foreach ($data as $val)
        {
            $aboutSmmary_arr=[
@@ -307,6 +308,7 @@ class WebSiteController extends Controller
                'awards_icon'                => $val->years_of_experience_icon,
                ];
        }
+       //dd($aboutSmmary_arr);
        return $aboutSmmary_arr;
     }
 

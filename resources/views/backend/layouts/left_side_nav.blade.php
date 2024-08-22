@@ -1,14 +1,25 @@
-<div class="wrapper">
-    <aside class="left-sidebar sidebar-dark" id="left-sidebar">
-        <div id="sidebar" class="sidebar sidebar-with-footer">
-            <!-- Application Brand -->
-            <div class="app-brand">
-                <a href="{{ route('dashboard') }}">
-                    <img src="{{ asset(auth()->user()->user_photo_path) }}" alt="Logo" width="60" class="user-image rounded-circle">
-                    <span class="brand-name"></span>
-                </a>
+<div class="sidebar" data-background-color="dark">
+    <div class="sidebar-logo">
+        <div class="logo-header" data-background-color="dark">
+            <a href="index.html" class="logo">
+                <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+            </a>
+            <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                    <i class="gg-menu-right"></i>
+                </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                    <i class="gg-menu-left"></i>
+                </button>
             </div>
-            <div class="sidebar-left" data-simplebar style="height: 100%;">
+            <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+            </button>
+        </div>
+    </div>
+    <div class="sidebar-wrapper scrollbar scrollbar-inner">
+        <div class="sidebar-content">
+            <ul class="nav nav-secondary">
                 @php
                     ///$modules = \App\Models\Module::with('subModules')->where('status', 1)->get();
                     $sql = \App\Models\Module\Module::where('status_active', 1)
@@ -23,64 +34,72 @@
                         $modules[] = new \App\Http\Resources\Module\ModuleResource($module);
                     }
                 @endphp
-                <ul class="nav sidebar-inner" id="sidebar-menu">
-                    @foreach($modules as $index => $menu)
-                        @if($menu->route_type == 0)
-                            <li class="section-title ">{{ $menu->name }}</li>
-
-                        @elseif($menu->route_type == 2)
-                            <li class="has-sub {{ isActiveSubMenu($menu->subModules) ? 'expand active' : '' }}">
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#{{ strtolower(str_replace(' ', '_', $menu->name)) }}"
-                                   aria-expanded="false" aria-controls="{{ strtolower(str_replace(' ', '_', $menu->name)) }}">
-                                    <i class="{{ $menu['icon'] }}"></i>
-                                    <span class="nav-text">{{ ucfirst($menu->name) }}</span>
-                                    <b class="caret"></b>
-                                </a>
-                                @if($menu->subModules && count($menu->subModules) != null)
-                                    <ul class="collapse {{ isActiveSubMenu($menu->subModules) ? 'show' : '' }}" id="{{ strtolower(str_replace(' ', '_', $menu->name)) }}" data-parent="#sidebar-menu">
-                                        <div class="sub-menu">
-                                            @foreach($menu->subModules as $submenu)
-                                                <li class="">
-                                                    <a class="sidenav-item-link {{request()->routeIs($submenu->route) ? 'active' : ''}}" href="{{route($submenu->route ?? '')}}">
-                                                        <span class="nav-text">{{ ucfirst($submenu->name) }}</span>
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </div>
-                                    </ul>
-                                @endif
-                            </li>
-
-                        @elseif($menu['route_type'] == 1)
-{{--                                <li class="active">--}}
-                                <li class="{{request()->routeIs($menu['route']) ? 'active' : ''}}">
-                                    <a class="sidenav-item-link" href="{{$menu['route']}}">
-                                        <i class="{{$menu['icon']}}"></i>
-                                        <span class="nav-text">{{ ucfirst($menu->name) }}</span>
-                                    </a>
-                                </li>
-
-                        @endif
-                    @endforeach
-                </ul>
-            </div>
-            <div class="sidebar-footer">
-                <div class="sidebar-footer-content">
-{{--                    <ul class="d-flex" style="background-color: #491217">--}}
-                    <ul class="d-flex" >
-                        <li>
-                            <a href="{{route('users.setting')}}" data-toggle="tooltip" title="Profile settings">
-                                <i class="mdi mdi-settings"></i>
+                @foreach($modules as $module)
+                    @if($module->route_type == 0)
+                        <li class="nav-section">
+                            <span class="sidebar-mini-icon"><i class="fa fa-ellipsis-h"></i></span>
+                            <h4 class="text-section">{{ $module->name }}</h4>
+                        </li>
+                    @elseif($module->route_type == 1)
+                        <li class="nav-item">
+                            <a class="app-menu__item {{ request()->routeIs($module->route) ? 'active' : '' }}" href="{{ route($module->route) }}">
+                                <i class="app-menu__icon {{ $module->icon }}"></i>
+                                <p>{{ ucfirst($module->name) }}</p>
                             </a>
                         </li>
-                        <li>
-                            <a href="{{route('email-inbox')}}" data-toggle="tooltip" title="No chat messages">
-                                <i class="mdi mdi-chat-processing"></i>
+                    @elseif($module->route_type == 2)
+                        <li class="nav-item">
+                            <a data-bs-toggle="collapse" href="#module-{{ $module->id }}" class="collapsed" aria-expanded="false">
+                                <i class="fas fa-layer-group"></i>
+                                <p>{{ ucfirst($module->name) }}</p>
+                                <span class="caret"></span>
                             </a>
+                            <div class="collapse" id="module-{{ $module->id }}">
+                                <ul class="nav nav-collapse">
+                                    @foreach($module->subModules as $subModule)
+                                        <li>
+                                            <a href="{{ route($subModule->route) }}" class="{{ request()->routeIs($subModule->route) ? 'active' : '' }}">
+                                                <span class="sub-item">{{ $subModule->name }}</span>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </li>
-                    </ul>
-                </div>
-            </div>
+                    @elseif($module->route_type == 3)
+                        <li class="nav-item">
+                            <a data-bs-toggle="collapse" href="#module-{{ $module->id }}" class="collapsed" aria-expanded="false">
+                                <i class="fas fa-layer-group"></i>
+                                <p>{{ ucfirst($module->name) }}</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="module-{{ $module->id }}">
+                                <ul class="nav nav-collapse">
+                                    @foreach($module->subModules as $subModule)
+                                        <li>
+                                            <a data-bs-toggle="collapse" href="#subModule-{{ $subModule->id }}" class="collapsed" aria-expanded="false">
+                                                <span class="sub-item">{{ $subModule->name }}</span>
+                                                <span class="caret"></span>
+                                            </a>
+                                            <div class="collapse" id="subModule-{{ $subModule->id }}">
+                                                <ul class="nav nav-collapse">
+                                                    @foreach($subModule->childModules as $childModule)
+                                                        <li>
+                                                            <a href="{{ route($childModule->route) }}" class="{{ request()->routeIs($childModule->route) ? 'active' : '' }}">
+                                                                <span class="sub-item">{{ $childModule->name }}</span>
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
         </div>
-    </aside>
-{{--</div>--}}
+    </div>
+</div>

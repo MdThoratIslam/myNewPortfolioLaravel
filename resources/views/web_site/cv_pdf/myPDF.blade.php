@@ -89,14 +89,14 @@
             {{ get_police_station( $users[0]->userPersonalDetail->present_police_station_id,'' )?? 'No address provided' }},
             {{ get_district( $users[0]->userPersonalDetail->present_district_id,'' )?? 'No address provided' }}
         </p>
-        <p>01517123534, 01307435890</p>
-        <p>mdthoratislam1993.oni@gmail.com</p>
+        <p>{{$users[0]->phone}}</p>
+        <p>{{$users[0]->email}}</p>
         <p><a href="https://zasusoft.com">zasusoft.com</a></p>
     </div>
 
     <div class="section">
         <h2>Career Objective</h2>
-        <p>To build a career in Information and Communication technology with the experience that I have gained from my education and professional background willing to take any challenge in the relevant field.</p>
+        <p></p>
     </div>
 
     <div class="section">

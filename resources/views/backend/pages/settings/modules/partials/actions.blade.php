@@ -1,18 +1,15 @@
 <div class="btn-group" role="group" aria-label="Actions">
-{{--    <a href="{{ route('modules.show', $module->id) }}" class="btn btn-success--}}
-{{--    btn-sm">--}}
-{{--        <i class="mdi mdi-eye"></i>--}}
-{{--    </a>--}}
-{{--    ||--}}
-    <a href="{{ route('modules.edit', $module->id) }}" class="btn btn-info btn-sm">
-        <i class="mdi mdi-table-edit"></i>
+    <a href="{{ route('modules.show', $module->id) }}" class="btn btn-info btn-sm" title="View">
+        <i class="fa fa-eye"></i>
     </a>
-    ||
-    <form action="{{ route('modules.destroy', $module->id) }}" method="POST" id="delete-form-{{ $module->id }}" style="display:inline;">
+    <a href="{{ route('modules.edit', $module->id) }}" class="btn btn-info btn-sm" title="Edit">
+        <i class="fa fa-edit"></i>
+    </a>
+    <form action="{{ route('modules.destroy', $module->id) }}" method="POST" style="display: inline;">
         @csrf
         @method('DELETE')
-        <button type="button" class="btn btn-danger btn-sm delete-button" data-module-id="{{ $module->id }}">
-            <i class="mdi mdi-trash-can"></i>
+        <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this module?');">
+            <i class="fa fa-trash"></i>
         </button>
     </form>
 </div>

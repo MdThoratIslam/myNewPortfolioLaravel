@@ -21,7 +21,7 @@ class SubModuleFactory extends Factory
             [
                 'name'                  => 'Personal Details',
                 'icon'                  => 'mdi mdi-account-plus',
-                'route'                 => 'users.details',
+                'route'                 => 'users.index',
                 'status_active'         => 1,
                 'is_delete'             => 0,
                 'module_id'             => 3,

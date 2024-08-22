@@ -1,4 +1,4 @@
-@extends('backend.master')
+@extends('backend.oldmaster')
 @section('title', 'Dashboard')
 @section('content')
     <div class="content">
@@ -18,14 +18,14 @@
                 <div class="mb-5">
                     <table class="table table-bordered table-hover" id="earning">
                         <thead>
-                            <tr class="table-row text-center">
-                                <th style="width: 80px">#</th>
-                                <th>Purpose</th>
-                                <th>Form</th>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th style="width: 220px">Action</th>
-                            </tr>
+                        <tr class="table-row text-center">
+                            <th style="width: 80px">#</th>
+                            <th>Purpose</th>
+                            <th>Form</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th style="width: 220px">Action</th>
+                        </tr>
                         </thead>
                         <tbody>
 
@@ -34,7 +34,8 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="earn_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static">
+        <div class="modal fade" id="earn_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+             aria-hidden="true" data-backdrop="static">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <form>
@@ -80,7 +81,8 @@
                                             <i class="mdi mdi-calendar-range"></i>
                                         </span>
                                             </div>
-                                            <input type="date" class="form-control date-range-lg" name="date" value="" placeholder="Date" id="date"/>
+                                            <input type="date" class="form-control date-range-lg" name="date" value=""
+                                                   placeholder="Date" id="date"/>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +101,8 @@
                             </div>
                         </div>
                         <div class="modal-footer border-top-0 px-4 pt-0">
-                            <button type="button" class="btn btn-primary btn-pill m-0" id="add_earn">Creat Event</button>
+                            <button type="button" class="btn btn-primary btn-pill m-0" id="add_earn">Creat Event
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -113,26 +116,26 @@
     <script>
         toastr.options =
             {
-                "closeButton"       : true,
-                "newestOnTop"       : true,
-                "progressBar"       : true,
-                "positionClass"     : "toast-top-right",
-                "preventDuplicates" : false,
-                "showDuration"      : "900",
-                "hideDuration"      : "1000",
-                "timeOut"           : "5000",
-                "extendedTimeOut"   : "1000",
-                "showEasing"        : "swing",
-                "hideEasing"        : "linear",
-                "className"         : "custom-toastr", // Set your custom CSS class here
-                "showMethod"        : "fadeIn",
-                "hideMethod"        : "fadeOut"
+                "closeButton": true,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "showDuration": "900",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "className": "custom-toastr", // Set your custom CSS class here
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
             }
         $(document).ready(function () {
             tbody();
             add_earn();
 
-            $('.delete').click(function() {
+            $('.delete').click(function () {
                 alert('Test');
                 Swal.fire({
                     title: "Are you sure?",
@@ -154,10 +157,9 @@
             });
 
         });
-        function add_earn()
-        {
-            $(document).on('click', '#add_earn', function ()
-            {
+
+        function add_earn() {
+            $(document).on('click', '#add_earn', function () {
                 let purpose = $('#purpose').val();
                 let form = $('#form').val();
                 let date = $('#date').val();
@@ -174,19 +176,19 @@
                         'date': date,
                         'amount': amount,
                     },
-                    success: function (data)
-                    {
+                    success: function (data) {
                         console.log(data.massage);
                         tbody(); // Refresh the table data
                         clear(); // Clear the form fields
                         toastr.success(data.massage);
                     },
                     error: function (xhr, status, error) {
-                        toastr.error(status+"<br>"+error);
+                        toastr.error(status + "<br>" + error);
                     }
                 });
             });
         }
+
         function tbody() {
             $.ajax({
                 url: '{{route('get-earning-data')}}',
@@ -196,19 +198,16 @@
                     tableBody.empty(); // Clear any existing rows
                     let i = 1;
                     let totalAmount = 0; // Initialize total amount
-                    if (data.data != '')
-                    {
+                    if (data.data != '') {
                         $.each(data.data, function (key, val) {
                             let amount = parseFloat(val.amount); // Parse the amount as a float
                             totalAmount += amount; // Add the current amount to the total
 
                             let purpose = '';
-                            if (val.purpose == 1)
-                            {
+                            if (val.purpose == 1) {
                                 purpose = 'Salary';
-                            }else if(val.purpose == 2)
-                            {
-                                purpose='Loan';
+                            } else if (val.purpose == 2) {
+                                purpose = 'Loan';
                             }
 
                             let row =
@@ -227,8 +226,8 @@
                             tableBody.append(row);
                             i++;
                         });
-                    }else {
-                        tableBody.append('<tr>'+
+                    } else {
+                        tableBody.append('<tr>' +
                             '<td colspan="6" class="text-center text-danger">No data found</td></tr>'
                         );
                     }
@@ -255,7 +254,5 @@
             $('#amount').val('');
         }
     </script>
-
-
 
 @endsection

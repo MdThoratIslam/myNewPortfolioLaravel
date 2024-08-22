@@ -1,18 +1,30 @@
 @extends('backend.master')
-@section('title', 'Dashboard')
+@section('title', 'Visitor')
 @section('content')
-    <div class="content">
-        <div class="row">
-            <div class="col-xl-12 col-md-6">
-                <div class="card card-default">
-                    <div class="card-header p-2">
-                        <div  class="card-title ">
-{{--                            <strong>Total Visitor:&nbsp;</strong>{{$totalVisitor}}--}}
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-server"></i> Visitor</h1>
+            <p>Start a beautiful journey here</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center p-2">
+
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <table id="visitorsTable" class="table table-hover table-product" style="width:100%; ">
-                            <thead>
+                        <div class="card-body">
+                            <div id="datatable-controls" class="d-flex align-items-center w-100">
+                                <!-- Controls will be appended here -->
+                            </div>
+                            <table id="visitorsTable" class="table table-hover table-bordered" style="width:100%;">
+                                <thead>
                                 <tr>
                                     <th>IP</th>
                                     <th>Server</th>
@@ -21,99 +33,23 @@
                                     <th>Port</th>
                                     <th>Method</th>
                                     <th>Time</th>
-                                    <th>Created At</th> <!-- Updated to match the data field name -->
-                                    <th>Actions</th> <!-- Updated to indicate actions -->
+                                    <th>Created At</th>
+                                    <th>Actions</th>
                                 </tr>
-                            </thead>
-
-                        </table>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="card-footer"></div>
                     </div>
-{{--                    <div class="card-footer p-3">--}}
-{{--                        <p class="text-danger float-left">Latest Visit at:--}}
-{{--                            @if(!empty($latestVisitor->created_at))--}}
-{{--                            {{\Carbon\Carbon::parse($latestVisitor->created_at)->format('l, H:i:s a')}},--}}
-{{--                            <span class="text-right">{{\Carbon\Carbon::parse($latestVisitor->created_at)->format('d-M-Y')}}</span>--}}
-{{--                            @endif--}}
-{{--                        </p>--}}
-{{--                        <p class="text-danger float-right">First Visit at:--}}
-{{--                            @if(!empty($oldVisitor->created_at))--}}
-{{--                            {{\Carbon\Carbon::parse($oldVisitor->created_at)->format('l, H:i:s a')}},<span class="text-right">{{\Carbon\Carbon::parse($oldVisitor->created_at)->format('d-M-Y')}}</span>--}}
-{{--                            @endif--}}
-{{--                        </p>--}}
-{{--                    </div>--}}
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
 @section('script')
     <script>
-        /*======== 14. DATA TABLE ========*/
-        // var visitorsTable = $("#productsTable");
-        // if (visitorsTable.length != 0) {
-        //     visitorsTable.DataTable({
-        //         info: true,
-        //         lengthChange: true,
-        //         class:'form-control',
-        //         lengthMenu: [
-        //             [5,10, 20, 30, -1],
-        //             [5,10, 20, 30, "All"],
-        //         ],
-        //         scrollX: true,
-        //         order: [[1, "desc"]],
-        //         columnDefs: [
-        //             {
-        //                 orderable: false,
-        //                 targets: [5, 0, 6, -1],
-        //                 color: 'red',
-        //             },
-        //         ],
-        //         language: {
-        //             search: "_INPUT_",
-        //             searchPlaceholder: "Search...",
-        //         }
-        //     });
-        // }
-        // var visitorsTable = $("#productsTable");
-        // if (visitorsTable.length != 0) {
-        //     visitorsTable.DataTable({
-        //         info: true,
-        //         lengthChange: true,
-        //         lengthMenu: [
-        //             [5, 10, 20, 30, -1],
-        //             [5, 10, 20, 30, "All"]
-        //         ],
-        //         scrollX: true,
-        //         order: [[1, "desc"]],
-        //         columnDefs: [
-        //             {
-        //                 orderable: false,
-        //                 targets: [0, 5, 6, -1]
-        //             }
-        //         ],
-        //         language: {
-        //             search: "_INPUT_",
-        //             searchPlaceholder: "Search...",
-        //         },
-        //         initComplete: function(settings, json) {
-        //             // Wrap the length menu elements with Bootstrap classes
-        //             var lengthWrapper = $('<div class="dataTables_length d-flex align-items-center me-2"></div>');
-        //             // var label = $('<label for="productsTable_length" class="me-2">Show entries: </label>');
-        //             var select = $('select[name="productsTable_length"]').addClass('form-control');
-        //
-        //             // lengthWrapper.append(label).append(select);
-        //             lengthWrapper.append(select);
-        //             $('#productsTable_wrapper').prepend(lengthWrapper);
-        //
-        //             // Adjust the position of the search field
-        //             var searchWrapper = $('.dataTables_filter');
-        //             searchWrapper.addClass('d-flex justify-content-end align-items-center mb-2');
-        //             searchWrapper.find('input').addClass('form-control form-control');
-        //         }
-        //     });
-        // }
-
-        $(document).ready(function() {
+        $(document).ready(function () {
             var table = $('#visitorsTable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -130,27 +66,33 @@
                     { data: 'server_request_method', name: 'server_request_method' },
                     { data: 'server_request_time', name: 'server_request_time' },
                     { data: 'created_at', name: 'created_at' },
+
+
                     { data: 'action', name: 'action', orderable: false, searchable: false }
                 ],
-                lengthMenu: [[5, 10, 20, 30, 40, -1], [5, 10, 20, 30, 40, "All"]],
+                lengthMenu: [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
                 pageLength: 5,
                 order: [[7, "desc"]],
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search visitors...",
+                    searchPlaceholder: "Search visitors..."
                 },
-                initComplete: function(settings, json) {
-                    var lengthWrapper = $('<div class="dataTables_length d-flex align-items-center me-2"></div>');
-                    var select = $('select[name="visitorsTable_length"]').addClass('form-control');
-                    lengthWrapper.append(select);
-                    $('#visitorsTable_wrapper').prepend(lengthWrapper);
-
-                    var searchWrapper = $('.dataTables_filter');
-                    searchWrapper.addClass('d-flex justify-content-end align-items-center mb-2');
-                    searchWrapper.find('input').addClass('form-control');
+                dom: '<"d-flex justify-content-between"<"d-flex w-100 align-items-center"l><"d-flex align-items-center ml-auto"f>>rtip',
+                drawCallback: function () {
+                    var api = this.api();
+                    $(api.table().container()).find('.dataTables_paginate').appendTo('.card-footer').addClass('float-end');
+                },
+                initComplete: function () {
+                    // Move the length menu and search input to the card header
+                    $('#datatable-controls').append($('.dataTables_length')).append($('.dataTables_filter'));
+                    // Style adjustments for proper alignment
+                    $('#datatable-controls').find('.dataTables_length').addClass('me-auto');
+                    $('.dataTables_length label').css('width', '100%');
+                    $('.dataTables_length select').addClass('w-100'); // Ensures dropdown doesn't stretch
+                    $('.dataTables_filter').addClass('ml-auto');
+                    $('.dataTables_filter input').addClass('form-control').css('width', 'auto');
                 }
             });
         });
-
     </script>
 @endsection
