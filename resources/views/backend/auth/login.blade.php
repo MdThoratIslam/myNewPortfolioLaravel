@@ -1,46 +1,66 @@
 @extends('backend.auth.index')
-@section('title') Sign In @endsection
-@section('auth_content')
-    <div class="row justify-content-center" >
-                  <div class="col-lg-8 col-md-10">
-                    <div class="card card-default mb-0" style="background-color: #bfe2e9; opacity: 1">
-                      <div class="card-header pb-0">
-{{--                        <div class="app-brand w-100 d-flex justify-content-center border-bottom-0">--}}
-{{--                          <a class="w-auto pl-0" href="/index.html">--}}
-{{--                            <img src="{{asset('backend')}}/images/portfolio-logo-transparent.png" alt="Mono">--}}
-{{--                            <span class="brand-name text-dark">MONO</span>--}}
-{{--                          </a>--}}
-{{--                        </div>--}}
-                      </div>
-                      <div class="card-body px-5 pb-5 pt-0">
-{{--                        <h4 class="text-dark mb-6 text-center">Sign in for free</h4>--}}
-                          <form action="{{route('login')}}" method="POST">
-                              @csrf
-                              <div class="row">
-                                  <div class="form-group col-md-12 mb-4">
-                                      <input type="email" class="form-control input-lg {{ $errors->has('email') ? 'is-invalid border-danger' : '' }}" id="email" name="email" aria-describedby="emailHelp" placeholder="Email" required>
-                                      @if ($errors->has('email'))
-                                          <div class="text-daborder-danger small mt-1 invalid-feedback">
-                                              {{ $errors->first('email') }}
-                                          </div>
-                                      @endif
-                                  </div>
-                                  <div class="form-group col-md-12 ">
-                                      <input type="password" class="form-control input-lg {{ $errors->has('password') ? 'is-invalid border-danger' : '' }}" id="password" placeholder="Password" name="password" required autocomplete="new-password">
-                                      @if ($errors->has('password'))
-                                          <div class="text-daborder-danger small mt-1 invalid-feedback">
-                                              {{ $errors->first('password') }}
-                                          </div>
-                                      @endif
-                                  </div>
-                                  <div class="col-md-12 app-brand w-100 d-flex justify-content-end border-bottom-0">
-                                      <button type="submit" class="btn btn-sm btn-primary btn-pill mb-4 btn-auth" >Sign In</button>
-                                  </div>
-                              </div>
-                          </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+@section('title')
+    Sign In
 @endsection
-
+@section('auth_content')
+<section class="login-content">
+    <div class="logo">
+        <h1>Owner</h1>
+    </div>
+    <div class="login-box">
+        <form class="login-form" action="{{route('login')}}" method="POST">
+            @csrf
+            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
+            <div class="form-group">
+                <label class="control-label">EMAIL</label>
+                <input type="email" class="form-control {{ $errors->has('email') ? 'is-invalid border-danger' : '' }}"
+                       id="email" name="email" aria-describedby="emailHelp" placeholder="Email" required
+                       value="{{ old('email') }}">
+                @if ($errors->has('email'))
+                    <div class="text-danger small mt-1 invalid-feedback">
+                        {{ $errors->first('email') }}
+                    </div>
+                @endif
+            </div>
+            <div class="form-group">
+                <label class="control-label">PASSWORD</label>
+                <input type="password"
+                       class="form-control {{ $errors->has('password') ? 'is-invalid border-danger' : '' }}"
+                       id="password" placeholder="Password" name="password" required
+                       autocomplete="new-password">
+                @if ($errors->has('password'))
+                    <div class="text-danger small mt-1 invalid-feedback">
+                        {{ $errors->first('password') }}
+                    </div>
+                @endif
+            </div>
+            <div class="form-group">
+                <div class="utility">
+                    <div class="animated-checkbox">
+                        <label>
+                            <input type="checkbox"><span class="label-text">Stay Signed in</span>
+                        </label>
+                    </div>
+                    <p class="semibold-text mb-2"><a href="#" data-toggle="flip">Forgot Password ?</a></p>
+                </div>
+            </div>
+            <div class="form-group btn-container">
+                <button class="btn btn-primary btn-block  btn-auth"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
+            </div>
+        </form>
+        <form class="forget-form" action="index.html">
+            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Forgot Password ?</h3>
+            <div class="form-group">
+                <label class="control-label">EMAIL</label>
+                <input class="form-control" type="text" placeholder="Email">
+            </div>
+            <div class="form-group btn-container">
+                <button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
+            </div>
+            <div class="form-group mt-3">
+                <p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
+            </div>
+        </form>
+    </div>
+</section>
+@endsection

@@ -30,13 +30,24 @@ use App\Http\Controllers\backend\Module\ModuleController;
     Route::get('/',                         [WebController::class, 'index'])->name('web_site');
     Route::get('/portfolio_filter/{id}',    [WebController::class, 'portfolio_describe'])->name('portfolio_filter');
     Route::get('/portfolio_details/{id}',   [WebController::class, 'portfolio_describe'])->name('portfolio_details');
-    Route::get('/generate-pdf',             [PDFController::class, 'generatePDF'])->name('generate-pdf');
-    Route::get('/downloadCV',               [PDFController::class, 'downloadCV'])->name('downloadCV');
+
+//    Route::get('/generate-pdf',             [PDFController::class, 'generatePDF'])->name('generate-pdf');
+//    Route::get('/downloadCV',               [PDFController::class, 'downloadCV'])->name('downloadCV');
+//Route::post('/downloadCV',              [PDFController::class, 'downloadReason'])->name('downloadCV');
 
     Route::get('/get_data/',                [PDFController::class, 'get_data'])->name('get_data');
 
 
-    Route::post('/downloadCV',              [PDFController::class, 'downloadReason'])->name('downloadCV');
+
+
+
+Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
+Route::get('/downloadCV', [PDFController::class, 'downloadCV'])->name('downloadCV');
+Route::post('/downloadCV', [PDFController::class, 'downloadReason'])->name('downloadReason');
+
+
+
+
     Route::get('/pusher',                   [WebController::class, 'pusher'])->name('pusher');
     Route::resource('order',                'OrderController')->only(['store']);
     Route::post('whatsapp', [\App\Http\Controllers\WhatsAppController::class, 'store'])->name('whatsapp.post');
@@ -52,13 +63,23 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
         ->name('dashboard');
     //================================== User All Routes ===============================================================
     Route::get('/academic-dtails',          [AcademicQualification::class, 'index'])->name('academic-dtails');
-
-    Route::get('/users-list/{id}',          [UserController::class, 'show'])->name('users-list-show');
-    Route::get('/users-details/',           [UserController::class, 'edit'])->name('users.details');
     Route::get('/users-setting/',           [UserController::class, 'setting'])->name('users.setting');
 
+
+    /*Route::get('/users-list/{id}',          [UserController::class, 'show'])->name('users-list-show');
+    Route::get('/users-details/',           [UserController::class, 'edit'])->name('users.details');
     Route::post('/user-update/{id}',        [UserController::class, 'update'])->name('user-update');
-    Route::get('/create-user',              [UserController::class, 'create'])->name('create-user');
+    Route::get('/create-user',              [UserController::class, 'create'])->name('create-user');*/
+
+    Route::resource('users', UserController::class)->names([
+        'index'   => 'users.index',
+        'create'  => 'users.create',
+        'store'   => 'users.store',
+        'show'    => 'users.show',  // Custom name for show route
+        'edit'    => 'users.edit',    // Custom name for edit route
+        'update'  => 'users.update',      // Custom name for update route
+        'destroy' => 'users.destroy'
+    ]);
     // ============================== User All Routes End ==============================================================
 
     // ============================== Employment History ===============================================================

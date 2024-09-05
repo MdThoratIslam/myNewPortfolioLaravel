@@ -30,6 +30,7 @@ class PDFController extends Controller
 
     public function generatePDF()
     {
+        //dd('Test');
         $dompdf = new \Dompdf\Dompdf(); // Create a new Dompdf instance
         $pdf = new PDF($dompdf, $this->config, $this->filesystem, $this->view, 'UTF-8', true); // Instantiate the Barryvdh\DomPDF\PDF class
         $users = User::with([
@@ -126,13 +127,14 @@ class PDFController extends Controller
 
     public function downloadCV()
     {
-        $pdfPath = public_path('Md_Thorat_Islam_CV.pdf');
-        if (file_exists($pdfPath)) {
-            return response()->download($pdfPath, 'cv.pdf');
-        } else {
-            // If file does not exist, return 404
-            abort(404);
-        }
+        return $this->generatePDF();
+//        $pdfPath = public_path('Md_Thorat_Islam_CV.pdf');
+//        if (file_exists($pdfPath)) {
+//            return response()->download($pdfPath, 'cv.pdf');
+//        } else {
+//            // If file does not exist, return 404
+//            abort(404);
+//        }
     }
     public function downloadReason(Request $request)
     {
