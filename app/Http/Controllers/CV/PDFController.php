@@ -8,11 +8,13 @@ use App\Models\PostOffice;
 use App\Models\Reasoncv;
 use App\Models\User;
 use Barryvdh\DomPDF\PDF;
+use Dompdf\Options;
 use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 
 class PDFController extends Controller
 {
@@ -30,22 +32,97 @@ class PDFController extends Controller
     {
         $dompdf = new \Dompdf\Dompdf(); // Create a new Dompdf instance
         $pdf = new PDF($dompdf, $this->config, $this->filesystem, $this->view, 'UTF-8', true); // Instantiate the Barryvdh\DomPDF\PDF class
-        $users = User::with('userPersonalDetail')->get();
+        $users = User::with([
+            'userPersonalDetail',
+            'employmentHistory',
+            'employmentHistory.responsibilities',
+            'careerObjective',
+            'careerSummary',
+            'specialQualification',
+            'academicQualification',
+        ])
+            ->get();
+        // need calculate total experience of user employmentHistory.responsibilities from joinin_date to leaving_date
+        foreach ($users as $user) {
+            $totalExperienceInYears = 0;
+            $totalExperienceInMonths = 0;
+
+            foreach ($user->employmentHistory as $employmentHistory) {
+                // Convert joining_date and leaving_date to Carbon instances
+                $joiningDate = Carbon::parse($employmentHistory->joinin_date);
+
+                if ($employmentHistory->leaving_date == null) {
+                    $leavingDate = now(); // Use current date if leaving_date is null
+                } else {
+                    $leavingDate = Carbon::parse($employmentHistory->leaving_date); // Parse leaving_date as Carbon instance
+                }
+
+                // Calculate the difference in years and months
+                $diffInYears = $joiningDate->diffInYears($leavingDate);
+                $diffInMonths = $joiningDate->diffInMonths($leavingDate) % 12; // Get the months part
+
+                // Add the difference to total experience
+                $totalExperienceInYears += $diffInYears;
+                $totalExperienceInMonths += $diffInMonths;
+            }
+
+            // Adjust months into years if they exceed 12
+            $extraYears = intdiv($totalExperienceInMonths, 12);
+            $totalExperienceInYears += $extraYears;
+            $totalExperienceInMonths = $totalExperienceInMonths % 12;
+
+            // Assign total experience to the user
+            $user->totalExperience = $totalExperienceInYears . ' yrs ' . $totalExperienceInMonths . ' months';
+        }
+
+        //dd($users);
 
         $data = [
             'title' => 'Md Thorat Islam',
             'date' => date('m/d/Y'),
-            'users' => $users
+            'users' => $users,
         ];
 
         $pdf->loadView('web_site.cv_pdf.myPDF', $data);
         $pdf->setPaper('A4', 'Portrait');
         $pdf->setOptions(['isPhpEnabled' => true]);
-        //i want return open pdf file another teb not download
-        //return $pdf->download('myPDF.pdf');
         $filename = 'tr_'.time().'_cv.pdf';
         return $pdf->stream($filename);
     }
+//    public function generatePDF()
+//    {
+//        // Fetch users data with relationships
+//        $users = User::with('userPersonalDetail')->get();
+//
+//        // Pass data to the view
+//        $data = [
+//            'title' => 'Md Thorat Islam',
+//            'date' => date('m/d/Y'),
+//            'bangla' => 'মোঃ তোরাত ইসলাম',
+//            'users' => $users,
+//        ];
+//
+//        // Set DomPDF options as an array
+//        $options = [
+//            'isPhpEnabled' => true,
+//            'isHtml5ParserEnabled' => true,
+//            'isRemoteEnabled' => true,
+//            'isFontSubsettingEnabled' => true,
+//            'isUnicodeEnabled' => true,
+//            'isFontEmbeddingEnabled' => true,
+//            'defaultFont' => 'solaiman_lipi',
+//        ];
+//
+//        // Instantiate the Barryvdh\DomPDF\PDF class
+//        $pdf = \PDF::loadView('web_site.cv_pdf.myPDF', $data)
+//            ->setPaper('A4', 'Portrait')
+//            ->setOptions($options); // Set options using array
+//
+//        // Stream the generated PDF with the SolaimanLipi font
+//        $filename = 'tr_' . time() . '_cv.pdf';
+//        return $pdf->stream($filename, ['Attachment' => false])
+//            ->header('Content-Type', 'application/pdf');
+//    }
 
     public function downloadCV()
     {
@@ -79,8 +156,8 @@ class PDFController extends Controller
         if ($request->input('reason_type') != 'Professional')
         {
             return response()->json([
-                'success' => false,
-                'message' => 'Not a professional reason type'
+                'success'                   => false,
+                'message'                   => 'Not a professional reason type'
             ]);
         }else
         {
@@ -104,7 +181,7 @@ class PDFController extends Controller
 
             // Respond with the URL to download the CV and a success message
             return response()->json([
-                'cvUrl' => route('downloadCV'),  // Make sure the route is defined in your routes/web.php
+                'cvUrl' => route('generate-pdf'),  // Make sure the route is defined in your routes/web.php
                 'success' => true,  // Set success to true after saving
                 'message' => 'Reason stored successfully. Proceeding to download.'
             ]);

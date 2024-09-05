@@ -10,6 +10,7 @@ class SpecialQualification extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
+        'title',
         'description',
         'projectAuthority',
         'duration',

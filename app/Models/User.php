@@ -7,6 +7,10 @@ use App\Models\Districts\Districts;
 use App\Models\EmploymentHistory\EmploymentHistory;
 use App\Models\Upazilas\Upazilas;
 use App\Models\UserPersonalDetail\UserPersonalDetail;
+use App\Models\AcademicQualification\AcademicQualification;
+use App\Models\CareerObjective\CareerObjective;
+use App\Models\CareerSummary\CareerSummary;
+use App\Models\SpecialQualification\SpecialQualification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -66,9 +70,23 @@ class User extends Authenticatable
     {
         return $this->hasMany(AcademicQualification::class,'user_id','id');
     }
+    //need career objective
+    public function careerObjective()
+    {
+        return $this->hasOne(CareerObjective::class,'user_id','id');
+    }
+    public function careerSummary()
+    {
+        return $this->hasOne(CareerSummary::class,'user_id','id');
+    }
+    public function specialQualification()
+    {
+        return $this->hasMany(SpecialQualification::class,'user_id','id');
+    }
     public function userPersonalDetail()
     {
         return $this->hasOne(UserPersonalDetail::class,'user_id','id');
     }
+
 
 }
