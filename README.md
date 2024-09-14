@@ -64,3 +64,39 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+## Laravel log viewer
+
+<p>Log Viewer for Laravel 5, 6, 7, 8, 9 & 10 (still compatible with 4.2 too) and Lumen. Install with composer, create a route to LogViewerController. No public assets, no vendor routes, works with and/or without log rotate. Inspired by Micheal Mand's Laravel 4 log viewer (works only with laravel 4.1)
+What ?</p>
+
+Install via composer
+```bash
+composer require rap2hpoutre/laravel-log-viewer
+```
+Add Service Provider to config/app.php in providers section
+```bash
+Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+```
+Add a route in your web routes file:
+
+```bash
+Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
+```
+Advanced usage
+Customize view
+Publish log.blade.php into /resources/views/vendor/laravel-log-viewer/ for view customization:
+
+```bash
+php artisan vendor:publish \--provider="Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider" \--tag=views
+```
+Edit configuration
+
+Publish logviewer.php configuration file into /config/ for configuration customization:
+```bash
+php artisan vendor:publish \--provider="Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider"
+```
+Troubleshooting
+If you got a InvalidArgumentException in FileViewFinder.php error, it may be a problem with config caching. Double check installation, then run php artisan config:clear.

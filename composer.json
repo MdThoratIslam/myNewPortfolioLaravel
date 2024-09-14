@@ -12,9 +12,8 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "pusher/pusher-php-server": "^7.2",
+        "rap2hpoutre/laravel-log-viewer": "^2.4",
         "twilio/sdk": "^8.2",
-        "webklex/laravel-imap": "^5.3",
-        "webklex/php-imap": "^5.5",
         "yajra/laravel-datatables-oracle": "^10.11"
     },
     "require-dev": {

@@ -7,7 +7,7 @@ class EmailService {
     private $client;
 
     public function __construct() {
-        try {
+        /*try {
             $cm = new ClientManager();
             $this->client = $cm->make([
                 'host'          => env('IMAP_HOST', 'mail.gmail.com'),
@@ -29,16 +29,16 @@ class EmailService {
         } catch (Exception $e) {
             Log::error('IMAP connection failed: ' . $e->getMessage());
             throw new Exception('IMAP connection failed: ' . $e->getMessage());
-        }
+        }*/
     }
 
     public function getInboxMessages() {
-        try {
+        /*try {
             $folder = $this->client->getFolder('INBOX');
             return $folder->messages()->all()->get();
         } catch (Exception $e) {
             Log::error('Fetching inbox messages failed: ' . $e->getMessage());
             return [];
-        }
+        }*/
     }
 }

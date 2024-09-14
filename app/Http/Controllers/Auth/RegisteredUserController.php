@@ -43,6 +43,7 @@ class RegisteredUserController extends Controller
         ]);
         event(new Registered($user));
         Auth::login($user);
+        Log::success('User registered successfully: ' . $user->email);
         return redirect(RouteServiceProvider::HOME);
     }
 }

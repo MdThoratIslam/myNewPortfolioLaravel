@@ -21,6 +21,7 @@
     <link href="{{asset('public/web_site/assets/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('public/web_site/plugins/material/css/materialdesignicons.min.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('public/font-awesome.4.7.0.css')}}">
+    <link rel="stylesheet" href="{{ asset('public/vendor/log-viewer/app.css') }}">
 
     <style>
         .largeWidth {

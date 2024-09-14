@@ -16,6 +16,7 @@ use App\Models\SkillSummary\SkillSummary;
 use App\Models\SpecialQualification\SpecialQualification;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class WebSiteController extends Controller
 {
@@ -37,6 +38,7 @@ class WebSiteController extends Controller
 
 //        $portfolio_describe_data        = $this->portfolio_describe();
 //        dd($portfolio_title);
+        Log::info('WebSiteController@index');
        return view('web_site.index',compact(
            [
                'user_info',

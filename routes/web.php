@@ -10,7 +10,7 @@ use App\Http\Controllers\Calender\CalenderController;
 use App\Http\Controllers\Events\EventsController;
 use App\Http\Controllers\backend\AcademicQualification\AcademicQualificationController as AcademicQualification;
 use App\Http\Controllers\backend\Mail\MailController;
-use App\Http\Controllers\OrderController;
+//use App\Http\Controllers\OrderController;
 use App\Http\Controllers\EarningMoneyController;
 use App\Http\Controllers\ExpansiveController;
 use App\Http\Controllers\backend\Module\ModuleController;
@@ -49,7 +49,7 @@ Route::post('/downloadCV', [PDFController::class, 'downloadReason'])->name('down
 
 
     Route::get('/pusher',                   [WebController::class, 'pusher'])->name('pusher');
-    Route::resource('order',                'OrderController')->only(['store']);
+    //Route::resource('order',                'OrderController')->only(['store']);
     Route::post('whatsapp', [\App\Http\Controllers\WhatsAppController::class, 'store'])->name('whatsapp.post');
     Route::post('/email/send', [MailController::class, 'index'])->name('maildata');
 // ============== Web Routes End =======================================================================================
@@ -61,6 +61,13 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
     Route::get('/dashboard',                [DashboardController::class, 'dashboard'])
         ->middleware(['auth', 'verified'])
         ->name('dashboard');
+
+    //rap2hpoutre/laravel-log-viewer package routes
+    //==================================================================================================================
+    Route::get('logs', [\App\Http\Controllers\Logs\LogController::class, 'index'])->name('log.viewer');
+    Route::get('logs/frame', [\App\Http\Controllers\Logs\LogController::class, 'showLogs'])->name('log.viewer.frame');
+    //==================================================================================================================
+
     //================================== User All Routes ===============================================================
     Route::get('/academic-dtails',          [AcademicQualification::class, 'index'])->name('academic-dtails');
     Route::get('/users-setting/',           [UserController::class, 'setting'])->name('users.setting');
