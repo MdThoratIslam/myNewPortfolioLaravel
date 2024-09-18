@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\TrainingSummary\TrainingSummary;
 use Illuminate\Database\Seeder;
+
 
 class TrainingSummarySeeder extends Seeder
 {
@@ -12,6 +13,10 @@ class TrainingSummarySeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        // Generate one record for Professional Web Application Development
+        TrainingSummary::factory()->professionalWebAppDevelopment()->create();
+
+        // Generate one record for Web Development
+        TrainingSummary::factory()->webDevelopment()->create();
     }
 }

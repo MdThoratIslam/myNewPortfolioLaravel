@@ -17,8 +17,9 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        $sql_event = Events::where('status_active', 1)->where('is_delete', 0)->get();
-        $totalDays = 0;
+        $sql_event              = Events::where('status_active', 1)->where('is_delete', 0)->get();
+        $totalDays              = 0;
+        $totalVisitor           = VisitorData::count();
         foreach ($sql_event as $event)
         {
             $startDate          = new \DateTime($event->start);
@@ -28,7 +29,7 @@ class DashboardController extends Controller
         }
         $events = Events::where('status_active', 1)->where('is_delete', 0)->get();
 
-        return view('backend.pages.dashboard.index', compact('totalDays','events'));
+        return view('backend.pages.dashboard.index', compact('totalDays','events','totalVisitor'));
 
     }
     public function visitor()

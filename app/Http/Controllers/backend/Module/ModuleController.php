@@ -58,11 +58,10 @@ class ModuleController extends Controller
 
     public function getModules(Request $request)
     {
+        $i=0;
         if ($request->ajax()) {
-            $query = Module::query();
-
-            $query->where('status_active', 1)
-                ->where('is_delete', 0);
+            $query                  = Module::query();
+            $query->where('status_active', 1)->where('is_delete', 0);
             if ($request->has('order'))
             {
                 $order              = $request->get('order')[0];
@@ -74,7 +73,7 @@ class ModuleController extends Controller
             {
                 $query->orderBy('priority', 'asc');
             }
-            // Apply search
+
             if ($request->has('search') && $request->get('search')['value'] != '')
             {
                 $searchValue        = $request->get('search')['value'];
@@ -83,9 +82,12 @@ class ModuleController extends Controller
                     $subQuery->where('name', 'like', "%$searchValue%")->orWhere('description', 'like', "%$searchValue%");
                 });
             }
-            return DataTables::of($query)->addColumn('action', function ($module) {
-                    return view('backend.pages.settings.modules.partials.actions', compact('module'))->render();
-                })->rawColumns(['action'])->make(true);
+            return DataTables::of($query)
+            ->addColumn('sl_no', function ($module) use (&$i) {return ++$i;})
+            ->addColumn('route_type', function ($module){return routeType($module->route_type);})
+            ->addColumn('priority', function($module){return priority($module->priority);})
+            ->addColumn('action', function ($module){return view('backend.pages.settings.modules.partials.actions', compact('module'))->render();})
+            ->rawColumns(['action'])->make(true);
         }
     }
 

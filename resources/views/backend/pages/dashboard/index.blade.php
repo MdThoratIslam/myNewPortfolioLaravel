@@ -1,95 +1,236 @@
 @extends('backend.master')
 @section('title', 'Dashboard')
 @section('content')
-    <div class="app-title">
-        <div>
-            <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
-            <p>A free and open source Bootstrap 4 admin template</p>
+    <div class="page-inner">
+        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+            <div>
+                <h3 class="fw-bold mb-3">Dashboard</h3>
+                <h6 class="op-7 mb-2">Free Bootstrap 5 Admin Dashboard</h6>
+            </div>
+            <div class="ms-md-auto py-2 py-md-0">
+                <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
+                <a href="#" class="btn btn-primary btn-round">Add Customer</a>
+            </div>
         </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        </ul>
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Visitors</p>
+                                    <h4 class="card-title">{{$totalVisitor}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div
+                                        class="icon-big text-center icon-info bubble-shadow-small"
+                                >
+                                    <i class="icon-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Total Event Days</p>
+                                    <h4 class="card-title">{{$totalDays}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div
+                                        class="icon-big text-center icon-success bubble-shadow-small"
+                                >
+                                    <i class="fas fa-luggage-cart"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Sales</p>
+                                    <h4 class="card-title">$ 1,345</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div
+                                        class="icon-big text-center icon-secondary bubble-shadow-small"
+                                >
+                                    <i class="far fa-check-circle"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Order</p>
+                                    <h4 class="card-title">576</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-6 col-md-12">
+                <div class="card card-default">
+{{--                    <div class="card-header card-header-border-bottom d-flex justify-content-between align-items-center">--}}
+{{--                        <h2>How to use</h2>--}}
+{{--                    </div>--}}
+                    <div class="card-body">
+                        <div class="mb-5">
+                            <div id='calendar'></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        
+        
     </div>
-    <div class="row">
-        <div class="col-md-6 col-lg-3">
-            <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
-                <div class="info">
-                    <h4>Users</h4>
-                    <p><b>5</b></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-            <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
-                <div class="info">
-                    <h4>Likes</h4>
-                    <p><b>25</b></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-            <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
-                <div class="info">
-                    <h4>Uploades</h4>
-                    <p><b>10</b></p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-            <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
-                <div class="info">
-                    <h4>Stars</h4>
-                    <p><b>500</b></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="tile">
-                <h3 class="tile-title">Monthly Sales</h3>
-                <div class="embed-responsive embed-responsive-16by9">
-                    <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="tile">
-                <h3 class="tile-title">Support Requests</h3>
-                <div class="embed-responsive embed-responsive-16by9">
-                    <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="tile">
-                <h3 class="tile-title">Features</h3>
-                <ul>
-                    <li>Built with Bootstrap 4, SASS and PUG.js</li>
-                    <li>Fully responsive and modular code</li>
-                    <li>Seven pages including login, user profile and print friendly invoice page</li>
-                    <li>Smart integration of forgot password on login page</li>
-                    <li>Chart.js integration to display responsive charts</li>
-                    <li>Widgets to effectively display statistics</li>
-                    <li>Data tables with sort, search and paginate functionality</li>
-                    <li>Custom form elements like toggle buttons, auto-complete, tags and date-picker</li>
-                    <li>A inbuilt toast library for providing meaningful response messages to user's actions</li>
-                </ul>
-                <p>Vali is a free and responsive admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.</p>
-                <p>Vali is is light-weight, expendable and good looking theme. The theme has all the features required in a dashboard theme but this features are built like plug and play module. Take a look at the <a href="http://pratikborsadiya.in/blog/vali-admin" target="_blank">documentation</a> about customizing the theme colors and functionality.</p>
-                <p class="mt-4 mb-4"><a class="btn btn-primary mr-2 mb-2" href="http://pratikborsadiya.in/blog/vali-admin" target="_blank"><i class="fa fa-file"></i>Docs</a><a class="btn btn-info mr-2 mb-2" href="https://github.com/pratikborsadiya/vali-admin" target="_blank"><i class="fa fa-github"></i>GitHub</a><a class="btn btn-success mr-2 mb-2" href="https://github.com/pratikborsadiya/vali-admin/archive/master.zip" target="_blank"><i class="fa fa-download"></i>Download</a></p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="tile">
-                <h3 class="tile-title">Compatibility with frameworks</h3>
-                <p>This theme is not built for a specific framework or technology like Angular or React etc. But due to it's modular nature it's very easy to incorporate it into any front-end or back-end framework like Angular, React or Laravel.</p>
-                <p>Go to <a href="http://pratikborsadiya.in/blog/vali-admin" target="_blank">documentation</a> for more details about integrating this theme with various frameworks.</p>
-                <p>The source code is available on GitHub. If anything is missing or weird please report it as an issue on <a href="https://github.com/pratikborsadiya/vali-admin" target="_blank">GitHub</a>. If you want to contribute to this theme pull requests are always welcome.</p>
-            </div>
-        </div>
-    </div>
+
 @endsection
+@section('script')
+    <script src="{{asset('public/backend/plugins/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('public/backend/js/moment/moment.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/fullcalendar/core-4.3.1/main.js')}}"></script>
+    <script src="{{asset('public/backend/plugins/fullcalendar/daygrid-4.3.0/main.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['dayGrid'],
+                defaultView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'customPrev,customNext today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay',
+                },
+                customButtons: {
+                    customPrev: {
+                        text: 'Prev',
+                        icon: 'fas fa-chevron-left', // FontAwesome icon for previous
+                        click: function () {
+                            calendar.prev(); // Move to previous month
+                        }
+                    },
+                    customNext: {
+                        text: 'Next',
+                        icon: 'fas fa-chevron-right', // FontAwesome icon for next
+                        click: function () {
+                            calendar.next(); // Move to next month
+                        }
+                    }
+                },
+                firstDay: 5, // Ensures the calendar week starts on Friday
+                businessHours: {
+                    daysOfWeek: [0, 1, 2, 3, 4, 6],
+                },
+                timeZone: 'UTC',
+                themeSystem: 'bootstrap5',
+                height: 560,
+                dayMaxEvents: true,
+                weekdays: true,
+                weekends: true,
+                weekNumbers: true,
+                weekNumberCalculation: 'ISO',
+
+                events: [
+                        @foreach($events as $appointment)
+                    {
+                        id: '{{ $appointment->id }}',
+                        title: '{{ $appointment->title }}',
+                        description: '{{ $appointment->description }}',
+                        start: '{{ $appointment->start }}',
+                        @if($appointment->end)
+                        end: moment('{{ $appointment->end }}').add(1, 'day').format('YYYY-MM-DD'), // Add 1 day to end date
+                        @endif
+                        display: 'background',
+                        color: '#edbb99 ',
+                        textColor: 'lightyellow',
+                    },
+                    @endforeach
+                ],
+                eventClick: function (info) {
+                    $('#eventId').val(info.event.id);
+                    $('#update_title').val(info.event.title);
+                    $('#update_start_date').val(moment(info.event.start).format('YYYY-MM-DD'));
+                    if (info.event.end) {
+                        $('#update_end_date').val(moment(info.event.end).format('YYYY-MM-DD'));
+                    }
+                    $('#update_description').text(info.event.extendedProps.description);
+                    $('#editModal').modal();
+                }
+            });
+
+            calendar.render();
+
+            // Add event functionality
+            $('#add-event').on('click', function () {
+                var title = $('#title').val();
+                var start = $('#start_date').val();
+                var end = $('#end_date').val();
+                var baseUrl = "{{ url('admin/store-event') }}";
+
+                // Make an AJAX request to store the event
+                $.ajax({
+                    url: baseUrl,
+                    type: 'POST',
+                    data: {
+                        title: title,
+                        start: start,
+                        end: end,
+                        description: $('#description').val(),
+                        _token: '{{ csrf_token() }}' // Include CSRF token for Laravel
+                    },
+                    success: function (response) {
+                        toastr.success(response.message, response['alert-type']);
+                        $('#modal-add-event').modal('hide');
+
+                        // Add the event to the calendar view
+                        calendar.addEvent({
+                            id: response.id,
+                            title: title,
+                            start: start,
+                            end: end,
+                            description: $('#description').val()
+                        });
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        toastr.error(xhr.responseText, 'Error');
+                    }
+                });
+            });
+        });
+    </script>
+@endsection
+

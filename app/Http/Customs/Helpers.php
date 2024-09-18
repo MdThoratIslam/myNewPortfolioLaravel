@@ -3,19 +3,20 @@
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+
 function get_division($id = null)
 {
-//    $apiUrl = 'https://ekdak.com/thikana/pocode/divisions';
-//    $apiToken = '1c4dc27192141d9c2e674b52e3bf8ae0d0afc3bd';
-//    $response = Http::withHeaders(['Authorization' => 'Token ' . $apiToken,])->get($apiUrl);
-//    if ($response->successful())
-//    {
-//        $data = $response->json();
+    //    $apiUrl = 'https://ekdak.com/thikana/pocode/divisions';
+    //    $apiToken = '1c4dc27192141d9c2e674b52e3bf8ae0d0afc3bd';
+    //    $response = Http::withHeaders(['Authorization' => 'Token ' . $apiToken,])->get($apiUrl);
+    //    if ($response->successful())
+    //    {
+    //        $data = $response->json();
     $divisions = \App\Models\Divisions\Divisions::select('en_name')->where('id', $id)->first();
 
     if($id != null)
         {
-//            $divisions = collect($data['data'])->where('id', $id)->first();
+    //            $divisions = collect($data['data'])->where('id', $id)->first();
 
             return $divisions[$id];
         }else
@@ -23,10 +24,10 @@ function get_division($id = null)
             //return collect($data['data']); // Make sure this is returning a collection of objects
             return $divisions; // Make sure this is returning a collection of objects
         }
-//    } else
-//    {
-//        return 'Division not found';
-//    }
+    //    } else
+    //    {
+    //        return 'Division not found';
+    //    }
 }
 function get_district($id = null, $division_id = null)
 {
@@ -81,7 +82,6 @@ function get_police_station($id = null,$district_id = null)
         return 'Police Station not found';
     }
 }
-
 function get_post_office($id = null,$police_station_id = null)
 {
     if($police_station_id != null)
@@ -159,7 +159,6 @@ function blood_group($id = null)
         return $blood_group;
     }
 }
-
 function status_active ($id = null)
 {
     $status_active =
@@ -191,13 +190,11 @@ function gender ($id = null)
         return $gender;
     }
 }
-
-
 function currentDateTime()
 {
     return Carbon::now()->timezone('Asia/Dhaka')->format('Y-m-d H:i:s');
 }
- function isActiveSubMenu($subModules) {
+function isActiveSubMenu($subModules) {
     foreach ($subModules as $submenu) {
         if (request()->routeIs($submenu->route)) {
             return true;
@@ -205,7 +202,6 @@ function currentDateTime()
     }
     return false;
 }
-
 function departmentArr ($id = null)
 {
     $departmentArr = [
@@ -221,8 +217,6 @@ function departmentArr ($id = null)
         return $departmentArr;
     }
 }
-
-
 function designationArr($id = null)
 {
     $designationArr = [
@@ -244,8 +238,6 @@ function designationArr($id = null)
         return $designationArr;
     }
 }
-
-
 function relationArr ($id = null)
 {
     $relationArr = [
@@ -259,7 +251,6 @@ function relationArr ($id = null)
         return $relationArr;
     }
 }
-
 function maritalStatusArr ($id = null)
 {
     $maritalStatusArr = [
@@ -276,7 +267,6 @@ function maritalStatusArr ($id = null)
         return $maritalStatusArr;
     }
 }
-
 function religionArr ($id = null)
 {
     $religionArr = [
@@ -340,7 +330,6 @@ function religionArr ($id = null)
         return $religionArr;
     }
 }
-
 function nationalityArr ($id = null)
 {
     $nationalityArr = [
@@ -380,53 +369,67 @@ function isDeleteArr($id = null)
         return $isDeleteArr;
     }
 }
-
-
-
- function userTypeArr($id = null)
- {
-     $userTypeArr = [
-         1 => "Admin",
-         2 => "User",
-     ];
-     if($id != null)
-     {
-         return $userTypeArr[$id];
-     }else
-     {
-         return $userTypeArr;
-     }
- }
- function purpose($id = null)
- {
-     $purpose =[
-         1  =>  'Salary',
-         2  =>  'Loan',
-     ];
-     if ($id != null){
-         return $purpose[$id];
-     }else{
-         return $purpose;
-     }
- }
-
+function userTypeArr($id = null)
+{
+    $userTypeArr = [
+        1 => "Admin",
+        2 => "User",
+    ];
+    if($id != null)
+    {
+        return $userTypeArr[$id];
+    }else
+    {
+        return $userTypeArr;
+    }
+}
+function purpose($id = null)
+{
+    $purpose =[
+        1  =>  'Salary',
+        2  =>  'Loan',
+    ];
+    if ($id != null){
+        return $purpose[$id];
+    }else{
+        return $purpose;
+    }
+}
 function routeType($id = null)
 {
-    $routeType = [
-        0  =>  'Section Title',
-        1  =>  'Single Route',
-        2  =>  'Root Route',
+    $routeType =
+    [
+        0       =>  'Section Title',
+        1       =>  'Single Route',
+        2       =>  'Root Route',
     ];
-
-    // Check if the id is present in the array and return the value
-    // If not, return a default string
-    if ($id !== null && array_key_exists($id, $routeType)) {
+    if ($id !== null && array_key_exists($id, $routeType))
+    {
         return $routeType[$id];
     } else {
         return 'Unknown Route Type'; // Default value
     }
 }
-
+function priority($id = null)
+{
+    $priority = [
+        0  => 'Unknown',
+        1  => 'Critical',
+        2  => 'High Priority',
+        3  => 'Neutral',
+        4  => 'Low Priority',
+        5  => 'Very Low Priority',
+        6  => 'Non Urgent',
+        7  => 'Informational',
+        8  => 'Optional',
+    ];
+    if ($id !== null && array_key_exists($id, $priority))
+    {
+        return $priority[$id];
+    } else {
+        return 'Unknown Priority'; // Default value if ID is not found
+    }
+}
 if (! function_exists('convert_to_absolute_path')) {
     function convert_to_absolute_path($relativePath) {
         return public_path($relativePath);

@@ -48,9 +48,10 @@
                             </a>
                         </li>
                     @elseif($module->route_type == 2)
+
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#module-{{ $module->id }}" class="collapsed" aria-expanded="false">
-                                <i class="fas fa-layer-group"></i>
+                                <i class="{{ $module->icon }}"></i>
                                 <p>{{ ucfirst($module->name) }}</p>
                                 <span class="caret"></span>
                             </a>
@@ -69,7 +70,7 @@
                     @elseif($module->route_type == 3)
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#module-{{ $module->id }}" class="collapsed" aria-expanded="false">
-                                <i class="fas fa-layer-group"></i>
+                                <i class="{{ $module->icon }}"></i>
                                 <p>{{ ucfirst($module->name) }}</p>
                                 <span class="caret"></span>
                             </a>

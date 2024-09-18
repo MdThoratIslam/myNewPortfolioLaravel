@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
                     'message'       => 'Successfully logged in',
                     'alert-type'    => 'success'
                 ];
-                Log::success('User logged in successfully: ' . Auth::user()->email);
+                Log::info('User logged in successfully: ' . Auth::user()->email);
                 return redirect()->intended(RouteServiceProvider::HOME)->with($notification);
             } else {
                 $notification = [

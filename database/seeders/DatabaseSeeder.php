@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             UserPersonalDetailSeeder::class,
             PricingSeeder::class,
             PricingDetailsSeeder::class,
-            PostOfficeSeeder::class
+            PostOfficeSeeder::class,
+            TrainingSummarySeeder::class
         ]);
     }
 }
