@@ -434,7 +434,7 @@ Docs & License: https://fullcalendar.io/
                 ;
                 (levels[j] || (levels[j] = [])).push(seg);
             }
-            // order segments left-to-right. very important if calender is RTL
+            // order segments left-to-right. very important if events is RTL
             for (j = 0; j < levels.length; j++) {
                 levels[j].sort(compareDaySegCols);
             }

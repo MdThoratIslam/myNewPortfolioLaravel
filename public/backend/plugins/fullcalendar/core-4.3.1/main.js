@@ -1355,7 +1355,7 @@ Docs & License: https://fullcalendar.io/
     }
     // retrieves events that have the same groupId as the instance specified by `instanceId`
     // or they are the same as the instance.
-    // why might instanceId not be in the store? an event from another calender?
+    // why might instanceId not be in the store? an event from another events?
     function getRelevantEvents(eventStore, instanceId) {
         var instance = eventStore.instances[instanceId];
         if (instance) {
@@ -2719,14 +2719,14 @@ Docs & License: https://fullcalendar.io/
                 }
             }
             // allow (a function)
-            var calendarEventStore = calendar.state.eventStore; // need global-to-calender, not local to components (splittable)state
+            var calendarEventStore = calendar.state.eventStore; // need global-to-events, not local to components (splittable)state
             for (var _i = 0, _a = subjectConfig.allows; _i < _a.length; _i++) {
                 var subjectAllow = _a[_i];
                 var subjectDateSpan = __assign({}, dateSpanMeta, { range: subjectInstance.range, allDay: subjectDef.allDay });
                 var origDef = calendarEventStore.defs[subjectDef.defId];
                 var origInstance = calendarEventStore.instances[subjectInstanceId];
                 var eventApi = void 0;
-                if (origDef) { // was previously in the calender
+                if (origDef) { // was previously in the events
                     eventApi = new EventApi(calendar, origDef, origInstance);
                 }
                 else { // was an external event
@@ -3296,7 +3296,7 @@ Docs & License: https://fullcalendar.io/
         Splitter.prototype._splitInteraction = function (interaction) {
             var splitStates = {};
             if (interaction) {
-                var affectedStores_1 = this._splitEventStore(interaction.affectedEvents, this._getKeysForEventDefs(interaction.affectedEvents) // can't use cached. might be events from other calender
+                var affectedStores_1 = this._splitEventStore(interaction.affectedEvents, this._getKeysForEventDefs(interaction.affectedEvents) // can't use cached. might be events from other events
                 );
                 // can't rely on defKeys because event data is mutated
                 var mutatedKeysByDefId = this._getKeysForEventDefs(interaction.mutatedEvents);
@@ -3339,7 +3339,7 @@ Docs & License: https://fullcalendar.io/
         return stuff;
     }
 
-    // Generates HTML for an anchor to another view into the calender.
+    // Generates HTML for an anchor to another view into the events.
     // Will either generate an <a> tag or a non-clickable <span> tag, depending on enabled settings.
     // `gotoOptions` can either be a DateMarker, or an object with the form:
     // { date, type, forceOff }
@@ -4002,7 +4002,7 @@ Docs & License: https://fullcalendar.io/
         };
         // Triggering
         // -----------------------------------------------------------------------------------------------------------------
-        // TODO: move to calender
+        // TODO: move to events
         DateComponent.prototype.publiclyTrigger = function (name, args) {
             var calendar = this.calendar;
             return calendar.publiclyTrigger(name, args);
@@ -4677,7 +4677,7 @@ Docs & License: https://fullcalendar.io/
             }
             this.compute();
         };
-        // Computes the flattened options hash for the calender and assigns to `this.options`.
+        // Computes the flattened options hash for the events and assigns to `this.options`.
         // Assumes this.overrides and this.dynamicOverrides have already been initialized.
         OptionsManager.prototype.compute = function () {
             // TODO: not a very efficient system
@@ -6066,7 +6066,7 @@ Docs & License: https://fullcalendar.io/
                                     (buttonIcon = theme.getIconClass(buttonName)) ||
                                     (buttonText = viewSpec.buttonTextDefault);
                             }
-                            else if (calendar[buttonName]) { // a calender method
+                            else if (calendar[buttonName]) { // a events method
                                 buttonClick = function () {
                                     calendar[buttonName]();
                                 };
@@ -6345,7 +6345,7 @@ Docs & License: https://fullcalendar.io/
     }(Component));
     // Title and Date Formatting
     // -----------------------------------------------------------------------------------------------------------------
-    // Computes what the title at the top of the calender should be for this view
+    // Computes what the title at the top of the events should be for this view
     function computeTitle(dateProfile, viewOptions) {
         var range;
         // for views that span a large unit of time, show the proper interval, ignoring stray days before and after

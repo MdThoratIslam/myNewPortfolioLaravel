@@ -37,16 +37,9 @@ use App\Http\Controllers\backend\Module\ModuleController;
 
     Route::get('/get_data/',                [PDFController::class, 'get_data'])->name('get_data');
 
-
-
-
-
-Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
-Route::get('/downloadCV', [PDFController::class, 'downloadCV'])->name('downloadCV');
-Route::post('/downloadCV', [PDFController::class, 'downloadReason'])->name('downloadReason');
-
-
-
+    Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
+    Route::get('/downloadCV', [PDFController::class, 'downloadCV'])->name('downloadCV');
+    Route::post('/downloadCV', [PDFController::class, 'downloadReason'])->name('downloadReason');
 
     Route::get('/pusher',                   [WebController::class, 'pusher'])->name('pusher');
     //Route::resource('order',                'OrderController')->only(['store']);
@@ -104,11 +97,8 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
 
     Route::get ('/mail-compose',            [MailController::class,'mailform'])->name('mail.compose');
     Route::post ('/mail-send',              [MailController::class,'maildata'])->name('mail.send');
-    //   =============================== Calender=======================================================================
-    Route::get('/fullcalender',             [EventsController::class, 'index'])->name('fullcalender');
-    Route::post('/store-event',             [EventsController::class, 'store']);
-    Route::post('/event-update',            [EventsController::class, 'update']);
-    Route::post('/delete-event',            [EventsController::class, 'destroy']);
+    //   =============================== Events =======================================================================
+    Route::resource('events', EventsController::class);
 
     //============================= Visitor ============================================================================
     Route::get('visitor' ,                  [DashboardController::class, 'visitor'])->name('visitor');

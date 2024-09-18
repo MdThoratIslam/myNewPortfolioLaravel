@@ -7,13 +7,52 @@ use App\Http\Requests\Events\StoreEventsRequest;
 use App\Http\Requests\Events\UpdateEventsRequest;
 use App\Models\Events\Events;
 use App\UseHelpers;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\DataTables;
+use Illuminate\Contracts\Pagination;
 class EventsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $events = Events::where('status_active', 1)->where('is_delete', 0)->get();
-        return view('backend.pages.calender.index', compact('events'));
+        if ($request->ajax())
+        {
+            // Get the current month and year
+            $currentMonth = Carbon::now()->month;
+            $currentYear = Carbon::now()->year;
+
+            // Query to filter events that are within the current month and year
+            $query = Events::where('status_active', 1)
+                ->where('is_delete', 0)
+                //->whereMonth('start', $currentMonth)
+                ->whereYear('start', $currentYear)
+                ->orderBy('start', 'asc');
+            return DataTables::of($query)
+                ->addIndexColumn()
+                // start date value is formatted as 'd-m-Y H:i' (e.g. 01-01-2022 00:00)
+                ->editColumn('start', function ($row) {
+                    return Carbon::parse($row->start)->format('d-M-Y');
+                })
+                // end date value is formatted as 'd-m-Y H:i' (e.g. 01-01-2022 00:00)
+                ->editColumn('end', function ($row) {
+                    return Carbon::parse($row->end)->format('d-M-Y');
+                })
+                ->addColumn('action', function ($row) {
+                    return view('backend.pages.events.partials.actions', ['event' => $row])->render();
+                })
+                ->rawColumns(['action']) // To allow HTML rendering in the action column
+                ->make(true);
+
+        }
+
+        return view('backend.pages.events.index');
+    }
+
+    public function create()
+    {
+        return view('backend.pages.events.create');
     }
     public function store(StoreEventsRequest $request)
     {
@@ -46,6 +85,20 @@ class EventsController extends Controller
             return response()->json($notification);
         }
     }
+    public function edit(Request $request)
+    {
+        dd($request->id);
+        $event = Events::where('id', $request->id)->first();
+        if (!$event)
+        {
+            $notification = [
+                'message' => 'Event not found',
+                'alert-type' => 'error'
+            ];
+            return redirect()->route('events.index')->with($notification);
+        }
+        return view('backend.pages.events.edit', compact('event'));
+    }
     public function update(UpdateEventsRequest $request)
     {
         try {
@@ -61,7 +114,7 @@ class EventsController extends Controller
             }
             // Update the event update_by and updated_at fields with the current user and time respectively
             $validatedData['updated_by'] = auth()->user()->id;
-            $validatedData['updated_at'] = UseHelpers::currentDateTime();
+            $validatedData['updated_at'] = currentDateTime();
             $event->update($validatedData);
 
             $notification = [

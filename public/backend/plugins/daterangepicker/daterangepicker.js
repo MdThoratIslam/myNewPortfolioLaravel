@@ -100,13 +100,13 @@
             options.template =
             '<div class="daterangepicker">' +
                 '<div class="ranges"></div>' +
-                '<div class="drp-calender left">' +
-                    '<div class="calender-table"></div>' +
-                    '<div class="calender-time"></div>' +
+                '<div class="drp-events left">' +
+                    '<div class="events-table"></div>' +
+                    '<div class="events-time"></div>' +
                 '</div>' +
-                '<div class="drp-calender right">' +
-                    '<div class="calender-table"></div>' +
-                    '<div class="calender-time"></div>' +
+                '<div class="drp-events right">' +
+                    '<div class="events-table"></div>' +
+                    '<div class="events-time"></div>' +
                 '</div>' +
                 '<div class="drp-buttons">' +
                     '<span class="drp-selected"></span>' +
@@ -366,7 +366,7 @@
         if (!this.timePicker) {
             this.startDate = this.startDate.startOf('day');
             this.endDate = this.endDate.endOf('day');
-            this.container.find('.calender-time').hide();
+            this.container.find('.events-time').hide();
         }
 
         //can't be used together for now
@@ -382,16 +382,16 @@
 
         if (this.singleDatePicker) {
             this.container.addClass('single');
-            this.container.find('.drp-calender.left').addClass('single');
-            this.container.find('.drp-calender.left').show();
-            this.container.find('.drp-calender.right').hide();
+            this.container.find('.drp-events.left').addClass('single');
+            this.container.find('.drp-events.left').show();
+            this.container.find('.drp-events.right').hide();
             if (!this.timePicker) {
                 this.container.addClass('auto-apply');
             }
         }
 
         if ((typeof options.ranges === 'undefined' && !this.singleDatePicker) || this.alwaysShowCalendars) {
-            this.container.addClass('show-calender');
+            this.container.addClass('show-events');
         }
 
         this.container.addClass('opens' + this.opens);
@@ -409,7 +409,7 @@
         // event listeners
         //
 
-        this.container.find('.drp-calender')
+        this.container.find('.drp-events')
             .on('click.daterangepicker', '.prev', $.proxy(this.clickPrev, this))
             .on('click.daterangepicker', '.next', $.proxy(this.clickNext, this))
             .on('mousedown.daterangepicker', 'td.available', $.proxy(this.clickDate, this))
@@ -525,9 +525,9 @@
                 this.renderTimePicker('left');
                 this.renderTimePicker('right');
                 if (!this.endDate) {
-                    this.container.find('.right .calender-time select').attr('disabled', 'disabled').addClass('disabled');
+                    this.container.find('.right .events-time select').attr('disabled', 'disabled').addClass('disabled');
                 } else {
-                    this.container.find('.right .calender-time select').removeAttr('disabled').removeClass('disabled');
+                    this.container.find('.right .events-time select').removeAttr('disabled').removeClass('disabled');
                 }
             }
             if (this.endDate)
@@ -612,7 +612,7 @@
         renderCalendar: function(side) {
 
             //
-            // Build the matrix of dates that will populate the calender
+            // Build the matrix of dates that will populate the events
             //
 
             var calendar = side == 'left' ? this.leftCalendar : this.rightCalendar;
@@ -629,7 +629,7 @@
             var daysInLastMonth = moment([lastYear, lastMonth]).daysInMonth();
             var dayOfWeek = firstDay.day();
 
-            //initialize a 6 rows x 7 columns array for the calender
+            //initialize a 6 rows x 7 columns array for the events
             var calendar = [];
             calendar.firstDay = firstDay;
             calendar.lastDay = lastDay;
@@ -638,7 +638,7 @@
                 calendar[i] = [];
             }
 
-            //populate the calender with date objects
+            //populate the events with date objects
             var startDay = daysInLastMonth - dayOfWeek + this.locale.firstDay + 1;
             if (startDay > daysInLastMonth)
                 startDay -= 7;
@@ -667,7 +667,7 @@
 
             }
 
-            //make the calender object available to hoverDate/clickDate
+            //make the events object available to hoverDate/clickDate
             if (side == 'left') {
                 this.leftCalendar.calendar = calendar;
             } else {
@@ -675,7 +675,7 @@
             }
 
             //
-            // Display the calender
+            // Display the events
             //
 
             var minDate = side == 'left' ? this.minDate : this.startDate;
@@ -784,7 +784,7 @@
                     if (calendar[row][col].isoWeekday() > 5)
                         classes.push('weekend');
 
-                    //grey out the dates in other months displayed at beginning and end of this calender
+                    //grey out the dates in other months displayed at beginning and end of this events
                     if (calendar[row][col].month() != calendar[1][1].month())
                         classes.push('off');
 
@@ -839,7 +839,7 @@
             html += '</tbody>';
             html += '</table>';
 
-            this.container.find('.drp-calender.' + side + ' .calender-table').html(html);
+            this.container.find('.drp-events.' + side + ' .events-table').html(html);
 
         },
 
@@ -862,7 +862,7 @@
                 minDate = this.startDate;
 
                 //Preserve the time already selected
-                var timeSelector = this.container.find('.drp-calender.right .calender-time');
+                var timeSelector = this.container.find('.drp-events.right .events-time');
                 if (timeSelector.html() != '') {
 
                     selected.hour(selected.hour() || timeSelector.find('.hourselect option:selected').val());
@@ -1000,7 +1000,7 @@
                 html += '</select>';
             }
 
-            this.container.find('.drp-calender.' + side + ' .calender-time').html(html);
+            this.container.find('.drp-events.' + side + ' .events-time').html(html);
 
         },
 
@@ -1142,20 +1142,20 @@
                 e.type == "focusin" ||
                 target.closest(this.element).length ||
                 target.closest(this.container).length ||
-                target.closest('.calender-table').length
+                target.closest('.events-table').length
                 ) return;
             this.hide();
             this.element.trigger('outsideClick.daterangepicker', this);
         },
 
         showCalendars: function() {
-            this.container.addClass('show-calender');
+            this.container.addClass('show-events');
             this.move();
             this.element.trigger('showCalendar.daterangepicker', this);
         },
 
         hideCalendars: function() {
-            this.container.removeClass('show-calender');
+            this.container.removeClass('show-events');
             this.element.trigger('hideCalendar.daterangepicker', this);
         },
 
@@ -1181,7 +1181,7 @@
         },
 
         clickPrev: function(e) {
-            var cal = $(e.target).parents('.drp-calender');
+            var cal = $(e.target).parents('.drp-events');
             if (cal.hasClass('left')) {
                 this.leftCalendar.month.subtract(1, 'month');
                 if (this.linkedCalendars)
@@ -1193,7 +1193,7 @@
         },
 
         clickNext: function(e) {
-            var cal = $(e.target).parents('.drp-calender');
+            var cal = $(e.target).parents('.drp-events');
             if (cal.hasClass('left')) {
                 this.leftCalendar.month.add(1, 'month');
             } else {
@@ -1212,7 +1212,7 @@
             var title = $(e.target).attr('data-title');
             var row = title.substr(1, 1);
             var col = title.substr(3, 1);
-            var cal = $(e.target).parents('.drp-calender');
+            var cal = $(e.target).parents('.drp-events');
             var date = cal.hasClass('left') ? this.leftCalendar.calendar[row][col] : this.rightCalendar.calendar[row][col];
 
             //highlight the dates between the start date and the date being hovered as a potential end date
@@ -1220,7 +1220,7 @@
             var rightCalendar = this.rightCalendar;
             var startDate = this.startDate;
             if (!this.endDate) {
-                this.container.find('.drp-calender tbody td').each(function(index, el) {
+                this.container.find('.drp-events tbody td').each(function(index, el) {
 
                     //skip week numbers, only look at dates
                     if ($(el).hasClass('week')) return;
@@ -1228,7 +1228,7 @@
                     var title = $(el).attr('data-title');
                     var row = title.substr(1, 1);
                     var col = title.substr(3, 1);
-                    var cal = $(el).parents('.drp-calender');
+                    var cal = $(el).parents('.drp-events');
                     var dt = cal.hasClass('left') ? leftCalendar.calendar[row][col] : rightCalendar.calendar[row][col];
 
                     if ((dt.isAfter(startDate) && dt.isBefore(date)) || dt.isSame(date, 'day')) {
@@ -1249,7 +1249,7 @@
             var title = $(e.target).attr('data-title');
             var row = title.substr(1, 1);
             var col = title.substr(3, 1);
-            var cal = $(e.target).parents('.drp-calender');
+            var cal = $(e.target).parents('.drp-events');
             var date = cal.hasClass('left') ? this.leftCalendar.calendar[row][col] : this.rightCalendar.calendar[row][col];
 
             //
@@ -1360,9 +1360,9 @@
         },
 
         monthOrYearChanged: function(e) {
-            var isLeft = $(e.target).closest('.drp-calender').hasClass('left'),
+            var isLeft = $(e.target).closest('.drp-events').hasClass('left'),
                 leftOrRight = isLeft ? 'left' : 'right',
-                cal = this.container.find('.drp-calender.'+leftOrRight);
+                cal = this.container.find('.drp-events.'+leftOrRight);
 
             // Month must be Number for new moment versions
             var month = parseInt(cal.find('.monthselect').val(), 10);
@@ -1403,7 +1403,7 @@
 
         timeChanged: function(e) {
 
-            var cal = $(e.target).closest('.drp-calender'),
+            var cal = $(e.target).closest('.drp-events'),
                 isLeft = cal.hasClass('left');
 
             var hour = parseInt(cal.find('.hourselect').val(), 10);

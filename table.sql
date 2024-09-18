@@ -596,7 +596,7 @@ INSERT INTO `modules` (`id`, `name`, `description`, `icon`, `route`, `route_type
 	(2, 'Personal Details', NULL, NULL, NULL, 0, 0, 1, 0, 1, NULL, '2024-09-04 08:44:41', NULL),
 	(3, 'User Management', NULL, ' mdi mdi-account-details', NULL, 2, 2, 1, 0, 1, NULL, '2024-09-04 08:44:41', NULL),
 	(4, 'email', NULL, 'mdi mdi-email-box', NULL, 2, 3, 1, 0, 1, NULL, '2024-09-04 08:44:41', NULL),
-	(5, 'calender', NULL, 'mdi mdi-calender-check', 'fullcalender', 1, 5, 1, 0, 1, NULL, '2024-09-04 08:44:41', NULL),
+	(5, 'events', NULL, 'mdi mdi-events-check', 'fullcalender', 1, 5, 1, 0, 1, NULL, '2024-09-04 08:44:41', NULL),
 	(6, 'Visitor', NULL, 'mdi mdi-walk', 'visitor', 1, 7, 1, 0, 1, NULL, '2024-09-04 08:44:41', NULL),
 	(7, 'Money', NULL, 'mdi mdi-cash', NULL, 2, 4, 1, 0, 1, NULL, '2024-09-04 08:44:41', NULL),
 	(8, 'Modules', NULL, 'mdi mdi-menu', NULL, 2, 6, 1, 0, 1, NULL, '2024-09-04 08:44:41', NULL);

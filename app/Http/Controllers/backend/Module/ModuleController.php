@@ -37,7 +37,7 @@ class ModuleController extends Controller
 
     public function index()
     {
-        return view('backend.pages.settings.modules.index');
+        return view('backend.pages.modules.index');
     }
 
 //    public function getModules(Request $request)
@@ -86,7 +86,7 @@ class ModuleController extends Controller
             ->addColumn('sl_no', function ($module) use (&$i) {return ++$i;})
             ->addColumn('route_type', function ($module){return routeType($module->route_type);})
             ->addColumn('priority', function($module){return priority($module->priority);})
-            ->addColumn('action', function ($module){return view('backend.pages.settings.modules.partials.actions', compact('module'))->render();})
+            ->addColumn('action', function ($module){return view('backend.pages.modules.partials.actions', compact('module'))->render();})
             ->rawColumns(['action'])->make(true);
         }
     }
@@ -112,7 +112,7 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
-        //
+        dd($module);
     }
 
     /**
@@ -137,8 +137,7 @@ class ModuleController extends Controller
     public function destroy($id)
     {
         $module = Module::findOrFail($id);
-        //$module->delete();
-
+        $module->delete();
         return response()->json(['success' => 'Module deleted successfully.']);
     }
 }

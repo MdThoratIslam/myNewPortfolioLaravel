@@ -30,7 +30,7 @@
                         </div>
                         <div class="modal-body">
                             <p class="small">Create a new row using this form, make sure you fill them all</p>
-                            <form>
+                            <form action="{{route('modules.store')}}" method="POST">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group form-group-default">
@@ -54,7 +54,7 @@
                             </form>
                         </div>
                         <div class="modal-footer border-0">
-                            <button type="button" id="addRowButton" class="btn btn-primary">Add</button>
+                            <button type="submit" id="addRowButton" class="btn btn-primary">Add</button>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
