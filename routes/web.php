@@ -14,6 +14,7 @@ use App\Http\Controllers\backend\Mail\MailController;
 use App\Http\Controllers\EarningMoneyController;
 use App\Http\Controllers\ExpansiveController;
 use App\Http\Controllers\backend\Module\ModuleController;
+use App\Http\Controllers\Visitor\VisitorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,8 +102,8 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
     Route::resource('events', EventsController::class);
 
     //============================= Visitor ============================================================================
-    Route::get('visitor' ,                  [DashboardController::class, 'visitor'])->name('visitor');
-    Route::get('/visitors/data',            [DashboardController::class, 'getVisitors'])->name('visitors.data');
+    Route::get('/visitor',                      [VisitorController::class, 'index'])->name('visitor');
+    Route::get('/visitors/data',                [VisitorController::class, 'getVisitors'])->name('visitors.data');
     //==================================================================================================================
 
     // =========================== Modules =============================================================================

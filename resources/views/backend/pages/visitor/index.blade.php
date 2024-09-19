@@ -3,7 +3,7 @@
 @section('content')
     <div class="app-title">
         <div>
-            <h1><i class="fa fa-server"></i> Visitor</h1>
+            <h1><i class="fas fa-server"></i> Visitor</h1>
             <p>Start a beautiful journey here</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
@@ -58,20 +58,23 @@
                     type: 'GET'
                 },
                 columns: [
-                    { data: 'ip_address', name: 'ip_address' },
-                    { data: 'server_name', name: 'server_name' },
-                    { data: 'server_software', name: 'server_software' },
-                    { data: 'server_request_uri', name: 'server_request_uri' },
-                    { data: 'server_port', name: 'server_port' },
-                    { data: 'server_request_method', name: 'server_request_method' },
-                    { data: 'server_request_time', name: 'server_request_time' },
-                    { data: 'created_at', name: 'created_at' },
-
-
-                    { data: 'action', name: 'action', orderable: false, searchable: false }
+                    { data: 'ip_address',               name: 'ip_address' },
+                    { data: 'server_name',              name: 'server_name' },
+                    { data: 'server_software',          name: 'server_software' },
+                    { data: 'server_request_uri',       name: 'server_request_uri' },
+                    { data: 'server_port',              name: 'server_port' },
+                    { data: 'server_request_method',    name: 'server_request_method' },
+                    { data: 'server_request_time',      name: 'server_request_time' ,
+                        "render": function (data)
+                        {
+                            return moment.unix(data).format('h:mm:ss A');
+                        }
+                    },
+                    { data: 'created_at',               name: 'created_at' },
+                    { data: 'action',                   name: 'action', orderable: false, searchable: false }
                 ],
                 lengthMenu: [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
-                pageLength: 5,
+                pageLength: 10,
                 order: [[7, "desc"]],
                 language: {
                     search: "_INPUT_",
