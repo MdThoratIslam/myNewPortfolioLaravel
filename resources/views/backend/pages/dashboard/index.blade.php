@@ -134,22 +134,7 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay',
                 },
-                customButtons: {
-                    customPrev: {
-                        text: 'Prev',
-                        icon: 'fas fa-chevron-left', // FontAwesome icon for previous
-                        click: function () {
-                            calendar.prev(); // Move to previous month
-                        }
-                    },
-                    customNext: {
-                        text: 'Next',
-                        icon: 'fas fa-chevron-right', // FontAwesome icon for next
-                        click: function () {
-                            calendar.next(); // Move to next month
-                        }
-                    }
-                },
+                
                 firstDay: 5, // Ensures the calendar week starts on Friday
                 businessHours: {
                     daysOfWeek: [0, 1, 2, 3, 4, 6],
@@ -192,6 +177,8 @@
             });
 
             calendar.render();
+            $('.fc-prev-button').html('<i class="fas fa-angle-double-left"></i>');
+            $('.fc-next-button').html('<i class="fas fa-angle-double-right"></i>');
 
             // Add event functionality
             $('#add-event').on('click', function () {

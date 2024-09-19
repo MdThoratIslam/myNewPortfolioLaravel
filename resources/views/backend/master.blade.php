@@ -9,13 +9,7 @@
         @if (config('app.name')){{ config('app.name') }} | @endif @yield('title')
     </title>
     <meta content="" name="Md Thorat Islam" />
-
-    <link
-        rel="icon"
-        href="{{asset('public/backend/v2/assets/img/kaiadmin/favicon.ico')}}"
-        type="image/x-icon"
-    />
-
+    <link rel="icon" href="{{asset('public/backend/v2/assets/img/kaiadmin/favicon.ico')}}" type="image/x-icon"/>
     <!-- Fonts and icons -->
     <script src="{{asset('public/backend/v2/assets/js/plugin/webfont/webfont.min.js')}}"></script>
     <script>
@@ -41,8 +35,7 @@
     <link rel="stylesheet" href="{{asset('public/backend/v2/assets/css/plugins.min.css')}}" />
     <link rel="stylesheet" href="{{asset('public/backend/v2/assets/css/kaiadmin.min.css')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('public/backend/v2/assets/css/demo.css')}}" />
     <style>
         /* Customize FullCalendar toolbar button styles */
