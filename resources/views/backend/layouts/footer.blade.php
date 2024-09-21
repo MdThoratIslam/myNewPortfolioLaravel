@@ -1,166 +1,115 @@
-<footer class="footer mt-auto" >
-    <div class="copyright bg-white">
-        <p>Copyright
-            &copy; <span id="copy-year"></span>,
-{{--            Copyright Mono Dashboard Bootstrap Template by--}}
 
-            <a class="text-primary" href="" target="_blank" >Md Thorat Islam</a>.
-        </p>
-    </div>
-    <script>
-        var d = new Date();
-        var year = d.getFullYear();
-        // var date = new Date().getDate();
-        // months is full name show
-         var month = d.toLocaleString('default', { month: 'long' });
-        var date = d.getDate()+"-"+ month +"-"+ d.getFullYear();
-        document.getElementById("copy-year").innerHTML = date;
-    </script>
-</footer>
-</div>
-</div>
-<script src="{{asset('public/backend/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('public/backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('public/backend/plugins/simplebar/simplebar.min.js')}}"></script>
+<!--   Core JS Files   -->
+<script src="{{asset('public/backend/v2/assets/js/core/jquery-3.7.1.min.js')}}"></script>
+<script src="{{asset('public/backend/v2/assets/js/core/popper.min.js')}}"></script>
+<script src="{{asset('public/backend/v2/assets/js/core/bootstrap.min.js')}}"></script>
 
-{{--<script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>--}}
+{{--<!-- jQuery Scrollbar -->--}}
+<script src="{{asset('public/backend/v2/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
 
-<script src="{{asset('public/backend/plugins/apexcharts/apexcharts.js')}}"></script>
-<script src="{{asset('public/backend/plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('public/backend/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js')}}"></script>
-<script src="{{asset('public/backend/plugins/jvectormap/jquery-jvectormap-world-mill.js')}}"></script>
-<script src="{{asset('public/backend/plugins/jvectormap/jquery-jvectormap-us-aea.js')}}"></script>
+{{--<!-- Chart JS -->--}}
+<script src="{{asset('public/backend/v2/assets/js/plugin/chart.js/chart.min.js')}}"></script>
 
-<script src="{{asset('public/backend/plugins/select2/js/select2.min.js')}}"></script>
-<script src="{{asset('public/backend/plugins/select2/js/select2.full.min.js')}}"></script>
-<script src="{{asset('public/backend/plugins/daterangepicker/moment.min.js')}}"></script>
-<script src="{{asset('public/backend/plugins/daterangepicker/daterangepicker.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+{{--<!-- jQuery Sparkline -->--}}
+<script src="{{asset('public/backend/v2/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js')}}"></script>
 
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<script src="{{asset('public/backend/plugins/toaster/toastr.min.js')}}"></script>
-<script src="{{asset('public/backend/js/mono.js')}}"></script>
-<script src="{{asset('public/backend/js/chart.js')}}"></script>
-<script src="{{asset('public/backend/js/map.js')}}"></script>
-<script src="{{asset('public/backend/js/custom.js')}}"></script>
+{{--<!-- Chart Circle -->--}}
+<script src="{{asset('public/backend/v2/assets/js/plugin/chart-circle/circles.min.js')}}"></script>
 
-{{--<script src="{{asset('public/backend/js/calendar.js')}}"></script>--}}
-<!--  -->
-<script src="{{asset('public/backend/js/pusherJavaScripLibraryV8.2.0.js')}}"></script>
-{{--<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>--}}
+{{--<!-- Datatables -->--}}
+<script src="{{asset('public/backend/v2/assets/js/plugin/datatables/datatables.min.js')}}"></script>
+
+{{--<!-- Bootstrap Notify -->--}}
+<script src="{{asset('public/backend/v2/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+
+{{--<!-- jQuery Vector Maps -->--}}
+<script src="{{asset('public/backend/v2/assets/js/plugin/jsvectormap/jsvectormap.min.js')}}"></script>
+<script src="{{asset('public/backend/v2/assets/js/plugin/jsvectormap/world.js')}}"></script>
+
+{{--<!-- Sweet Alert -->--}}
+<script src="{{asset('public/backend/v2/assets/js/plugin/sweetalert/sweetalert.min.js')}}"></script>
+
+{{--<!-- Kaiadmin JS -->--}}
+<script src="{{asset('public/backend/v2/assets/js/kaiadmin.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
+
+
+{{--<!-- Kaiadmin DEMO methods, don't include it in your project! -->--}}
+<script src="{{asset('public/backend/v2/assets/js/setting-demo.js')}}"></script>
+<script src="{{asset('public/backend/v2/assets/js/demo.js')}}"></script>
 <script>
-
-</script>
-<script src="{{ asset('public/backend/js/edit_personal_details.js') }}"></script>
-<script>
-    NProgress.done();
+    
     @if(Session::has('message'))
-        toastr.options =
-        {
-            "closeButton"       : true,
-            "newestOnTop"       : true,
-            "progressBar"       : true,
-            "positionClass"     : "toast-top-right",
-            "preventDuplicates" : false,
-            "showDuration"      : "900",
-            "hideDuration"      : "1000",
-            "timeOut"           : "5000",
-            "extendedTimeOut"   : "1000",
-            "showEasing"        : "swing",
-            "hideEasing"        : "linear",
-            "className"         : "custom-toastr", // Set your custom CSS class here
-            "showMethod"        : "fadeIn",
-            "hideMethod"        : "fadeOut"
-        }
     var type = "{{ Session::get('alert-type', 'info') }}";
+    var message = "{!! Session::get('message') !!}";
+    var notifyType;
+
     switch(type)
     {
         case 'info':
-            toastr.info("{!! Session::get('message') !!} ");
+            notifyType = 'info';
             break;
 
         case 'warning':
-            toastr.warning("{!! Session::get('message') !!}");
+            notifyType = 'warning';
             break;
 
         case 'success':
-            toastr.success("{!! Session::get('message') !!}");
+            notifyType = 'success';
             break;
 
         case 'error':
-            toastr.error("{!! Session::get('message') !!}");
+            notifyType = 'danger';  // Note: 'danger' is often used instead of 'error' in notify
             break;
     }
-    @endif
-    jQuery(document).ready(function() {
-        jQuery('input[name="dateRange"]').daterangepicker({
-            autoUpdateInput: false,
-            singleDatePicker: true,
-            locale: {
-                cancelLabel: 'Clear'
-            }
-        });
-        jQuery('input[name="dateRange"]').on('apply.daterangepicker', function (ev, picker) {
-            jQuery(this).val(picker.startDate.format('MM/DD/YYYY'));
-        });
-        jQuery('input[name="dateRange"]').on('cancel.daterangepicker', function (ev, picker) {
-            jQuery(this).val('');
-        });
-    });
 
-    // =================== If web site contact form is submitted successfully then show toastr message by Pusher========
-    $(document).ready(function() {
-        var $contentContainer = $('#all');
-        var $emailCountElements = $('.email-count');
-        var currentCount = 0;
-
-        if ($emailCountElements.length > 0) {
-            var match = $emailCountElements.first().text().match(/\d+/);
-            if (match) {
-                currentCount = parseInt(match[0], 10);
-            }
+    $.notify({
+        icon: 'icon-check', // Use appropriate icon if available
+        title: 'Notification', // You can customize the title
+        message: message,
+    },{
+        type: notifyType,
+        placement: {
+            from: "top",   // You can adjust the placement
+            align: "right"
+        },
+        delay: 5000, // Same as timeOut in toastr
+        timer: 1000, // Same as extendedTimeOut in toastr
+        allow_dismiss: true,
+        newest_on_top: true,
+        animate: {
+            enter: 'animated fadeIn', // Customize animation classes
+            exit: 'animated fadeOut'
         }
-
-        // Enable Pusher logging for debugging (disable in production)
-        Pusher.logToConsole = true;
-
-        // Initialize Pusher
-        var pusher = new Pusher('e3601fec7e647f163555', {
-            cluster: 'ap1',
-            encrypted: true
-        });
-
-        // Subscribe to a Pusher channel
-        var channel = pusher.subscribe('channel-portfolio');
-
-        // Bind a function to handle the 'status-liked' event
-        channel.bind('status-liked', function(data) {
-            toastr.success('Notification: ' + data.data.message);
-            currentCount++;
-
-            $emailCountElements.text(`(${currentCount})`);
-
-            // Dynamically create the media element for the notification
-            var mediaHtml = `
-                <div class="media media-sm p-4 mb-0">
-                    <div class="media-sm-wrapper">
-                        <a href="user-profile.html"><img src="${data.data.imageUrl}" alt="User Image" style="width: 50px; height: 50px;"></a>
-                    </div>
-                    <div class="media-body">
-                        <a href="user-profile.html">
-                            <span class="title mb-0">${data.data.title}</span>
-                            <span class="discribe">${data.data.description}</span>
-                            <span class="time"><time>${data.data.timeAgo}</time></span>
-                        </a>
-                    </div>
-                </div>
-            `;
-
-            $contentContainer.append(mediaHtml);
-            console.log('Data received and added to the DOM:', data);
-        });
     });
-    //==================================================================================================================
+    @endif
+    $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#177dff",
+        fillColor: "rgba(23, 125, 255, 0.14)",
+    });
+
+    $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#f3545d",
+        fillColor: "rgba(243, 84, 93, .14)",
+    });
+
+    $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#ffa534",
+        fillColor: "rgba(255, 165, 52, .14)",
+    });
 </script>
 @yield('script')
 </body>

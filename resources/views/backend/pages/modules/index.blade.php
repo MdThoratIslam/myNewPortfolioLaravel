@@ -1,18 +1,31 @@
 @extends('backend.master')
 
-@section('title', 'Visitor')
+@section('title', 'Modules')
 
 @section('content')
-        <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row  pb-4">
-            <div>
-                <h3 class="fw-bold mb-3">Modules</h3>
-            </div>
-            <div class="ms-md-auto py-2 py-md-0">
-                <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
-                <button class="btn btn-primary btn-round ms-auto"data-bs-toggle="modal" data-bs-target="#addRowModal">
-                    <i class="fa fa-plus"></i>Add Row
-                </button>
-            </div>
+    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row  pb-4 page-header">
+        <div>
+            <h3 class="fw-bold mb-3">Modules</h3>
+        </div>
+        <h3 class="fw-bold mb-3">Dahboard</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a href="{{route('dashboard')}}"><i class="icon-home"></i></a>
+            </li>
+            <li class="separator">
+                <i class="icon-chevron-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('modules.index')}}">Modules</a>
+            </li>
+        </ul>
+        </ul>
+        <div class="ms-md-auto py-2 py-md-0">
+            <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
+            <button class="btn btn-primary btn-round ms-auto"data-bs-toggle="modal" data-bs-target="#addRowModal">
+                <i class="fa fa-plus"></i>Add Row
+            </button>
+        </div>
             <!-- Modal -->
             <!-- Modal -->
             <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -58,9 +71,7 @@
                     </div>
                 </div>
             </div>
-        
-        
-        </div>
+    </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">

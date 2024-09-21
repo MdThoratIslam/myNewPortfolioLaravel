@@ -73,7 +73,7 @@ class SubModuleFactory extends Factory
                 'created_at'            => currentDateTime()
             ],
             [
-                'name'                  => 'Modules',
+                'name'                  => 'Modules List',
                 'icon'                  => 'mdi mdi-menu',
                 'route'                 => 'modules.index',
                 'status_active'         => 1,
@@ -81,15 +81,15 @@ class SubModuleFactory extends Factory
                 'module_id'             => 8,
                 'created_at'            => currentDateTime()
             ],
-            [
-                'name'                  => 'Index',
-                'icon'                  => 'mdi mdi-menu',
-                'route'                 => 'modules.create',
-                'status_active'         => 1,
-                'is_delete'             => 0,
-                'module_id'             => 8,
-                'created_at'            => currentDateTime()
-            ]
+//            [
+//                'name'                  => 'Index',
+//                'icon'                  => 'mdi mdi-menu',
+//                'route'                 => 'modules.create',
+//                'status_active'         => 1,
+//                'is_delete'             => 0,
+//                'module_id'             => 8,
+//                'created_at'            => currentDateTime()
+//            ]
         ];
     }
 }

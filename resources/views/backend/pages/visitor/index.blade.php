@@ -17,7 +17,6 @@
                 <div class="tile-body">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center p-2">
-
                         </div>
                         <div class="card-body">
                             <div id="datatable-controls" class="d-flex align-items-center w-100">

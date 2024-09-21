@@ -1,6 +1,14 @@
 @extends('backend.master')
 @section('title', 'Dashboard')
 @section('content')
+    <div class="page-header">
+        <h3 class="fw-bold mb-3">Dahboard</h3>
+        <ul class="breadcrumbs mb-3">
+            <li class="nav-home">
+                <a href="{{route('dashboard')}}"><i class="icon-home"></i></a>
+            </li>
+        </ul>
+    </div>
     <div class="row">
         <div class="col-sm-6 col-md-3">
             <div class="card card-stats card-round">
@@ -26,9 +34,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-icon">
-                            <div
-                                    class="icon-big text-center icon-info bubble-shadow-small"
-                            >
+                            <div class="icon-big text-center icon-info bubble-shadow-small">
                                 <i class="icon-calendar"></i>
                             </div>
                         </div>
@@ -47,9 +53,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-icon">
-                            <div
-                                    class="icon-big text-center icon-success bubble-shadow-small"
-                            >
+                            <div class="icon-big text-center icon-success bubble-shadow-small">
                                 <i class="fas fa-luggage-cart"></i>
                             </div>
                         </div>
@@ -68,9 +72,7 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-icon">
-                            <div
-                                    class="icon-big text-center icon-secondary bubble-shadow-small"
-                            >
+                            <div class="icon-big text-center icon-secondary bubble-shadow-small">
                                 <i class="far fa-check-circle"></i>
                             </div>
                         </div>

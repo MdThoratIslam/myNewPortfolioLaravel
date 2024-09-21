@@ -9,30 +9,54 @@
         @if (config('app.name')){{ config('app.name') }} | @endif @yield('title')
     </title>
     <meta content="" name="Md Thorat Islam" />
+    <link rel="icon" href="{{asset('public/backend/v2/assets/img/paper-plane.png')}}" type="image/x-icon"/>
+    
+    
+    <!-- Fonts and icons -->
+    <script src="{{asset('public/backend/v2/assets/js/plugin/webfont/webfont.min.js')}}"></script>
+    <script>
+        WebFont.load({
+            google: { families: ["Public Sans:300,400,500,600,700"] },
+            custom: {
+                families: [
+                    "Font Awesome 5 Solid",
+                    "Font Awesome 5 Regular",
+                    "Font Awesome 5 Brands",
+                    "simple-line-icons",
+                ],
+                urls: ["{{asset('public/backend/v2/assets/css/fonts.min.css')}}"],
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            },
+        });
+    </script>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{{asset('public/backend/v2/assets/css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/backend/v2/assets/css/plugins.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/backend/v2/assets/css/kaiadmin.min.css')}}" />
+    {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">--}}
+    {{--    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">--}}
+    <link rel="stylesheet" href="{{asset('public/backend/v2/assets/css/demo.css')}}" />
+    <style>
+        /* Customize FullCalendar toolbar button styles */
+        .fc-toolbar .fc-button {
+            background-color: #007bff; /* Change to the desired color */
+            color: #fff; /* Set text color */
+            border-color: #007bff; /* Change border color */
+        }
 
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
-    <link href="{{asset('public/backend/plugins/material/css/materialdesignicons.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('public/backend/plugins/simplebar/simplebar.css')}}" rel="stylesheet" />
-    <!-- PLUGINS CSS STYLE -->
-    <link href="{{asset('public/backend/plugins/nprogress/nprogress.css')}}" rel="stylesheet" />
-    <link href="{{asset('public/backend/plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('public/backend/plugins/jvectormap/jquery-jvectormap-2.0.3.css')}}" rel="stylesheet" />
-    <link href="{{asset('public/backend/plugins/daterangepicker/daterangepicker.css')}}" rel="stylesheet" />
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <link href="{{asset('public/backend/plugins/toaster/toastr.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('public/backend/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
-    <!-- MONO CSS -->
-    <link id="main-css-href" rel="stylesheet" href="{{asset('public/backend/css/style.css')}}" />
-    <link href="{{asset('public/backend/images/paper-plane.png')}}" rel="shortcut icon" />
-    <script src="{{asset('public/backend/plugins/nprogress/nprogress.js')}}"></script>
-    <link href="{{asset('public/backend/plugins/fullcalendar/core-4.3.1/main.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/backend/plugins/fullcalendar/daygrid-4.3.0/main.min.css')}}" rel="stylesheet">
 
+        .fc-toolbar .fc-button:hover {
+            background-color: #0056b3; /* Darker shade for hover state */
+            border-color: #0056b3; /* Darker border for hover state */
+        }
+
+        /* Optional: Make the buttons rounded */
+        .fc-toolbar .fc-button {
+            border-radius: 4px; /* Adjust border-radius for rounded effect */
+        }
+    </style>
 </head>
-<body class="navbar-fixed sidebar-fixed" id="body">
-<script>
-    NProgress.configure({ showSpinner: true });
-    NProgress.start();
-</script>
-{{--<div id="toaster"></div>--}}
+<body>
