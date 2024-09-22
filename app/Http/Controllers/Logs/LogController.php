@@ -5,54 +5,38 @@ use Illuminate\Http\Request;
 use Rap2hpoutre\LaravelLogViewer\LaravelLogViewer;
 use Rap2hpoutre\LaravelLogViewer\LogViewerController;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Yajra\DataTables\DataTables;
 class LogController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $this->log_viewer = new LaravelLogViewer();
         $logs = $this->log_viewer->all();
-        usort($logs, function ($a, $b)
-        {
-            return strtotime($b['date']) - strtotime($a['date']); // Sort in descending order
+
+        // Sort logs by date in descending order
+        usort($logs, function ($a, $b) {
+            return strtotime($b['date']) - strtotime($a['date']);
         });
 
-        $perPage = 10; // Number of logs per page
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $currentItems = array_slice($logs, ($currentPage - 1) * $perPage, $perPage);
-        $paginatedLogs = new LengthAwarePaginator(
-            $currentItems,
-            count($logs),
-            $perPage,
-            $currentPage,
-            [
-                'path' => LengthAwarePaginator::resolveCurrentPath()
-            ]
-        );
+        // Handle AJAX request for DataTables
+        if ($request->ajax()) {
+            return DataTables::of($logs)
+                ->addColumn('date', function ($log) {
+                    return $log['date'];
+                })
+                ->addColumn('level', function ($log) {
+                    return '<span class="text-' . $log['level_class'] . '">' . $log['level'] . '</span>';
+                })
+                ->addColumn('message', function ($log) {
+                    return $log['text'];
+                })
+                ->rawColumns(['level', 'message'])  // Ensure raw HTML is returned for level and message columns
+                ->make(true);
+        }
+        //how to delete a log file
 
-        return view('backend.logs.index', compact('paginatedLogs'));
+        return view('backend.logs.index');
     }
-
-    public function showLogs()
-    {
-        $logViewer          = new LogViewerController();
-        $logs               = collect($logViewer->index());
-        $currentPage        = request()->get('page', 1);
-        $perPage            = 10;
-        $currentPageLogs    = $logs->slice(($currentPage - 1) * $perPage, $perPage)->values();
-        $paginatedLogs      = new LengthAwarePaginator(
-            $currentPageLogs,
-            $logs->count(),
-            $perPage,
-            $currentPage,
-            [
-                'path'      => request()->url(),
-                'query'     => request()->query()]
-        );
-        return view('backend.logs.index', compact('paginatedLogs'));
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
@@ -95,6 +79,14 @@ class LogController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        dd($id);
+        $logFile = storage_path('logs/laravel-' . $date . '.log');
+
+        if (file_exists($logFile)) {
+            unlink($logFile);  // Delete the log file
+            return response()->json(['success' => 'Log file deleted successfully.']);
+        } else {
+            return response()->json(['error' => 'Log file not found.'], 404);
+        }
     }
 }

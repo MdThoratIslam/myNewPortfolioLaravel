@@ -57,6 +57,37 @@
         .fc-toolbar .fc-button {
             border-radius: 4px; /* Adjust border-radius for rounded effect */
         }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .pagination .page-link {
+            font-size: 16px;
+            padding: 0.5rem 0.75rem;
+            margin: 0 0.25rem;
+        }
+
+        .pagination .page-item {
+            display: inline-block;
+        }
+
+        .pagination .page-link:hover {
+            background-color: #f1f1f1;
+            border-color: #dee2e6;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+
+        .pagination .page-link svg {
+            width: 16px; /* This controls the arrow size */
+            height: 16px;
+        }
     </style>
 </head>
 <body>

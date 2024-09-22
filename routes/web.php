@@ -60,6 +60,7 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
     //==================================================================================================================
     Route::get('logs', [\App\Http\Controllers\Logs\LogController::class, 'index'])->name('log.viewer');
     Route::get('logs/frame', [\App\Http\Controllers\Logs\LogController::class, 'showLogs'])->name('log.viewer.frame');
+    Route::post('logs/{date}', [\App\Http\Controllers\Logs\LogController::class, 'destroy']);
     //==================================================================================================================
 
     //================================== User All Routes ===============================================================
