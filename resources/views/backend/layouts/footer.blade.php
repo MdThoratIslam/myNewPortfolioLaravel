@@ -33,8 +33,7 @@
 <script src="{{asset('public/backend/v2/assets/js/kaiadmin.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
 {{--<!-- Kaiadmin DEMO methods, don't include it in your project! -->--}}
 <script src="{{asset('public/backend/v2/assets/js/setting-demo.js')}}"></script>
 <script src="{{asset('public/backend/v2/assets/js/demo.js')}}"></script>

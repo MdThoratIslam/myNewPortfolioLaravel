@@ -1,8 +1,12 @@
 <div class="sidebar" data-background-color="dark">
     <div class="sidebar-logo">
         <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
-                <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+            <a href="{{route('dashboard')}}" class="logo">
+                @php
+                    $path = auth()->user()->user_photo_path;
+                @endphp
+                <img src="{{asset($path)}}" alt="navbar brand" class="navbar-brand rounded-circle" style="width:
+                80px; height: 80px;">
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -26,7 +30,8 @@
                         ->with('subModules')
                         ->where('is_delete',0)
                         ->select('id', 'name', 'route', 'route_type','icon')
-                        ->orderBy('priority', 'asc')
+                         ->orderBy('priority', 'asc') // First order by 'priority'
+                         ->orderBy('created_at', 'asc') // Then order by 'created_at
                         ->get();
                     $modules = [];
                     foreach ($sql as $module)

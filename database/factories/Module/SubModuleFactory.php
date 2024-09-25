@@ -46,39 +46,12 @@ class SubModuleFactory extends Factory
                 'created_at'            => currentDateTime()
             ],
             [
-                'name'                  => 'Earning',
-                'icon'                  => 'mdi mdi-cash',
-                'route'                 => 'earning-money.index',
-                'status_active'         => 1,
-                'is_delete'             => 0,
-                'module_id'             => 7,
-                'created_at'            => currentDateTime()
-            ],
-            [
-                'name'                  => 'Expansive',
-                'icon'                  => 'mdi mdi-cash-multiple',
-                'route'                 => 'expansive.index',
-                'status_active'         => 1,
-                'is_delete'             => 0,
-                'module_id'             => 7,
-                'created_at'            => currentDateTime()
-            ],
-            [
-                'name'                  => 'Report',
-                'icon'                  => 'mdi mdi-file-document-box-multiple-outline',
-                'route'                 => 'money.report',
-                'status_active'         => 1,
-                'is_delete'             => 0,
-                'module_id'             => 7,
-                'created_at'            => currentDateTime()
-            ],
-            [
                 'name'                  => 'Modules List',
                 'icon'                  => 'mdi mdi-menu',
                 'route'                 => 'modules.index',
                 'status_active'         => 1,
                 'is_delete'             => 0,
-                'module_id'             => 8,
+                'module_id'             => 7,
                 'created_at'            => currentDateTime()
             ],
 //            [

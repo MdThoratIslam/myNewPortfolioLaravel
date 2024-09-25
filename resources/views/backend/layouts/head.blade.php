@@ -88,6 +88,11 @@
             width: 16px; /* This controls the arrow size */
             height: 16px;
         }
+        .modal.show {
+            display: flex !important;
+            align-items: center;  /* Vertically center the modal */
+            justify-content: center;  /* Horizontally center the modal */
+        }
     </style>
 </head>
 <body>

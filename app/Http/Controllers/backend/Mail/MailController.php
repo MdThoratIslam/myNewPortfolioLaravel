@@ -16,21 +16,23 @@ class MailController extends Controller
     public function index(Request $request)
     {
         try {
-            $name = $request->name;
-            $email = $request->email;
-            $sub = $request->subject;
-            $mess = $request->message;
+            $name       = $request->name;
+            $email      = $request->email;
+            $sub        = $request->subject;
+            $mess       = $request->message;
 
-            if (empty($email)) {
+            if (empty($email))
+            {
                 throw new \Exception("No email address provided.");
             }
-            $mailData = [
-                'url' => 'http://www.zasusoft.com/',
-                'name' => $name,
-                'subject' => $sub,
-                'message' => $mess
+            $mailData =
+                [
+                'url'       => 'http://www.zasusoft.com/',
+                'name'      => $name,
+                'subject'   => $sub,
+                'message'   => $mess
             ];
-            $senderMessage = "Thanks for your message, we will reply to you later.";
+            $senderMessage  = "Thanks for your message, we will reply to you later.";
             Mail::to($email)->send(new SendMessageToEndUser($name, $senderMessage, $mailData));
             return response()->json('OK');
         } catch (\Exception $e)

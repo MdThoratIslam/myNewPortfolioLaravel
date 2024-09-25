@@ -2,21 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\TrainingSummary\TrainingSummary;
 use Illuminate\Database\Seeder;
-
+use App\Models\TrainingSummary\TrainingSummary;
 
 class TrainingSummarySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // Generate one record for Professional Web Application Development
+        // Create using the professionalWebAppDevelopment state
         TrainingSummary::factory()->professionalWebAppDevelopment()->create();
 
-        // Generate one record for Web Development
+        // Create using the webDevelopment state
         TrainingSummary::factory()->webDevelopment()->create();
     }
 }

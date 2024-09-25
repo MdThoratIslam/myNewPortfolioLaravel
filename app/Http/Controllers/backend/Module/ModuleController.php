@@ -5,57 +5,17 @@ namespace App\Http\Controllers\backend\Module;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Module\StoreModuleRequest;
 use App\Http\Requests\Module\UpdateModuleRequest;
+use App\Http\Resources\Module\ModuleResource;
 use App\Models\Module\Module;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
 class ModuleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    /*public function index()
-    {
-        $modules = Module::where('status_active', '=', 1)
-            ->where('is_delete', '=', 0)
-            ->get();
-
-        $modules_arr = [];
-        foreach ($modules as $module) {
-            $modules_arr[] = [
-                'id'            => $module->id,
-                'name'          => $module->name,
-                'description'   => $module->description,
-                'icon'          => $module->icon,
-                'route'         => $module->route,
-                'route_type'    => $module->route_type,
-                'priority'      => $module->priority
-            ];
-        }
-        return view('backend.pages.settings.modules.index', compact('modules_arr'));
-    }*/
-
     public function index()
     {
         return view('backend.pages.modules.index');
     }
-
-//    public function getModules(Request $request)
-//    {
-//        if ($request->ajax()) {
-//            $modules = Module::where('status_active', 1)
-//                ->where('is_delete', 0)
-//                ->select(['id', 'name', 'description', 'icon', 'route', 'route_type', 'priority']);
-//
-//            return DataTables::of($modules)
-//                ->addColumn('action', function ($module) {
-//                    return view('backend.pages.settings.modules.partials.actions', compact('module'))->render();
-//                })
-//                ->rawColumns(['action']) // Ensures action column HTML is rendered correctly
-//                ->make(true);
-//        }
-//    }
-
     public function getModules(Request $request)
     {
         $i=0;
@@ -90,10 +50,6 @@ class ModuleController extends Controller
             ->rawColumns(['action'])->make(true);
         }
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
@@ -104,7 +60,36 @@ class ModuleController extends Controller
      */
     public function store(StoreModuleRequest $request)
     {
-        //
+        try {
+            $module = Module::create([
+                'name'          => $request->name,
+                'description'   => $request->description,
+                'icon'          => $request->icon,
+                'route'         => $request->route,
+                'route_type'    => $request->route_type,
+                'priority'      => $request->priority,
+                'created_by'    => auth()->id(),
+                'updated_by'    => null,
+                'status_active' => 1,
+                'is_delete'     => 0,
+                'created_at'    => now(),
+                'updated_at'    => null,
+            ]);
+            $module->save();
+            $module->refresh();
+            $data = new ModuleResource($module);
+            return response()->json([
+                'success' => 'Module created successfully.',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(
+                [
+                    'status' => 'error',
+                    'message' => $e->getMessage(),
+                    'line' => $e->getLine(),
+                    'file' => $e->getFile(),
+                ]);
+        }
     }
 
     /**
@@ -112,7 +97,8 @@ class ModuleController extends Controller
      */
     public function show(Module $module)
     {
-        dd($module);
+
+        return response()->json($module);
     }
 
     /**
@@ -136,8 +122,11 @@ class ModuleController extends Controller
      */
     public function destroy($id)
     {
-        $module = Module::findOrFail($id);
-        $module->delete();
-        return response()->json(['success' => 'Module deleted successfully.']);
+        $module = Module::find($id);
+        if ($module) {
+            $module->delete();
+            return response()->json(['success' => 'Module deleted successfully.']);
+        }
+        return response()->json(['error' => 'Module not found.'], 404);
     }
 }

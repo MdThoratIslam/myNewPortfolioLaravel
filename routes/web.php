@@ -31,49 +31,32 @@ use App\Http\Controllers\Visitor\VisitorController;
     Route::get('/',                         [WebController::class, 'index'])->name('web_site');
     Route::get('/portfolio_filter/{id}',    [WebController::class, 'portfolio_describe'])->name('portfolio_filter');
     Route::get('/portfolio_details/{id}',   [WebController::class, 'portfolio_describe'])->name('portfolio_details');
-
-//    Route::get('/generate-pdf',             [PDFController::class, 'generatePDF'])->name('generate-pdf');
-//    Route::get('/downloadCV',               [PDFController::class, 'downloadCV'])->name('downloadCV');
-//Route::post('/downloadCV',              [PDFController::class, 'downloadReason'])->name('downloadCV');
-
     Route::get('/get_data/',                [PDFController::class, 'get_data'])->name('get_data');
-
-    Route::get('/generate-pdf', [PDFController::class, 'generatePDF'])->name('generate-pdf');
-    Route::get('/downloadCV', [PDFController::class, 'downloadCV'])->name('downloadCV');
-    Route::post('/downloadCV', [PDFController::class, 'downloadReason'])->name('downloadReason');
-
+    Route::get('/generate-pdf',             [PDFController::class, 'generatePDF'])->name('generate-pdf');
+    Route::get('/downloadCV',               [PDFController::class, 'downloadCV'])->name('downloadCV');
+    Route::post('/downloadCV',              [PDFController::class, 'downloadReason'])->name('downloadReason');
     Route::get('/pusher',                   [WebController::class, 'pusher'])->name('pusher');
     //Route::resource('order',                'OrderController')->only(['store']);
-    Route::post('whatsapp', [\App\Http\Controllers\WhatsAppController::class, 'store'])->name('whatsapp.post');
-    Route::post('/email/send', [MailController::class, 'index'])->name('maildata');
+    Route::post('whatsapp',                 [\App\Http\Controllers\WhatsAppController::class, 'store'])->name('whatsapp.post');
+    Route::post('/email/send',              [MailController::class, 'index'])->name('maildata');
 // ============== Web Routes End =======================================================================================
-
 
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
 {
     Route::get('/', function () {return redirect()->route('dashboard');});
-    Route::get('/dashboard',                [DashboardController::class, 'dashboard'])
-        ->middleware(['auth', 'verified'])
-        ->name('dashboard');
+    Route::get('/dashboard',                [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
     //rap2hpoutre/laravel-log-viewer package routes
     //==================================================================================================================
-    Route::get('logs', [\App\Http\Controllers\Logs\LogController::class, 'index'])->name('log.viewer');
-    Route::get('logs/frame', [\App\Http\Controllers\Logs\LogController::class, 'showLogs'])->name('log.viewer.frame');
-    Route::post('logs/{date}', [\App\Http\Controllers\Logs\LogController::class, 'destroy']);
+    Route::get('logs',                      [\App\Http\Controllers\Logs\LogController::class, 'index'])->name('log.viewer');
+    Route::get('logs/frame',                [\App\Http\Controllers\Logs\LogController::class, 'showLogs'])->name('log.viewer.frame');
+    Route::post('logs/{date}',              [\App\Http\Controllers\Logs\LogController::class, 'destroy']);
     //==================================================================================================================
 
     //================================== User All Routes ===============================================================
     Route::get('/academic-dtails',          [AcademicQualification::class, 'index'])->name('academic-dtails');
     Route::get('/users-setting/',           [UserController::class, 'setting'])->name('users.setting');
-
-
-    /*Route::get('/users-list/{id}',          [UserController::class, 'show'])->name('users-list-show');
-    Route::get('/users-details/',           [UserController::class, 'edit'])->name('users.details');
-    Route::post('/user-update/{id}',        [UserController::class, 'update'])->name('user-update');
-    Route::get('/create-user',              [UserController::class, 'create'])->name('create-user');*/
-
-    Route::resource('users', UserController::class)->names([
+    Route::resource('users',                UserController::class)->names([
         'index'   => 'users.index',
         'create'  => 'users.create',
         'store'   => 'users.store',
@@ -85,20 +68,20 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
     // ============================== User All Routes End ==============================================================
 
     // ============================== Employment History ===============================================================
-    Route::resource('employment-history', \App\Http\Controllers\backend\EmploymentHistory\EmploymentHistoryController::class)
+    Route::resource('employment-history',      \App\Http\Controllers\backend\EmploymentHistory\EmploymentHistoryController::class)
         ->only(['index', 'store', 'show', 'create', 'edit', 'update', 'destroy']);
 
     // ============================== Earning Money ====================================================================
-    Route::resource('earning-money', EarningMoneyController::class);
-    Route::resource('expansive', ExpansiveController::class);
-    Route::get('money-report',[ExpansiveController::class,'report'])->name('money.report');
-    Route::get('get-earning-data', [EarningMoneyController::class,'get_data'])->name('get-earning-data');
+    Route::resource('earning-money',            EarningMoneyController::class);
+    Route::resource('expansive',                ExpansiveController::class);
+    Route::get('money-report',                  [ExpansiveController::class,'report'])->name('money.report');
+    Route::get('get-earning-data',              [EarningMoneyController::class,'get_data'])->name('get-earning-data');
 
     // ============================== Email All Routes =================================================================
-    Route::get('/email-inbox',              [UserController::class, 'readEmails'])->name('email-inbox');
+    Route::get('/email-inbox',                  [UserController::class, 'readEmails'])->name('email-inbox');
 
-    Route::get ('/mail-compose',            [MailController::class,'mailform'])->name('mail.compose');
-    Route::post ('/mail-send',              [MailController::class,'maildata'])->name('mail.send');
+    Route::get ('/mail-compose',                [MailController::class,'mailform'])->name('mail.compose');
+    Route::post ('/mail-send',                  [MailController::class,'maildata'])->name('mail.send');
     //   =============================== Events =======================================================================
     Route::resource('events', EventsController::class);
 
@@ -108,8 +91,8 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function ()
     //==================================================================================================================
 
     // =========================== Modules =============================================================================
-    Route::resource('modules',ModuleController::class);
-    Route::get('modules-data', [ModuleController::class, 'getModules'])->name('modules.data');
+    Route::resource('modules', ModuleController::class);
+    Route::get('modules-data',                  [ModuleController::class, 'getModules'])->name('modules.data');
     //==================================================================================================================
 });
 

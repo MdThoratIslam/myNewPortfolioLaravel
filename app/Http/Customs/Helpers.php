@@ -407,14 +407,14 @@ function routeType($id = null)
     {
         return $routeType[$id];
     } else {
-        return 'Unknown Route Type'; // Default value
+        return $routeType; // Default value if ID is not found
     }
 }
 function priority($id = null)
 {
     $priority = [
-        0  => 'Unknown',
-        1  => 'Critical',
+        0  => 'Tittle Priority',
+        1  => 'Main Priority',
         2  => 'High Priority',
         3  => 'Neutral',
         4  => 'Low Priority',
@@ -427,7 +427,7 @@ function priority($id = null)
     {
         return $priority[$id];
     } else {
-        return 'Unknown Priority'; // Default value if ID is not found
+        return $priority; // Default value if ID is not found
     }
 }
 if (! function_exists('convert_to_absolute_path')) {
