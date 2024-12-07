@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
             AcademicQualificationSeeder::class,
             SpecialQualificationSeeder::class,
             SkillSummarySeeder::class,
-            DivisionsSeeder::class,
+            /*DivisionsSeeder::class,
             DistrictsSeeder::class,
-            PoliceStationSeeder::class,
+            PoliceStationSeeder::class,*/
             FieldsOfSkillSeeder::class,
             EmploymentHistorySeeder::class,
             ResponsibilitiesSeeder::class,
